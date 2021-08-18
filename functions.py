@@ -108,6 +108,32 @@ def create_ap(host, token, x_operation_id, payload):
     return ap_cpid, ap_ocid, ap_x_token
 
 
+# Do outsourcing
+def do_outsourcing_pn(host, token, x_operation_id, pn_cpid, pn_ocid, pn_x_token, ap_cpid, ap_ocid):
+    requests.post(url=f'{host}/do/outsourcing/{pn_cpid}/{pn_ocid}?FA={ap_cpid}&AP={ap_ocid}', headers={
+        'Authorization': f'Bearer {token}',
+        'X-OPERATION-ID': x_operation_id,
+        'Content-Type': 'application/json',
+        'X-TOKEN': pn_x_token
+    })
+    kafka_message = get_message_from_kafka(x_operation_id)
+    return kafka_message
+
+
+# Do relation
+def do_relation_ap(host, token, x_operation_id, pn_cpid, pn_ocid, ap_x_token, ap_cpid, ap_ocid):
+    requests.post(url=f'{host}/do/relation/{ap_cpid}/{ap_ocid}?CP={pn_cpid}&PN={pn_ocid}', headers={
+        'Authorization': f'Bearer {token}',
+        'X-OPERATION-ID': x_operation_id,
+        'Content-Type': 'application/json',
+        'X-TOKEN': ap_x_token
+    })
+    kafka_message = get_message_from_kafka(x_operation_id)
+    return kafka_message
+
+
+
+
 fs_ocid = create_fs(
     token=get_access_token(host),
     host=host,
@@ -130,4 +156,26 @@ ap = create_ap(host=host,
                token=get_access_token(host),
                x_operation_id=get_x_operation_id(get_access_token(host), host),
                payload=ap)
-print(ap)
+
+do_outsourcing_pn = do_outsourcing_pn(host=host,
+                                      token=get_access_token(host),
+                                      x_operation_id=get_x_operation_id(token=get_access_token(host), host=host),
+                                      pn_cpid=pn[0],
+                                      pn_ocid=pn[1],
+                                      pn_x_token=pn[2],
+                                      ap_cpid=ap[0],
+                                      ap_ocid=ap[1])
+
+
+do_relation_ap_pn = do_relation_ap(host=host,
+                                   token=get_access_token(host),
+                                   x_operation_id=get_x_operation_id(token=get_access_token(host), host=host),
+                                   pn_cpid=pn[0],
+                                   pn_ocid=pn[1],
+                                   ap_x_token=ap[2],
+                                   ap_cpid=ap[0],
+                                   ap_ocid=ap[1])
+
+
+print(do_outsourcing_pn)
+print(do_relation_ap_pn)
