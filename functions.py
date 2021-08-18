@@ -237,15 +237,30 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
                                       })
                         x_operation_id_2 = get_x_operation_id(get_access_token(host), host)
                         requests.post(url=f'{host}/do/qualification/{ap_cpid}/{fe_ocid}/{qual}',
-                                          headers={
-                                              'Authorization': f'Bearer {token}',
-                                              'X-OPERATION-ID': x_operation_id_2,
-                                              'Content-Type': 'application/json',
-                                              'X-TOKEN': x_token
-                                          }, data=json.dumps(payload))
+                                      headers={
+                                          'Authorization': f'Bearer {token}',
+                                          'X-OPERATION-ID': x_operation_id_2,
+                                          'Content-Type': 'application/json',
+                                          'X-TOKEN': x_token
+                                      }, data=json.dumps(payload))
                     else:
                         continue
             else:
                 continue
         else:
-            print('Incorrect qualification')
+            pass
+
+
+# Do qualification protocol
+def do_qualification_protocol(host, token, x_operation_id, ap_cpid, fe_ocid, ap_x_token):
+    r = requests.post(url=f'{host}/do/protocol/qualification/{ap_cpid}/{fe_ocid}',
+                      headers={
+                          'Authorization': f'Bearer {token}',
+                          'X-OPERATION-ID': x_operation_id,
+                          'Content-Type': 'application/json',
+                          'X-TOKEN': ap_x_token
+                      })
+    kafka_message = get_message_from_kafka(x_operation_id)
+    contract_id = kafka_message['data']['outcomes']['contracts'][0]['id']
+    contract_token = kafka_message['data']['outcomes']['contracts'][0]['X-TOKEN']
+    return contract_id, contract_token

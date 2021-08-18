@@ -155,8 +155,17 @@ do_cons_4 = do_consideration_and_qualification(
     payload=active_qualification
 )
 
+time.sleep(2)
 
-print(do_cons_1)
-print(do_cons_2)
-print(do_cons_3)
-print(do_cons_4)
+qualification_protocol = do_qualification_protocol(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    ap_x_token=ap[2]
+)
+
+
+print(qualification_protocol)
+
