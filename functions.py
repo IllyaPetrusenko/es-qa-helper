@@ -1,12 +1,6 @@
 import datetime
 import json
 import requests
-from config import host
-from payloads.create_ei import ei
-from payloads.create_fs import fs
-from payloads.create_pn import pn
-from payloads.create_ap import ap
-from payloads.update_ap import up_ap
 
 
 # Get access token
@@ -139,7 +133,20 @@ def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
         'Content-Type': 'application/json',
-        'X-TOKEN':ap_x_token
+        'X-TOKEN': ap_x_token
     }, data=json.dumps(payload))
     kafka_message = get_message_from_kafka(x_operation_id)
     return kafka_message
+
+
+# Create FE
+def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload):
+    requests.post(url=f'{host}/do/fe/{ap_cpid}/{ap_ocid}', headers={
+        'Authorization': f'Bearer {token}',
+        'X-OPERATION-ID': x_operation_id,
+        'Content-Type': 'application/json',
+        'X-TOKEN': ap_x_token
+    }, data=json.dumps(payload))
+    kafka_message = get_message_from_kafka(x_operation_id)
+    fe_ocid = kafka_message['date']['outcomes']['fe'][0]['id']
+    return fe_ocid

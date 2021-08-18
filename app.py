@@ -1,4 +1,12 @@
 from functions import *
+from config import host
+from payloads.create_ei import ei
+from payloads.create_fs import fs
+from payloads.create_pn import pn
+from payloads.create_ap import ap
+from payloads.update_ap import up_ap
+from payloads.create_fe import fe
+
 
 # Create FS
 fs_ocid = create_fs(
@@ -54,4 +62,15 @@ update_ap_after_relation = update_ap(
     payload=up_ap
 )
 
+fe = create_fe(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    ap_ocid=ap[1],
+    ap_x_token=ap[2],
+    payload=fe
+)
+
 print(update_ap_after_relation)
+print(fe)
