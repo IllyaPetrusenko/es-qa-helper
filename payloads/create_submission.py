@@ -1,6 +1,6 @@
 sub_1 = {
     "submission": {
-        "id": "1",
+        "id": "4",
         "candidates": [
             {
                 "name": "Kate",
@@ -150,7 +150,7 @@ sub_1 = {
 
 sub_2 = {
     "submission": {
-        "id": "1",
+        "id": "3",
         "candidates": [
             {
                 "name": "Kate",
@@ -300,7 +300,7 @@ sub_2 = {
 
 sub_3 = {
     "submission": {
-        "id": "3",
+        "id": "2",
         "candidates": [
             {
                 "name": "Kate",
@@ -450,12 +450,12 @@ sub_3 = {
 
 sub_4 = {
     "submission": {
-        "id": "4",
+        "id": "1",
         "candidates": [
             {
                 "name": "Kate",
                 "identifier": {
-                    "id": "444-444",
+                    "id": "444-111",
                     "legalName": "FOP Petrusenko",
                     "scheme": "MD-IDNO",
                     "uri": "candidate4.uri"

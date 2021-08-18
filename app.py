@@ -111,12 +111,10 @@ submission_4 = create_submission(
     payload=sub_4
 )
 
-time.sleep(121)
+time.sleep(15)
+
+qualifications = get_qualifications_from_public_point(fe)
 
 
+print(qualifications)
 
-print(fe)
-print(submission_1)
-print(submission_2)
-print(submission_3)
-print(submission_4)

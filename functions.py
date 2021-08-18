@@ -140,16 +140,16 @@ def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
 
 
 # Generate periods
-def generate_periods_ev():
+def generate_period():
     prequalification_period_end = datetime.datetime.now() - datetime.timedelta(hours=3)
-    prequalification_period_end = prequalification_period_end + datetime.timedelta(minutes=2)
+    prequalification_period_end = prequalification_period_end + datetime.timedelta(seconds=15)
     prequalification_period_end = prequalification_period_end.strftime("%Y-%m-%dT%H:%M:%SZ")
     return str(prequalification_period_end)
 
 
 # Create FE
 def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload):
-    payload['preQualification']['period']['endDate'] = generate_periods_ev()
+    payload['preQualification']['period']['endDate'] = generate_period()
     requests.post(url=f'{host}/do/fe/{ap_cpid}/{ap_ocid}', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -172,3 +172,42 @@ def create_submission(host, token, x_operation_id, ap_cpid, fe_ocid, payload):
     submission_id = kafka_message['data']['outcomes']['submissions'][0]['id']
     submission_token = kafka_message['data']['outcomes']['submissions'][0]['X-TOKEN']
     return submission_id, submission_token
+
+
+# Get qualification from Kafka
+def get_bpe_message_from_kafka(ocid):
+    kafka_host = 'http://82.144.223.29:5000'
+    kafka_message = requests.get(
+        url=f'{kafka_host}/ocid/{ocid}/bpe'
+    )
+    if kafka_message.status_code == 404:
+        date = datetime.datetime.now()
+        date_new = datetime.datetime.now() + datetime.timedelta(seconds=25)
+        while date < date_new:
+            kafka_message = requests.get(
+                url=f'{kafka_host}/ocid/{ocid}/bpe'
+            )
+            date = datetime.datetime.now()
+            if kafka_message.status_code == 200:
+                kafka_message = requests.get(
+                    url=f'{kafka_host}/ocid/{ocid}/bpe'
+                ).json()
+                del kafka_message[0]['_id']
+                return kafka_message
+        print('The message was not found in Kafka topic')
+    if kafka_message.status_code == 200:
+        kafka_message = requests.get(
+            url=f'{kafka_host}/ocid/{ocid}/bpe'
+        ).json()
+    del kafka_message[0]['_id']
+    return kafka_message
+
+
+# Get qualifications from public point
+def get_qualifications_from_public_point(ocid):
+    kafka_message = get_bpe_message_from_kafka(ocid)
+    qualifications = kafka_message[0]['data']['outcomes']['qualifications']
+
+    return qualifications[0], qualifications[1], qualifications[2], qualifications[3]
+
+# Do consideration
