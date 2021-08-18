@@ -6,6 +6,7 @@ from payloads.create_ei import ei
 from payloads.create_fs import fs
 from payloads.create_pn import pn
 from payloads.create_ap import ap
+from payloads.update_ap import up_ap
 
 
 # Get access token
@@ -132,6 +133,16 @@ def do_relation_ap(host, token, x_operation_id, pn_cpid, pn_ocid, ap_x_token, ap
     return kafka_message
 
 
+# Update AP
+def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload):
+    requests.post(url=f'{host}/do/ap/{ap_cpid}/{ap_ocid}', headers={
+        'Authorization': f'Bearer {token}',
+        'X-OPERATION-ID': x_operation_id,
+        'Content-Type': 'application/json',
+        'X-TOKEN':ap_x_token
+    }, data=json.dumps(payload))
+    kafka_message = get_message_from_kafka(x_operation_id)
+    return kafka_message
 
 
 fs_ocid = create_fs(
@@ -176,6 +187,14 @@ do_relation_ap_pn = do_relation_ap(host=host,
                                    ap_cpid=ap[0],
                                    ap_ocid=ap[1])
 
+update_ap_after_relation = update_ap(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    ap_ocid=ap[1],
+    ap_x_token=ap[2],
+    payload=up_ap
+)
 
-print(do_outsourcing_pn)
-print(do_relation_ap_pn)
+print(update_ap_after_relation)
