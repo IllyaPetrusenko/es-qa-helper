@@ -1,11 +1,11 @@
 import time
-
 from functions import *
 from config import host
 from payloads.create_ei import ei
 from payloads.create_fs import fs
 from payloads.create_pn import pn
 from payloads.create_ap import ap
+from payloads.do_qualification import active_qualification
 from payloads.update_ap import up_ap
 from payloads.create_fe import fe
 from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
@@ -115,6 +115,48 @@ time.sleep(15)
 
 qualifications = get_qualifications_from_public_point(fe)
 
+do_cons_1 = do_consideration_and_qualification(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    qualifications=qualifications,
+    payload=active_qualification
+)
 
-print(qualifications)
+do_cons_2 = do_consideration_and_qualification(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    qualifications=qualifications,
+    payload=active_qualification
+)
 
+do_cons_3 = do_consideration_and_qualification(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    qualifications=qualifications,
+    payload=active_qualification
+)
+
+do_cons_4 = do_consideration_and_qualification(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    qualifications=qualifications,
+    payload=active_qualification
+)
+
+
+print(do_cons_1)
+print(do_cons_2)
+print(do_cons_3)
+print(do_cons_4)

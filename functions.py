@@ -207,7 +207,45 @@ def get_bpe_message_from_kafka(ocid):
 def get_qualifications_from_public_point(ocid):
     kafka_message = get_bpe_message_from_kafka(ocid)
     qualifications = kafka_message[0]['data']['outcomes']['qualifications']
+    return qualifications
 
-    return qualifications[0], qualifications[1], qualifications[2], qualifications[3]
 
+# TODO Rewrite this shit
 # Do consideration
+def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, qualifications, payload):
+    public_point = ''
+    if host == 'http://10.0.20.126:8900/api/v1':
+        public_point = 'http://dev.public.eprocurement.systems/tenders/'
+    if host == 'http://10.0.10.116:8900/api/v1':
+        public_point = 'http://public.eprocurement.systems/tenders/'
+    public_point = requests.get(url=f'{public_point}{ap_cpid}/{fe_ocid}').json()
+    qualifications_array = public_point['releases'][0]['qualifications']
+    for i in qualifications_array:
+        if 'statusDetails' in i:
+            if i['statusDetails'] == 'awaiting':
+                # send request to do consideration
+                for q in qualifications:
+                    if q['id'] == i['id']:
+                        x_token = q['X-TOKEN']
+                        qual = q['id']
+                        requests.post(url=f'{host}/do/consideration/qualification/{ap_cpid}/{fe_ocid}/{qual}',
+                                      headers={
+                                          'Authorization': f'Bearer {token}',
+                                          'X-OPERATION-ID': x_operation_id,
+                                          'Content-Type': 'application/json',
+                                          'X-TOKEN': x_token
+                                      })
+                        x_operation_id_2 = get_x_operation_id(get_access_token(host), host)
+                        requests.post(url=f'{host}/do/qualification/{ap_cpid}/{fe_ocid}/{qual}',
+                                          headers={
+                                              'Authorization': f'Bearer {token}',
+                                              'X-OPERATION-ID': x_operation_id_2,
+                                              'Content-Type': 'application/json',
+                                              'X-TOKEN': x_token
+                                          }, data=json.dumps(payload))
+                    else:
+                        continue
+            else:
+                continue
+        else:
+            print('Incorrect qualification')
