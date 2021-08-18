@@ -1,3 +1,5 @@
+import time
+
 from functions import *
 from config import host
 from payloads.create_ei import ei
@@ -6,6 +8,7 @@ from payloads.create_pn import pn
 from payloads.create_ap import ap
 from payloads.update_ap import up_ap
 from payloads.create_fe import fe
+from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
 
 
 # Create FS
@@ -72,5 +75,48 @@ fe = create_fe(
     payload=fe
 )
 
-print(update_ap_after_relation)
+submission_1 = create_submission(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    payload=sub_1
+)
+
+submission_2 = create_submission(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    payload=sub_2
+)
+
+submission_3 = create_submission(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    payload=sub_3
+)
+
+submission_4 = create_submission(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    payload=sub_4
+)
+
+time.sleep(121)
+
+
+
 print(fe)
+print(submission_1)
+print(submission_2)
+print(submission_3)
+print(submission_4)

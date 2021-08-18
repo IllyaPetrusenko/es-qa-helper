@@ -139,8 +139,17 @@ def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
     return kafka_message
 
 
+# Generate periods
+def generate_periods_ev():
+    prequalification_period_end = datetime.datetime.now() - datetime.timedelta(hours=3)
+    prequalification_period_end = prequalification_period_end + datetime.timedelta(minutes=2)
+    prequalification_period_end = prequalification_period_end.strftime("%Y-%m-%dT%H:%M:%SZ")
+    return str(prequalification_period_end)
+
+
 # Create FE
 def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload):
+    payload['preQualification']['period']['endDate'] = generate_periods_ev()
     requests.post(url=f'{host}/do/fe/{ap_cpid}/{ap_ocid}', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -148,5 +157,18 @@ def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
         'X-TOKEN': ap_x_token
     }, data=json.dumps(payload))
     kafka_message = get_message_from_kafka(x_operation_id)
-    fe_ocid = kafka_message['date']['outcomes']['fe'][0]['id']
+    fe_ocid = kafka_message['data']['outcomes']['fe'][0]['id']
     return fe_ocid
+
+
+# Create submission
+def create_submission(host, token, x_operation_id, ap_cpid, fe_ocid, payload):
+    r = requests.post(url=f'{host}/do/submission/{ap_cpid}/{fe_ocid}', headers={
+        'Authorization': f'Bearer {token}',
+        'X-OPERATION-ID': x_operation_id,
+        'Content-Type': 'application/json'
+    }, data=json.dumps(payload))
+    kafka_message = get_message_from_kafka(x_operation_id)
+    submission_id = kafka_message['data']['outcomes']['submissions'][0]['id']
+    submission_token = kafka_message['data']['outcomes']['submissions'][0]['X-TOKEN']
+    return submission_id, submission_token
