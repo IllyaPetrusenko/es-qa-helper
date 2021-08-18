@@ -5,6 +5,7 @@ from config import host
 from payloads.create_ei import ei
 from payloads.create_fs import fs
 from payloads.create_pn import pn
+from payloads.create_ap import ap
 
 
 # Get access token
@@ -101,10 +102,10 @@ def create_ap(host, token, x_operation_id, payload):
     }, data=json.dumps(payload))
     kafka_message = get_message_from_kafka(x_operation_id)
     ap_cpid = kafka_message['data']['ocid']
-    pn_ocid = kafka_message['data']['outcomes']['ap'][0]['id']
-    pn_x_token = kafka_message['data']['outcomes']['ap'][0]['X-TOKEN']
+    ap_ocid = kafka_message['data']['outcomes']['ap'][0]['id']
+    ap_x_token = kafka_message['data']['outcomes']['ap'][0]['X-TOKEN']
 
-    return ap_cpid, pn_ocid, pn_x_token
+    return ap_cpid, ap_ocid, ap_x_token
 
 
 fs_ocid = create_fs(
@@ -129,3 +130,4 @@ ap = create_ap(host=host,
                token=get_access_token(host),
                x_operation_id=get_x_operation_id(get_access_token(host), host),
                payload=ap)
+print(ap)
