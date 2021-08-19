@@ -292,10 +292,27 @@ def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_
                           'Content-Type': 'application/json',
                           'X-TOKEN': ap_x_token
                       }, data=json.dumps(payload))
-    kafka_message = get_message_from_kafka(x_operation_id)
     time.sleep(3)
     bpe_message = get_bpe_message_from_kafka(fe_ocid)[1]
     del bpe_message['_id']
     request_id = bpe_message['data']['outcomes']['requests'][0]['id']
     request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
     return request_id, request_token
+
+
+# Confirmation response
+def create_confirmation_response(host, token, x_operation_id, x_token, entity, cpid, ocid, entity_id, role,
+                                 payload, response_id):
+    payload['confirmationResponse']['requestId'] = f'{response_id}'
+    print(payload)
+    requests.post(url=f'{host}/do/confirmation/{entity}/{cpid}/{ocid}/{entity_id}?role={role}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': x_token
+                  }, data=json.dumps(payload))
+    kafka_message = get_message_from_kafka(x_operation_id)
+    return kafka_message['data']['outcomes']['confirmationResponses'][0]['id']
+
+

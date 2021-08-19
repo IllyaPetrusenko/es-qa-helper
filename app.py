@@ -1,6 +1,7 @@
 import time
 from functions import *
 from config import host
+from payloads.confirmation_response import confirmation_response
 from payloads.create_ei import ei
 from payloads.create_fs import fs
 from payloads.create_pn import pn
@@ -10,7 +11,6 @@ from payloads.issuing_fc import issuing
 from payloads.update_ap import up_ap
 from payloads.create_fe import fe
 from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
-
 
 # Create FS
 fs_ocid = create_fs(
@@ -46,7 +46,6 @@ do_outsourcing_pn = do_outsourcing_pn(host=host,
                                       ap_cpid=ap[0],
                                       ap_ocid=ap[1])
 
-
 do_relation_ap_pn = do_relation_ap(host=host,
                                    token=get_access_token(host),
                                    x_operation_id=get_x_operation_id(token=get_access_token(host), host=host),
@@ -75,6 +74,10 @@ fe = create_fe(
     ap_x_token=ap[2],
     payload=fe
 )
+
+
+time.sleep(1.5)
+
 
 submission_1 = create_submission(
     host=host,
@@ -112,7 +115,7 @@ submission_4 = create_submission(
     payload=sub_4
 )
 
-time.sleep(15)
+time.sleep(13)
 
 qualifications = get_qualifications_from_public_point(fe)
 
@@ -187,5 +190,26 @@ issuing_fc = issuing_fc(
     payload=issuing
 )
 
+time.sleep(2)
 
+buyer_create_confirmation_response = create_confirmation_response(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=fe,
+    entity='contract',
+    entity_id=qualification_protocol[0],
+    response_id=issuing_fc[0],
+    x_token=issuing_fc[1],
+    role='buyer',
+    payload=confirmation_response
+)
+
+print('##############--- Start ---#############')
+print('---- Contract id and x_token ----')
+print(qualification_protocol)
+print('---- Request id and x_token ----')
 print(issuing_fc)
+print('---- Confirmation response id ----')
+print(buyer_create_confirmation_response)
