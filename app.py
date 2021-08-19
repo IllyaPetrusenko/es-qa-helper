@@ -6,6 +6,7 @@ from payloads.create_fs import fs
 from payloads.create_pn import pn
 from payloads.create_ap import ap
 from payloads.do_qualification import active_qualification
+from payloads.issuing_fc import issuing
 from payloads.update_ap import up_ap
 from payloads.create_fe import fe
 from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
@@ -166,6 +167,25 @@ qualification_protocol = do_qualification_protocol(
     ap_x_token=ap[2]
 )
 
+complete_qualification = complete_qualification(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    ap_x_token=ap[2]
+)
 
-print(qualification_protocol)
+issuing_fc = issuing_fc(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    ap_cpid=ap[0],
+    fe_ocid=fe,
+    contract_id=qualification_protocol[0],
+    ap_x_token=ap[2],
+    payload=issuing
+)
 
+
+print(issuing_fc)

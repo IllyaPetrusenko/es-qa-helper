@@ -1,5 +1,7 @@
 import datetime
 import json
+import time
+
 import requests
 
 
@@ -253,7 +255,7 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
 
 # Do qualification protocol
 def do_qualification_protocol(host, token, x_operation_id, ap_cpid, fe_ocid, ap_x_token):
-    r = requests.post(url=f'{host}/do/protocol/qualification/{ap_cpid}/{fe_ocid}',
+    requests.post(url=f'{host}/do/protocol/qualification/{ap_cpid}/{fe_ocid}',
                       headers={
                           'Authorization': f'Bearer {token}',
                           'X-OPERATION-ID': x_operation_id,
@@ -264,3 +266,36 @@ def do_qualification_protocol(host, token, x_operation_id, ap_cpid, fe_ocid, ap_
     contract_id = kafka_message['data']['outcomes']['contracts'][0]['id']
     contract_token = kafka_message['data']['outcomes']['contracts'][0]['X-TOKEN']
     return contract_id, contract_token
+
+
+# Complete qualification
+def complete_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, ap_x_token):
+    requests.post(url=f'{host}/complete/qualification/{ap_cpid}/{fe_ocid}',
+                      headers={
+                          'Authorization': f'Bearer {token}',
+                          'X-OPERATION-ID': x_operation_id,
+                          'Content-Type': 'application/json',
+                          'X-TOKEN': ap_x_token
+                      })
+    kafka_message = get_message_from_kafka(x_operation_id)
+    return kafka_message
+
+
+# Issuing FC
+def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_token, payload):
+    if payload:
+        payload['contract']['internalId'] = x_operation_id
+    requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
+                      headers={
+                          'Authorization': f'Bearer {token}',
+                          'X-OPERATION-ID': x_operation_id,
+                          'Content-Type': 'application/json',
+                          'X-TOKEN': ap_x_token
+                      }, data=json.dumps(payload))
+    kafka_message = get_message_from_kafka(x_operation_id)
+    time.sleep(3)
+    bpe_message = get_bpe_message_from_kafka(fe_ocid)[1]
+    del bpe_message['_id']
+    request_id = bpe_message['data']['outcomes'][0]['requests']['id']
+    request_token = bpe_message['data']['outcomes'][0]['requests']['X-TOKEN']
+    return request_id, request_token

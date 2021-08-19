@@ -1,0 +1,5 @@
+issuing = {
+  "contract": {
+    "internalId": "string"
+  }
+}
