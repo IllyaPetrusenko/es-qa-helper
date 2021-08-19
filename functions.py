@@ -177,43 +177,69 @@ def create_submission(host, token, x_operation_id, ap_cpid, fe_ocid, payload):
 
 
 # Get qualification from Kafka
-def get_bpe_message_from_kafka(ocid):
+def get_bpe_message_from_kafka(ocid, initiator):
     kafka_host = 'http://82.144.223.29:5000'
-    kafka_message = requests.get(
-        url=f'{kafka_host}/ocid/{ocid}/bpe'
-    )
-    if kafka_message.status_code == 404:
-        date = datetime.datetime.now()
-        date_new = datetime.datetime.now() + datetime.timedelta(seconds=25)
-        while date < date_new:
-            kafka_message = requests.get(
-                url=f'{kafka_host}/ocid/{ocid}/bpe'
-            )
-            date = datetime.datetime.now()
-            if kafka_message.status_code == 200:
-                kafka_message = requests.get(
-                    url=f'{kafka_host}/ocid/{ocid}/bpe'
-                ).json()
-                del kafka_message[0]['_id']
-                return kafka_message
-        print('The message was not found in Kafka topic')
-    if kafka_message.status_code == 200:
+    if initiator == 'bpe':
         kafka_message = requests.get(
             url=f'{kafka_host}/ocid/{ocid}/bpe'
-        ).json()
-    del kafka_message[0]['_id']
-    return kafka_message
+        )
+        if kafka_message.status_code == 404:
+            date = datetime.datetime.now()
+            date_new = datetime.datetime.now() + datetime.timedelta(seconds=25)
+            while date < date_new:
+                kafka_message = requests.get(
+                    url=f'{kafka_host}/ocid/{ocid}/bpe'
+                )
+                date = datetime.datetime.now()
+                if kafka_message.status_code == 200:
+                    kafka_message = requests.get(
+                        url=f'{kafka_host}/ocid/{ocid}/bpe'
+                    ).json()
+                    del kafka_message[0]['_id']
+                    return kafka_message
+            print('The message was not found in Kafka topic')
+        if kafka_message.status_code == 200:
+            kafka_message = requests.get(
+                url=f'{kafka_host}/ocid/{ocid}/bpe'
+            ).json()
+        del kafka_message[0]['_id']
+        return kafka_message
+    elif initiator == 'platform':
+        kafka_message = requests.get(
+            url=f'{kafka_host}/ocid/{ocid}/platform'
+        )
+        if kafka_message.status_code == 404:
+            date = datetime.datetime.now()
+            date_new = datetime.datetime.now() + datetime.timedelta(seconds=25)
+            while date < date_new:
+                kafka_message = requests.get(
+                    url=f'{kafka_host}/ocid/{ocid}/platform'
+                )
+                date = datetime.datetime.now()
+                if kafka_message.status_code == 200:
+                    kafka_message = requests.get(
+                        url=f'{kafka_host}/ocid/{ocid}/platform'
+                    ).json()
+                    del kafka_message[0]['_id']
+                    return kafka_message
+            print('The message was not found in Kafka topic')
+        if kafka_message.status_code == 200:
+            kafka_message = requests.get(
+                url=f'{kafka_host}/ocid/{ocid}/platform'
+            ).json()
+        del kafka_message[0]['_id']
+        return kafka_message
 
 
 # Get qualifications from public point
 def get_qualifications_from_public_point(ocid):
-    kafka_message = get_bpe_message_from_kafka(ocid)
+    kafka_message = get_bpe_message_from_kafka(ocid, 'bpe')
     qualifications = kafka_message[0]['data']['outcomes']['qualifications']
     return qualifications
 
 
 # TODO Rewrite this shit
-# Do consideration
+# Do consideration and qualification
 def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, qualifications, payload):
     public_point = ''
     if host == 'http://10.0.20.126:8900/api/v1':
@@ -237,6 +263,7 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
                                           'Content-Type': 'application/json',
                                           'X-TOKEN': x_token
                                       })
+                        print('Consideration DONE')
                         x_operation_id_2 = get_x_operation_id(get_access_token(host), host)
                         requests.post(url=f'{host}/do/qualification/{ap_cpid}/{fe_ocid}/{qual}',
                                       headers={
@@ -245,12 +272,9 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
                                           'Content-Type': 'application/json',
                                           'X-TOKEN': x_token
                                       }, data=json.dumps(payload))
-                    else:
-                        continue
-            else:
-                continue
-        else:
-            pass
+                        print('Qualification DONE')
+
+    return '+'
 
 
 # Do qualification protocol
@@ -293,7 +317,7 @@ def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_
                           'X-TOKEN': ap_x_token
                       }, data=json.dumps(payload))
     time.sleep(3)
-    bpe_message = get_bpe_message_from_kafka(fe_ocid)[1]
+    bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
     del bpe_message['_id']
     request_id = bpe_message['data']['outcomes']['requests'][0]['id']
     request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
@@ -304,7 +328,6 @@ def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_
 def create_confirmation_response(host, token, x_operation_id, x_token, entity, cpid, ocid, entity_id, role,
                                  payload, response_id):
     payload['confirmationResponse']['requestId'] = f'{response_id}'
-    print(payload)
     requests.post(url=f'{host}/do/confirmation/{entity}/{cpid}/{ocid}/{entity_id}?role={role}',
                   headers={
                       'Authorization': f'Bearer {token}',
@@ -315,4 +338,18 @@ def create_confirmation_response(host, token, x_operation_id, x_token, entity, c
     kafka_message = get_message_from_kafka(x_operation_id)
     return kafka_message['data']['outcomes']['confirmationResponses'][0]['id']
 
+
+# Next confirmation step
+def next_confirmation_step(host, token, x_operation_id, x_token, entity, cpid, ocid, entity_id, role):
+    requests.post(url=f'{host}/complete/confirmationStage/{entity}/{cpid}/{ocid}/{entity_id}?role={role}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': x_token
+                  })
+    get_message_from_kafka(x_operation_id)
+    bpe_message = get_bpe_message_from_kafka(ocid, 'platform')
+    bpe_message = bpe_message[16]
+    return bpe_message
 
