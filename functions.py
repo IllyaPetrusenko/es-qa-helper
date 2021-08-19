@@ -296,6 +296,6 @@ def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_
     time.sleep(3)
     bpe_message = get_bpe_message_from_kafka(fe_ocid)[1]
     del bpe_message['_id']
-    request_id = bpe_message['data']['outcomes'][0]['requests']['id']
-    request_token = bpe_message['data']['outcomes'][0]['requests']['X-TOKEN']
+    request_id = bpe_message['data']['outcomes']['requests'][0]['id']
+    request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
     return request_id, request_token
