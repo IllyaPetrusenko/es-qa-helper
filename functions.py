@@ -155,6 +155,7 @@ def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
         'X-TOKEN': ap_x_token
     }, data=json.dumps(payload))
     kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
     fe_ocid = kafka_message['data']['outcomes']['fe'][0]['id']
     return fe_ocid
 

@@ -5,7 +5,7 @@ confirmation_response = {
         "value": True,
         "relatedPerson": {
             "title": "Mr.",
-            "name": "Twister",
+            "name": "Twisters",
             "identifier": {
                 "scheme": "MD-IDNO",
                 "id": "380632074071"
