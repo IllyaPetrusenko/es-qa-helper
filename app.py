@@ -1,4 +1,3 @@
-import time
 from functions import *
 from config import host
 from payloads.confirmation_response_invited_candidate import confirmation_response_invited_candidate
@@ -310,7 +309,6 @@ print("DONE")
 print('------ Data for PCR ------')
 print(f'LINK {host}/do/pcr/{ap[0]}/{fe}')
 print(f'X-TOKEN:  {ap[2]}')
-
 
 
 

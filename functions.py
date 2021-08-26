@@ -1,8 +1,4 @@
-import datetime
-import json
-import time
-
-import requests
+import datetime, requests, json, time
 
 
 # Get access token
@@ -238,7 +234,6 @@ def get_qualifications_from_public_point(ocid):
     return qualifications
 
 
-# TODO Rewrite this shit
 # Do consideration and qualification
 def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, qualifications, payload):
     public_point = ''
@@ -247,45 +242,44 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
     if host == 'http://10.0.10.116:8900/api/v1':
         public_point = 'http://public.eprocurement.systems/tenders/'
     public_point = requests.get(url=f'{public_point}{ap_cpid}/{fe_ocid}').json()
-    qualifications_array = public_point['releases'][0]['qualifications']
-    for i in qualifications_array:
+    qualific = public_point['releases'][0]['qualifications']
+    for i in qualific:
         if 'statusDetails' in i:
             if i['statusDetails'] == 'awaiting':
-                # send request to do consideration
-                for q in qualifications:
-                    if q['id'] == i['id']:
-                        x_token = q['X-TOKEN']
-                        qual = q['id']
-                        requests.post(url=f'{host}/do/consideration/qualification/{ap_cpid}/{fe_ocid}/{qual}',
-                                      headers={
-                                          'Authorization': f'Bearer {token}',
-                                          'X-OPERATION-ID': x_operation_id,
-                                          'Content-Type': 'application/json',
-                                          'X-TOKEN': x_token
-                                      })
-                        print('Consideration DONE')
+                for a in qualifications:
+                    if i['id'] == a['id']:
+                        qualification_id = i['id']
+                        requests.post(
+                            url=f'{host}/do/consideration/qualification/{ap_cpid}/{fe_ocid}/{qualification_id}',
+                            headers={
+                                'Authorization': f'Bearer {token}',
+                                'X-OPERATION-ID': x_operation_id,
+                                'Content-Type': 'application/json',
+                                'X-TOKEN': a['X-TOKEN']
+                            })
                         x_operation_id_2 = get_x_operation_id(get_access_token(host), host)
-                        requests.post(url=f'{host}/do/qualification/{ap_cpid}/{fe_ocid}/{qual}',
+                        requests.post(url=f'{host}/do/qualification/{ap_cpid}/{fe_ocid}/{qualification_id}',
                                       headers={
                                           'Authorization': f'Bearer {token}',
                                           'X-OPERATION-ID': x_operation_id_2,
                                           'Content-Type': 'application/json',
-                                          'X-TOKEN': x_token
+                                          'X-TOKEN': a['X-TOKEN']
                                       }, data=json.dumps(payload))
-                        print('Qualification DONE')
+        else:
+            continue
 
-    return '+'
+    return 'Consideration and Qualification -- DONE'
 
 
 # Do qualification protocol
 def do_qualification_protocol(host, token, x_operation_id, ap_cpid, fe_ocid, ap_x_token):
     requests.post(url=f'{host}/do/protocol/qualification/{ap_cpid}/{fe_ocid}',
-                      headers={
-                          'Authorization': f'Bearer {token}',
-                          'X-OPERATION-ID': x_operation_id,
-                          'Content-Type': 'application/json',
-                          'X-TOKEN': ap_x_token
-                      })
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': ap_x_token
+                  })
     kafka_message = get_message_from_kafka(x_operation_id)
     contract_id = kafka_message['data']['outcomes']['contracts'][0]['id']
     contract_token = kafka_message['data']['outcomes']['contracts'][0]['X-TOKEN']
@@ -295,12 +289,12 @@ def do_qualification_protocol(host, token, x_operation_id, ap_cpid, fe_ocid, ap_
 # Complete qualification
 def complete_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, ap_x_token):
     requests.post(url=f'{host}/complete/qualification/{ap_cpid}/{fe_ocid}',
-                      headers={
-                          'Authorization': f'Bearer {token}',
-                          'X-OPERATION-ID': x_operation_id,
-                          'Content-Type': 'application/json',
-                          'X-TOKEN': ap_x_token
-                      })
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': ap_x_token
+                  })
     kafka_message = get_message_from_kafka(x_operation_id)
     return kafka_message
 
@@ -310,12 +304,12 @@ def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_
     if payload:
         payload['contract']['internalId'] = x_operation_id
     requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
-                      headers={
-                          'Authorization': f'Bearer {token}',
-                          'X-OPERATION-ID': x_operation_id,
-                          'Content-Type': 'application/json',
-                          'X-TOKEN': ap_x_token
-                      }, data=json.dumps(payload))
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': ap_x_token
+                  }, data=json.dumps(payload))
     time.sleep(3)
     bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
     del bpe_message['_id']
@@ -352,4 +346,5 @@ def next_confirmation_step(host, token, x_operation_id, x_token, entity, cpid, o
     bpe_message = get_bpe_message_from_kafka(ocid, 'platform')
     bpe_message = bpe_message[16]
     return bpe_message
+
 
