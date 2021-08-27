@@ -48,7 +48,7 @@ def get_message_from_kafka(operation_id):
 
 # Create EI
 def create_ei(host, token, x_operation_id, payload):
-    requests.post(url=f'{host}/do/ei?country=MD&lang=ro', headers={
+    requests.post(url=f'{host}/do/ei?country=MD&lang=ro&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
         'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ def create_fs(host, token, x_operation_id, ocid, payload):
 # Create PN
 def create_pn(host, token, x_operation_id, fs_ocid, payload):
     payload['planning']['budget']['budgetBreakdown'][0]['id'] = fs_ocid
-    requests.post(url=f'{host}/do/pn?country=MD&lang=ro&pmd=TEST_RFQ', headers={
+    requests.post(url=f'{host}/do/pn?country=MD&lang=ro&pmd=TEST_RFQ&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
         'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ def create_pn(host, token, x_operation_id, fs_ocid, payload):
 
 # Create AP
 def create_ap(host, token, x_operation_id, payload):
-    requests.post(url=f'{host}/do/ap?country=MD&pmd=TEST_CF&lang=ro', headers={
+    requests.post(url=f'{host}/do/ap?country=MD&pmd=TEST_CF&lang=ro&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
         'Content-Type': 'application/json'
@@ -148,14 +148,13 @@ def generate_period():
 # Create FE
 def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload):
     payload['preQualification']['period']['endDate'] = generate_period()
-    requests.post(url=f'{host}/do/fe/{ap_cpid}/{ap_ocid}', headers={
+    requests.post(url=f'{host}/do/fe/{ap_cpid}/{ap_ocid}?&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
         'Content-Type': 'application/json',
         'X-TOKEN': ap_x_token
     }, data=json.dumps(payload))
     kafka_message = get_message_from_kafka(x_operation_id)
-    print(kafka_message)
     fe_ocid = kafka_message['data']['outcomes']['fe'][0]['id']
     return fe_ocid
 
