@@ -346,5 +346,3 @@ def next_confirmation_step(host, token, x_operation_id, x_token, entity, cpid, o
     bpe_message = get_bpe_message_from_kafka(ocid, 'platform')
     bpe_message = bpe_message[16]
     return bpe_message
-
-
