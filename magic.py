@@ -1,7 +1,5 @@
-
-
+from config import get_host
 from functions import *
-from config import host
 from payloads.confirmation_response_invited_candidate import confirmation_response_invited_candidate
 from payloads.confirmation_response import confirmation_response
 from payloads.create_ei import ei
@@ -11,10 +9,17 @@ from payloads.create_ap import ap
 from payloads.do_qualification import active_qualification
 from payloads.issuing_fc import issuing
 from payloads.update_ap import up_ap
-from payloads.create_fe import fe
+from payloads.create_fe import fe_auction
 from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
+from sys import argv
 
-print('------  Start -------')
+
+script, env, pn_pmd, ap_pmd, auc = argv
+
+
+host = get_host(env)
+print(f'------  Start of {script} -------')
+print(f'ENVIRONMENT: {env}')
 print('------  Create FS -------')
 fs_ocid = create_fs(
     token=get_access_token(host),
@@ -32,6 +37,7 @@ print(f'OCID: {fs_ocid}')
 
 print('------  Create PN -------')
 pn = create_pn(host=host,
+               pmd=pn_pmd,
                token=get_access_token(host),
                fs_ocid=fs_ocid,
                x_operation_id=get_x_operation_id(get_access_token(host), host),
@@ -44,7 +50,8 @@ print('------  Create AP -------')
 ap = create_ap(host=host,
                token=get_access_token(host),
                x_operation_id=get_x_operation_id(get_access_token(host), host),
-               payload=ap)
+               payload=ap,
+               pmd=ap_pmd)
 print(f'CPID: {ap[0]}'
       f'  OCID: {ap[1]}'
       f'  X-TOKEN: {ap[2]}')
@@ -93,7 +100,8 @@ fe = create_fe(
     ap_cpid=ap[0],
     ap_ocid=ap[1],
     ap_x_token=ap[2],
-    payload=fe
+    payload=fe_auction,
+    auction=auc
 )
 print(f'OCID:   {fe}')
 

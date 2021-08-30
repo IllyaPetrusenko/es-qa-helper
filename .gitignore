@@ -12,3 +12,4 @@ payloads/create_submission.py
 payloads/do_qualification.py
 payloads/issuing_fc.py
 payloads/update_ap.py
+test.py

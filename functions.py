@@ -71,9 +71,9 @@ def create_fs(host, token, x_operation_id, ocid, payload):
 
 
 # Create PN
-def create_pn(host, token, x_operation_id, fs_ocid, payload):
+def create_pn(host, token, x_operation_id, fs_ocid, payload, pmd):
     payload['planning']['budget']['budgetBreakdown'][0]['id'] = fs_ocid
-    requests.post(url=f'{host}/do/pn?country=MD&lang=ro&pmd=TEST_RFQ&testMode=true', headers={
+    requests.post(url=f'{host}/do/pn?country=MD&lang=ro&pmd={pmd}&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
         'Content-Type': 'application/json'
@@ -87,8 +87,8 @@ def create_pn(host, token, x_operation_id, fs_ocid, payload):
 
 
 # Create AP
-def create_ap(host, token, x_operation_id, payload):
-    requests.post(url=f'{host}/do/ap?country=MD&pmd=TEST_CF&lang=ro&testMode=true', headers={
+def create_ap(host, token, x_operation_id, payload, pmd):
+    requests.post(url=f'{host}/do/ap?country=MD&pmd={pmd}&lang=ro&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
         'Content-Type': 'application/json'
@@ -146,8 +146,14 @@ def generate_period():
 
 
 # Create FE
-def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload):
-    payload['preQualification']['period']['endDate'] = generate_period()
+def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload, auction):
+    print(auction)
+    if auction == 'auction':
+        payload['preQualification']['period']['endDate'] = generate_period()
+    if auction == 'no_auction':
+        del payload['tender']['procurementMethodModalities']
+        del payload['tender']['electronicAuctions']
+        payload['preQualification']['period']['endDate'] = generate_period()
     requests.post(url=f'{host}/do/fe/{ap_cpid}/{ap_ocid}?&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -155,6 +161,7 @@ def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
         'X-TOKEN': ap_x_token
     }, data=json.dumps(payload))
     kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
     fe_ocid = kafka_message['data']['outcomes']['fe'][0]['id']
     return fe_ocid
 
@@ -237,9 +244,9 @@ def get_qualifications_from_public_point(ocid):
 # Do consideration and qualification
 def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, qualifications, payload):
     public_point = ''
-    if host == 'http://10.0.20.126:8900/api/v1':
+    if host == 'http://10.0.20.126:8900/api/v1/':
         public_point = 'http://dev.public.eprocurement.systems/tenders/'
-    if host == 'http://10.0.10.116:8900/api/v1':
+    if host == 'http://10.0.10.116:8900/api/v1/':
         public_point = 'http://public.eprocurement.systems/tenders/'
     public_point = requests.get(url=f'{public_point}{ap_cpid}/{fe_ocid}').json()
     qualific = public_point['releases'][0]['qualifications']
@@ -250,7 +257,7 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
                     if i['id'] == a['id']:
                         qualification_id = i['id']
                         requests.post(
-                            url=f'{host}/do/consideration/qualification/{ap_cpid}/{fe_ocid}/{qualification_id}',
+                            url=f'{host}do/consideration/qualification/{ap_cpid}/{fe_ocid}/{qualification_id}',
                             headers={
                                 'Authorization': f'Bearer {token}',
                                 'X-OPERATION-ID': x_operation_id,
@@ -258,7 +265,7 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
                                 'X-TOKEN': a['X-TOKEN']
                             })
                         x_operation_id_2 = get_x_operation_id(get_access_token(host), host)
-                        requests.post(url=f'{host}/do/qualification/{ap_cpid}/{fe_ocid}/{qualification_id}',
+                        requests.post(url=f'{host}do/qualification/{ap_cpid}/{fe_ocid}/{qualification_id}',
                                       headers={
                                           'Authorization': f'Bearer {token}',
                                           'X-OPERATION-ID': x_operation_id_2,
