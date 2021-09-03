@@ -8,7 +8,7 @@ fs = {
                 "endDate": "2022-12-26T16:12:45Z"
             },
             "amount": {
-                "amount": 315620.00,
+                "amount": 315621.00,
                 "currency": "MDL"
             },
             "isEuropeanUnionFunded": True,
@@ -25,7 +25,7 @@ fs = {
     },
     "tender": {
         "procuringEntity": {
-            "name": "Direcția Agricultura, Relații Funciare și Cadastru a Consiliului Raional Edineț",
+            "name": "Школа №1 города Кишинёв",
             "identifier": {
                 "id": "001",
                 "scheme": "MD-IDNO",
@@ -66,7 +66,7 @@ fs = {
         }
     },
     "buyer": {
-        "name": "Direcția Agricultura, Relații Funciare și Cadastru a Consiliului Raional Edineț",
+        "name": "Школа №1 города Кишинёв",
         "identifier": {
             "id": "001",
             "scheme": "MD-IDNO",

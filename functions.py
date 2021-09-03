@@ -48,6 +48,7 @@ def get_message_from_kafka(operation_id):
 
 # Create EI
 def create_ei(host, token, x_operation_id, payload):
+    payload['buyer']['identifier']['id'] = x_operation_id
     requests.post(url=f'{host}/do/ei?country=MD&lang=ro&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -94,6 +95,7 @@ def create_ap(host, token, x_operation_id, payload, pmd):
         'Content-Type': 'application/json'
     }, data=json.dumps(payload))
     kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
     ap_cpid = kafka_message['data']['ocid']
     ap_ocid = kafka_message['data']['outcomes']['ap'][0]['id']
     ap_x_token = kafka_message['data']['outcomes']['ap'][0]['X-TOKEN']
@@ -205,6 +207,7 @@ def get_bpe_message_from_kafka(ocid, initiator):
             kafka_message = requests.get(
                 url=f'{kafka_host}/ocid/{ocid}/bpe'
             ).json()
+            print(kafka_message)
         del kafka_message[0]['_id']
         return kafka_message
     elif initiator == 'platform':

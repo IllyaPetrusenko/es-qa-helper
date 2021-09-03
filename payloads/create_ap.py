@@ -4,30 +4,31 @@ ap = {
             "currency": "MDL"
         },
         "contractPeriod": {
-            "startDate": "2021-12-25T00:00:00Z",
-            "endDate": "2021-12-25T00:00:10Z"
+            "startDate": "2021-12-15T00:00:00Z",
+            "endDate": "2021-12-15T00:00:10Z"
         },
-        "title": "FA tender.title",
-        "description": "FA description",
+        "title": "Закупка компьютерной техники для школ города Кишинев",
+        "description": "Закупка компьютерной техники для школ города Кишинев. Короткое описание",
+        "procurementMethodRationale": "procurementMethodRationale",
         "legalBasis": "NATIONAL_PROCUREMENT_LAW",
         "classification": {
-            "id": "45200000-9"
+            "id": "30230000-0"
         },
         "tenderPeriod": {
-            "startDate": "2019-11-01T00:00:00Z"
+            "startDate": "2021-09-01T00:00:00Z"
         },
         "procuringEntity": {
-            "name": "Viktor Yakunovich",
+            "name": "ЦЗО-1",
             "identifier": {
-                "id": "234234234",
-                "legalName": "OOO Viktor Yakunovich",
+                "id": "00000-001",
+                "legalName": "OOO ЦЗО-1",
                 "scheme": "MD-IDNO"
             },
             "additionalIdentifiers": [
                 {
-                    "id": "string",
-                    "legalName": "string",
-                    "scheme": "string"
+                    "id": "000000-001-1",
+                    "legalName": "Дочернее предприятие \"ЦЗО-1\"",
+                    "scheme": "MD-IDNO"
                 }
             ],
             "address": {
@@ -47,10 +48,18 @@ ap = {
                 }
             },
             "contactPoint": {
-                "name": "string",
-                "email": "string",
-                "telephone": "string"
+                "name": "Eduardo Twenty Nine",
+                "email": "ed29@gmail.com",
+                "telephone": "+399900000000"
             }
-        }
+        },
+        "documents": [
+            {
+                "documentType": "evaluationCriteria",
+                "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                "title": "doctitle`",
+                "description": "docdesc`"
+            }
+        ]
     }
 }

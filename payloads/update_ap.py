@@ -9,68 +9,61 @@ up_ap = {
         "lots": [
             {
                 "id": "1",
-                "internalId": "edit",
-                "title": "new lot",
-                "description": "new lot decription",
-                "placeOfPerformance": {
-                    "address": {
-                        "streetAddress": "new lot streetAddress",
-                        "postalCode": "new lot postalCode",
-                        "addressDetails": {
-                            "country": {
-                                "id": "MD"
-                            },
-                            "region": {
-                                "id": "0101000"
-                            },
-                            "locality": {
-                                "id": "0101000",
-                                "scheme": "CUATM",
-                                "description": "wwwwww"
+                "internalId": "16000-22/44",
+                "title": "Ноутбуки",
+                "description": "Список ноутбуков, которые хоелось бы закупить",
+                "value": {
+                    "amount": 315620.34,
+                    "currency": "MDL"
+                },
+                "contractPeriod": {
+                    "startDate": "2021-12-15T00:00:00Z",
+                    "endDate": "2021-12-31T00:00:00Z"
+                },
+                "placeOfPerformance":
+                    {
+                        "address": {
+                            "streetAddress": "Piaţa Marii Adunări Naţionale, 1",
+                            "postalCode": "MD-2033",
+                            "addressDetails": {
+                                "country": {
+                                    "id": "MD"
+                                },
+                                "region": {
+                                    "id": "0101000"
+                                },
+                                "locality": {
+                                    "scheme": "CUATM",
+                                    "id": "0142000",
+                                    "description": "mun. Chişinău"
+                                }
                             }
-                        }
+                        },
+                        "description": "Место поставки товаров"
                     }
-                }
             }
         ],
         "items": [
             {
                 "id": "1",
-                "internalId": "122222",
+                "internalId": "1",
                 "classification": {
-                    "id": "45200000-9"
+                    "id": "30230000-0"
                 },
-                "additionalClassifications": [
-                    {
-                        "id": "AB06-7"
-                    },
-                    {
-                        "id": "AB06-7"
-                    }
-                ],
-                "quantity": 22,
+                "quantity": 10,
                 "unit": {
-                    "id": "120"
+                    "id": "10"
                 },
-                "deliveryAddress": {
-                    "streetAddress": "22222",
-                    "postalCode": "222222",
-                    "addressDetails": {
-                        "country": {
-                            "id": "MD"
-                        },
-                        "region": {
-                            "id": "0301000"
-                        },
-                        "locality": {
-                            "id": "0301000",
-                            "description": "CUATM",
-                            "scheme": "CUATM"
-                        }
-                    }
-                },
-                "description": "1222222",
+                "description": "Ноутбуки",
                 "relatedLot": "1"
+            }
+        ],
+        "documents": [
+            {
+                "documentType": "evaluationCriteria",
+                "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                "title": "doctitle`",
+                "description": "docdesc`"
             }
         ]
     }

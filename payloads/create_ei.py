@@ -3,7 +3,7 @@ ei = {
         "title": "tender.title",
         "description": "tender.description",
          "classification": {
-            "id": "45200000-9"
+            "id": "30200000-1"
         }
     },
     "planning": {
@@ -16,7 +16,7 @@ ei = {
         "rationale": "planning.rationale"
     },
     "buyer": {
-        "name": "Buyer One",
+        "name": "Школа №1 города Кишинёв",
         "identifier": {
             "id": "001",
             "scheme": "MD-IDNO",
