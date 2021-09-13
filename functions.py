@@ -354,7 +354,7 @@ def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_
                         'Content-Type': 'application/json',
                         'X-TOKEN': ap_x_token
                     }, data=json.dumps(payload))
-            time.sleep(4)
+            time.sleep(6)
             bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
             del bpe_message['_id']
             request_id = bpe_message['data']['outcomes']['requests'][0]['id']
@@ -367,7 +367,7 @@ def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_
                       'Content-Type': 'application/json',
                       'X-TOKEN': ap_x_token
                   })
-            time.sleep(4)
+            time.sleep(6)
             bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
             del bpe_message['_id']
             request_id = bpe_message['data']['outcomes']['requests'][0]['id']
