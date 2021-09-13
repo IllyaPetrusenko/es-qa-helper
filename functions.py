@@ -277,10 +277,13 @@ def get_qualifications_from_public_point(ocid):
 # Do consideration and qualification
 def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, qualifications, payload):
     public_point = ''
+    document = ''
     if host == 'http://10.0.20.126:8900/api/v1/':
         public_point = 'http://dev.public.eprocurement.systems/tenders/'
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
     if host == 'http://10.0.10.116:8900/api/v1/':
         public_point = 'http://public.eprocurement.systems/tenders/'
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
     public_point = requests.get(url=f'{public_point}{ap_cpid}/{fe_ocid}').json()
     qualific = public_point['releases'][0]['qualifications']
     for i in qualific:
@@ -298,6 +301,7 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
                                 'X-TOKEN': a['X-TOKEN']
                             })
                         x_operation_id_2 = get_x_operation_id(get_access_token(host), host)
+                        payload['qualification']['documents'][0]['id'] = document
                         requests.post(url=f'{host}do/qualification/{ap_cpid}/{fe_ocid}/{qualification_id}',
                                       headers={
                                           'Authorization': f'Bearer {token}',
