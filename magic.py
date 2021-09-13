@@ -230,6 +230,7 @@ complete_qualification = complete_qualification(
     ap_x_token=ap[2]
 )
 print(complete_qualification)
+time.sleep(3)
 
 print('------  ISSUING FC -------')
 issuing_fc = issuing_fc(

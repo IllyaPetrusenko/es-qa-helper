@@ -398,6 +398,7 @@ def create_confirmation_response(host, token, x_operation_id, x_token, entity, c
                   }, data=json.dumps(payload))
     time.sleep(5)
     kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
     return kafka_message['data']['outcomes']['confirmationResponses'][0]['id']
 
 
