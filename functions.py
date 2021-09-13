@@ -192,6 +192,12 @@ def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
 
 # Create submission
 def create_submission(host, token, x_operation_id, ap_cpid, fe_ocid, payload):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
+    payload['submission']['documents'][0]['id'] = document
     r = requests.post(url=f'{host}/do/submission/{ap_cpid}/{fe_ocid}', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
