@@ -92,6 +92,12 @@ def create_pn(host, token, x_operation_id, fs_ocid, payload, pmd):
 
 # Create AP
 def create_ap(host, token, x_operation_id, payload, pmd):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        document = 'http://public.eprocurement.systems/tenders/'
+    payload['tender']['documents'][0]['id'] = document
     requests.post(url=f'{host}/do/ap?country=MD&pmd={pmd}&lang=ro&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -315,21 +321,20 @@ def complete_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, ap_x_t
 # Issuing FC
 def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_token, payload=None):
     if payload:
-        payload['contract']['internalId'] = x_operation_id
-        requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
-                  headers={
-                      'Authorization': f'Bearer {token}',
-                      'X-OPERATION-ID': x_operation_id,
-                      'Content-Type': 'application/json',
-                      'X-TOKEN': ap_x_token
-                  }, data=json.dumps(payload))
-        time.sleep(3)
-        bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
-        del bpe_message['_id']
-        request_id = bpe_message['data']['outcomes']['requests'][0]['id']
-        request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
-    else:
             payload['contract']['internalId'] = x_operation_id
+            requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
+                    headers={
+                        'Authorization': f'Bearer {token}',
+                        'X-OPERATION-ID': x_operation_id,
+                        'Content-Type': 'application/json',
+                        'X-TOKEN': ap_x_token
+                    }, data=json.dumps(payload))
+            time.sleep(3)
+            bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
+            del bpe_message['_id']
+            request_id = bpe_message['data']['outcomes']['requests'][0]['id']
+            request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
+    else:
             requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
                   headers={
                       'Authorization': f'Bearer {token}',
