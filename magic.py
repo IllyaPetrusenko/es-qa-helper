@@ -239,8 +239,7 @@ issuing_fc = issuing_fc(
     ap_cpid=ap[0],
     fe_ocid=fe,
     contract_id=qualification_protocol[0],
-    ap_x_token=ap[2],
-    payload=issuing
+    ap_x_token=ap[2]
 )
 print(f'BUYER:   REQUEST ID: {issuing_fc[0]},     REQUEST TOKEN:  {issuing_fc[1]}')
 

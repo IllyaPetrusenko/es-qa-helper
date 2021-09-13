@@ -313,21 +313,37 @@ def complete_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, ap_x_t
 
 
 # Issuing FC
-def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_token, payload):
+def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_token, payload=None):
     if payload:
         payload['contract']['internalId'] = x_operation_id
-    requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
+        requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
                   headers={
                       'Authorization': f'Bearer {token}',
                       'X-OPERATION-ID': x_operation_id,
                       'Content-Type': 'application/json',
                       'X-TOKEN': ap_x_token
                   }, data=json.dumps(payload))
-    time.sleep(3)
-    bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
-    del bpe_message['_id']
-    request_id = bpe_message['data']['outcomes']['requests'][0]['id']
-    request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
+        time.sleep(3)
+        bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
+        del bpe_message['_id']
+        request_id = bpe_message['data']['outcomes']['requests'][0]['id']
+        request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
+    else:
+            payload['contract']['internalId'] = x_operation_id
+            requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': ap_x_token
+                  })
+            time.sleep(3)
+            bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
+            del bpe_message['_id']
+            request_id = bpe_message['data']['outcomes']['requests'][0]['id']
+            request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
+
+
     return request_id, request_token
 
 
