@@ -388,7 +388,7 @@ def create_confirmation_response(host, token, x_operation_id, x_token, entity, c
         public_point = 'http://public.eprocurement.systems/tenders/'
         document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
     payload['confirmationResponse']['requestId'] = f'{response_id}'
-    payload['confirmationResponse']['businessFunctions'][0]['documents'][0]['id'] = document
+    payload['confirmationResponse']['relatedPerson']['businessFunctions'][0]['documents'][0]['id'] = document
     requests.post(url=f'{host}/do/confirmation/{entity}/{cpid}/{ocid}/{entity_id}?role={role}',
                   headers={
                       'Authorization': f'Bearer {token}',
