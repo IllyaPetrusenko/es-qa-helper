@@ -138,6 +138,12 @@ def do_relation_ap(host, token, x_operation_id, pn_cpid, pn_ocid, ap_x_token, ap
 
 # Update AP
 def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
+    payload['tender']['documents'][0]['id'] = document
     requests.post(url=f'{host}/do/ap/{ap_cpid}/{ap_ocid}', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
