@@ -4,6 +4,7 @@ from payloads.confirmation_response_invited_candidate import confirmation_respon
 from payloads.confirmation_response import confirmation_response
 from payloads.create_ei import ei
 from payloads.create_fs import fs
+from payloads.create_pcr import pcr_full_no_catalogue_items_auction_criteria
 from payloads.create_pn import pn
 from payloads.create_ap import ap
 from payloads.do_qualification import active_qualification
@@ -13,9 +14,7 @@ from payloads.create_fe import fe_auction
 from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
 from sys import argv
 
-
 script, env, pn_pmd, ap_pmd, auc = argv
-
 
 host = get_host(env)
 print(f'------  Start of {script} -------')
@@ -56,7 +55,6 @@ print(f'CPID: {ap[0]}'
       f'  OCID: {ap[1]}'
       f'  X-TOKEN: {ap[2]}')
 
-
 print('------  Do outsourcing PN -------')
 do_outsourcing_pn = do_outsourcing_pn(host=host,
                                       token=get_access_token(host),
@@ -78,7 +76,6 @@ do_relation_ap_pn = do_relation_ap(host=host,
                                    ap_cpid=ap[0],
                                    ap_ocid=ap[1])
 print(do_relation_ap_pn)
-
 
 print('------  Update AP -------')
 update_ap_after_relation = update_ap(
@@ -104,7 +101,6 @@ fe = create_fe(
     auction=auc
 )
 print(f'OCID:   {fe}')
-
 
 time.sleep(1.5)
 
@@ -219,7 +215,6 @@ qualification_protocol = do_qualification_protocol(
 )
 print(f'CONTRACT ID:  {qualification_protocol[0]}, CONTRACT TOKEN:  {qualification_protocol[1]}')
 
-
 print('------  COMPLETE QUALIFICATION -------')
 complete_qualification = complete_qualification(
     host=host,
@@ -279,11 +274,9 @@ buyer_next_confirmation_step = next_confirmation_step(
 buyer_next_confirmation_step = buyer_next_confirmation_step['data']['outcomes']['requests']
 print(f'INVITED CANDIDATES REQUESTS:  {buyer_next_confirmation_step}')
 
-
 print('------  INVITED CANDIDATES CONFIRMATION RESPONSES -------')
 num = 0
 for i in buyer_next_confirmation_step:
-
     create_confirmation_response(
         host=host,
         token=get_access_token(host),
@@ -316,10 +309,13 @@ inv_cand_next_confirmation_step = next_confirmation_step(
 )
 print("DONE")
 
-print('------ Data for PCR ------')
-print(f'LINK {host}/do/pcr/{ap[0]}/{fe}')
-print(f'X-TOKEN:  {ap[2]}')
-
-
-
-
+print('------ PCR ------')
+create_pcr = create_pcr(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=fe,
+    payload=pcr_full_no_catalogue_items_auction_criteria,
+    x_token=ap[2]
+)

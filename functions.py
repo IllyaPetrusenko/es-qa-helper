@@ -416,3 +416,28 @@ def next_confirmation_step(host, token, x_operation_id, x_token, entity, cpid, o
     bpe_message = get_bpe_message_from_kafka(ocid, 'platform')
     bpe_message = bpe_message[16]
     return bpe_message
+
+
+# Create PCR
+def create_pcr(host, token, x_operation_id, x_token, cpid, ocid, payload):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        public_point = 'http://dev.public.eprocurement.systems/tenders/'
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        public_point = 'http://public.eprocurement.systems/tenders/'
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
+    payload['tender']['documents'][0]['id'] = document
+    payload['tender']['tenderPeriod']['endDate'] = generate_period()
+    requests.post(url=f'{host}/do/pcr/{cpid}/{ocid}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': x_token
+                  }, data=json.dumps(payload))
+    time.sleep(3)
+    kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
+    pcr_ocid = kafka_message['data']['outcomes']['pc'][0]['id']
+    return pcr_ocid
