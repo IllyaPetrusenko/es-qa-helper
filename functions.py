@@ -147,6 +147,7 @@ def generate_period():
     prequalification_period_end = datetime.datetime.now() - datetime.timedelta(hours=2)
     prequalification_period_end = prequalification_period_end + datetime.timedelta(seconds=15)
     prequalification_period_end = prequalification_period_end.strftime("%Y-%m-%dT%H:%M:%SZ")
+    print(str(prequalification_period_end))
     return str(prequalification_period_end)
 
 
