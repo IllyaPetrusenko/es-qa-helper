@@ -156,7 +156,7 @@ def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
 
 # Generate periods
 def generate_period():
-    prequalification_period_end = datetime.datetime.now() - datetime.timedelta(hours=3)
+    prequalification_period_end = datetime.datetime.now() - datetime.timedelta(hours=2)
     prequalification_period_end = prequalification_period_end + datetime.timedelta(seconds=15)
     prequalification_period_end = prequalification_period_end.strftime("%Y-%m-%dT%H:%M:%SZ")
     return str(prequalification_period_end)
