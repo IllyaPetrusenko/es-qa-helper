@@ -92,6 +92,12 @@ def create_pn(host, token, x_operation_id, fs_ocid, payload, pmd):
 
 # Create AP
 def create_ap(host, token, x_operation_id, payload, pmd):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
+    payload['tender']['documents'][0]['id'] = document
     requests.post(url=f'{host}/do/ap?country=MD&pmd={pmd}&lang=ro&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -132,6 +138,12 @@ def do_relation_ap(host, token, x_operation_id, pn_cpid, pn_ocid, ap_x_token, ap
 
 # Update AP
 def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
+    payload['tender']['documents'][0]['id'] = document
     requests.post(url=f'{host}/do/ap/{ap_cpid}/{ap_ocid}', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -160,6 +172,13 @@ def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
         del payload['tender']['procurementMethodModalities']
         del payload['tender']['electronicAuctions']
         payload['preQualification']['period']['endDate'] = generate_period()
+    
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
+    payload['tender']['documents'][0]['id'] = document
     requests.post(url=f'{host}/do/fe/{ap_cpid}/{ap_ocid}?&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -174,6 +193,14 @@ def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
 
 # Create submission
 def create_submission(host, token, x_operation_id, ap_cpid, fe_ocid, payload):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
+    payload['submission']['documents'][0]['id'] = document
+    payload['submission']['candidates'][0]['persones'][0]['businessFunctions'][0]['documents'][0]['id'] = document
+
     r = requests.post(url=f'{host}/do/submission/{ap_cpid}/{fe_ocid}', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -251,10 +278,13 @@ def get_qualifications_from_public_point(ocid):
 # Do consideration and qualification
 def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, qualifications, payload):
     public_point = ''
+    document = ''
     if host == 'http://10.0.20.126:8900/api/v1/':
         public_point = 'http://dev.public.eprocurement.systems/tenders/'
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
     if host == 'http://10.0.10.116:8900/api/v1/':
         public_point = 'http://public.eprocurement.systems/tenders/'
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
     public_point = requests.get(url=f'{public_point}{ap_cpid}/{fe_ocid}').json()
     qualific = public_point['releases'][0]['qualifications']
     for i in qualific:
@@ -272,6 +302,7 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
                                 'X-TOKEN': a['X-TOKEN']
                             })
                         x_operation_id_2 = get_x_operation_id(get_access_token(host), host)
+                        payload['qualification']['documents'][0]['id'] = document
                         requests.post(url=f'{host}do/qualification/{ap_cpid}/{fe_ocid}/{qualification_id}',
                                       headers={
                                           'Authorization': f'Bearer {token}',
@@ -314,28 +345,51 @@ def complete_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, ap_x_t
 
 
 # Issuing FC
-def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_token, payload):
+def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_token, payload=None):
     if payload:
-        payload['contract']['internalId'] = x_operation_id
-    requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
+            payload['contract']['internalId'] = x_operation_id
+            requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
+                    headers={
+                        'Authorization': f'Bearer {token}',
+                        'X-OPERATION-ID': x_operation_id,
+                        'Content-Type': 'application/json',
+                        'X-TOKEN': ap_x_token
+                    }, data=json.dumps(payload))
+            time.sleep(6)
+            bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
+            del bpe_message['_id']
+            request_id = bpe_message['data']['outcomes']['requests'][0]['id']
+            request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
+    else:
+            requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
                   headers={
                       'Authorization': f'Bearer {token}',
                       'X-OPERATION-ID': x_operation_id,
                       'Content-Type': 'application/json',
                       'X-TOKEN': ap_x_token
-                  }, data=json.dumps(payload))
-    time.sleep(3)
-    bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
-    del bpe_message['_id']
-    request_id = bpe_message['data']['outcomes']['requests'][0]['id']
-    request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
+                  })
+            time.sleep(6)
+            bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
+            del bpe_message['_id']
+            request_id = bpe_message['data']['outcomes']['requests'][0]['id']
+            request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
+
+
     return request_id, request_token
 
 
 # Confirmation response
 def create_confirmation_response(host, token, x_operation_id, x_token, entity, cpid, ocid, entity_id, role,
                                  payload, response_id):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        public_point = 'http://dev.public.eprocurement.systems/tenders/'
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        public_point = 'http://public.eprocurement.systems/tenders/'
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
     payload['confirmationResponse']['requestId'] = f'{response_id}'
+    payload['confirmationResponse']['relatedPerson']['businessFunctions'][0]['documents'][0]['id'] = document
     requests.post(url=f'{host}/do/confirmation/{entity}/{cpid}/{ocid}/{entity_id}?role={role}',
                   headers={
                       'Authorization': f'Bearer {token}',
@@ -343,7 +397,9 @@ def create_confirmation_response(host, token, x_operation_id, x_token, entity, c
                       'Content-Type': 'application/json',
                       'X-TOKEN': x_token
                   }, data=json.dumps(payload))
+    time.sleep(5)
     kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
     return kafka_message['data']['outcomes']['confirmationResponses'][0]['id']
 
 
@@ -357,6 +413,32 @@ def next_confirmation_step(host, token, x_operation_id, x_token, entity, cpid, o
                       'X-TOKEN': x_token
                   })
     get_message_from_kafka(x_operation_id)
+    print(get_message_from_kafka(x_operation_id))
     bpe_message = get_bpe_message_from_kafka(ocid, 'platform')
     bpe_message = bpe_message[16]
     return bpe_message
+
+
+# Create PCR
+def create_pcr(host, token, x_operation_id, x_token, cpid, ocid, payload):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        public_point = 'http://dev.public.eprocurement.systems/tenders/'
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        public_point = 'http://public.eprocurement.systems/tenders/'
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
+    payload['tender']['documents'][0]['id'] = document
+    payload['tender']['tenderPeriod']['endDate'] = generate_period()
+    requests.post(url=f'{host}/do/pcr/{cpid}/{ocid}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': x_token
+                  }, data=json.dumps(payload))
+    time.sleep(3)
+    kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
+    pcr_ocid = kafka_message['data']['outcomes']['pc'][0]['id']
+    return pcr_ocid

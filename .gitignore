@@ -13,3 +13,5 @@ payloads/do_qualification.py
 payloads/issuing_fc.py
 payloads/update_ap.py
 test.py
+payloads/__pycache__
+__pycache__/
