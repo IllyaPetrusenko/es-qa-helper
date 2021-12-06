@@ -408,6 +408,11 @@ inv_cand_next_confirmation_step = next_confirmation_step(
 )
 print("DONE")
 
+time.sleep(1)
+
+print('------  CREATE PCR  ------')
+
+
 print('------ Data for PCR ------')
 print(f'LINK {host}/do/pcr/{ap[0]}/{fe}')
 print(f'X-TOKEN:  {ap[2]}')
