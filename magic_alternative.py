@@ -471,11 +471,23 @@ bid_4 = create_bid(
 )
 
 
-time.sleep(18)
-
 print('------  AWARDS -------')
+time.sleep(18)
 awards = get_awards_for_pcr(pcr[0])
-print(awards)
+print('AWARD 1 :', awards[0])
+print('AWARD 2 :', awards[1])
+print('AWARD 3 :', awards[2])
+print('AWARD 4 :', awards[3])
 
+
+print('------  AWARD CONSIDERATION  ------')
+awards_consideration(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    awards=awards
+)
 print('DONE')
 

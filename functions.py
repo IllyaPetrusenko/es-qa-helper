@@ -165,12 +165,11 @@ def generate_period():
 
 # Create FE
 def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload, auction):
-
     payload['preQualification']['period']['endDate'] = generate_period()
     if auction == 'no_auction':
         del payload['tender']['procurementMethodModalities']
         del payload['tender']['electronicAuctions']
-    
+
     document = ''
     if host == 'http://10.0.20.126:8900/api/v1/':
         document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
@@ -344,33 +343,32 @@ def complete_qualification(host, token, x_operation_id, ap_cpid, fe_ocid, ap_x_t
 # Issuing FC
 def issuing_fc(host, token, x_operation_id, ap_cpid, fe_ocid, contract_id, ap_x_token, payload=None):
     if payload:
-            payload['contract']['internalId'] = x_operation_id
-            requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
-                    headers={
-                        'Authorization': f'Bearer {token}',
-                        'X-OPERATION-ID': x_operation_id,
-                        'Content-Type': 'application/json',
-                        'X-TOKEN': ap_x_token
-                    }, data=json.dumps(payload))
-            time.sleep(6)
-            bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
-            del bpe_message['_id']
-            request_id = bpe_message['data']['outcomes']['requests'][0]['id']
-            request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
+        payload['contract']['internalId'] = x_operation_id
+        requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
+                      headers={
+                          'Authorization': f'Bearer {token}',
+                          'X-OPERATION-ID': x_operation_id,
+                          'Content-Type': 'application/json',
+                          'X-TOKEN': ap_x_token
+                      }, data=json.dumps(payload))
+        time.sleep(6)
+        bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
+        del bpe_message['_id']
+        request_id = bpe_message['data']['outcomes']['requests'][0]['id']
+        request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
     else:
-            requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
-                  headers={
-                      'Authorization': f'Bearer {token}',
-                      'X-OPERATION-ID': x_operation_id,
-                      'Content-Type': 'application/json',
-                      'X-TOKEN': ap_x_token
-                  })
-            time.sleep(6)
-            bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
-            del bpe_message['_id']
-            request_id = bpe_message['data']['outcomes']['requests'][0]['id']
-            request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
-
+        requests.post(url=f'{host}/issue/fc/{ap_cpid}/{fe_ocid}/{contract_id}',
+                      headers={
+                          'Authorization': f'Bearer {token}',
+                          'X-OPERATION-ID': x_operation_id,
+                          'Content-Type': 'application/json',
+                          'X-TOKEN': ap_x_token
+                      })
+        time.sleep(6)
+        bpe_message = get_bpe_message_from_kafka(fe_ocid, 'bpe')[1]
+        del bpe_message['_id']
+        request_id = bpe_message['data']['outcomes']['requests'][0]['id']
+        request_token = bpe_message['data']['outcomes']['requests'][0]['X-TOKEN']
 
     return request_id, request_token
 
@@ -478,3 +476,22 @@ def get_awards_for_pcr(ocid):
     kafka_message = get_bpe_message_from_kafka(ocid, 'bpe')
     awards = kafka_message[0]['data']['outcomes']['awards']
     return awards
+
+
+# Awards consideration
+def awards_consideration(host, token, x_operation_id, cpid, ocid, awards):
+    for award in awards:
+        # send request
+        print("AWARD CONSIDERATION: ", award)
+        award_id = award['id']
+        award_x_token = award['X-TOKEN']
+        requests.post(url=f'{host}/do/consideration/{cpid}/{ocid}/{award_id}',
+                      headers={
+                          'Authorization': f'Bearer {token}',
+                          'X-TOKEN': award_x_token,
+                          'X-OPERATION-ID': x_operation_id,
+                          'Content-Type': 'application/json',
+                      })
+        time.sleep(10)
+        kafka_message = get_message_from_kafka(x_operation_id)
+        print(kafka_message)
