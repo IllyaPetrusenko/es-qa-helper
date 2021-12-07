@@ -7,6 +7,7 @@ from payloads.create_fs import fs
 from payloads.create_pn import pn
 from payloads.create_ap import ap
 from payloads.do_qualification import active_qualification
+from payloads.evaluate_award_pcr import evaluate_award
 from payloads.issuing_fc import issuing
 from payloads.update_ap import up_ap
 from payloads.create_fe import fe_auction
@@ -485,7 +486,6 @@ print('------  AWARD CONSIDERATION  ------')
 awards_consideration(
     host=host,
     token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
     cpid=ap[0],
     ocid=pcr[0],
     awards=awards
@@ -495,11 +495,21 @@ print('-------  UPDATE AWARD  ------')
 update_award_pcr(
     host=host,
     token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
     cpid=ap[0],
     ocid=pcr[0],
     awards=awards,
     payload=update_award
+)
+
+
+print('-------  EVALUATE AWARD  ------')
+evaluate_award_pcr(
+    host=host,
+    token=get_access_token(host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    awards=awards,
+    payload=evaluate_award
 )
 print('DONE')
 

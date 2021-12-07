@@ -1,5 +1,7 @@
 import datetime
 import json
+import uuid
+
 import requests
 import time
 
@@ -475,16 +477,18 @@ def create_bid(host, token, x_operation_id, cpid, ocid, lot_id, item_id, payload
 def get_awards_for_pcr(ocid):
     kafka_message = get_bpe_message_from_kafka(ocid, 'bpe')
     awards = kafka_message[0]['data']['outcomes']['awards']
+    print(awards)
     return awards
 
 
 # Awards consideration
-def awards_consideration(host, token, x_operation_id, cpid, ocid, awards):
+def awards_consideration(host, token, cpid, ocid, awards):
     for award in awards:
         # send request
         print("AWARD CONSIDERATION: ", award)
         award_id = award['id']
         award_x_token = award['X-TOKEN']
+        x_operation_id = str(uuid.uuid4())
         requests.post(url=f'{host}/do/consideration/{cpid}/{ocid}/{award_id}',
                       headers={
                           'Authorization': f'Bearer {token}',
@@ -498,12 +502,13 @@ def awards_consideration(host, token, x_operation_id, cpid, ocid, awards):
 
 
 # Update awards in PCR
-def update_award_pcr(host, token, x_operation_id, cpid, ocid, awards, payload):
+def update_award_pcr(host, token, cpid, ocid, awards, payload):
     for award in awards:
         # send request
         print("UPDATE AWARD: ", award)
         award_id = award['id']
         award_x_token = award['X-TOKEN']
+        x_operation_id = str(uuid.uuid4())
         public_point = ''
         if host == 'http://10.0.20.126:8900/api/v1/':
             public_point = 'http://dev.public.eprocurement.systems/tenders/'
@@ -522,3 +527,24 @@ def update_award_pcr(host, token, x_operation_id, cpid, ocid, awards, payload):
         time.sleep(1)
         kafka_message = get_message_from_kafka(x_operation_id)
         print(kafka_message)
+
+
+# Evaluate award ib PCR
+def evaluate_award_pcr(host, token, cpid, ocid, awards, payload):
+    for award in awards:
+        # send request
+        print("EVALUATE AWARD: ", award)
+        x_operation_id = str(uuid.uuid4())
+        award_id = award['id']
+        award_x_token = award['X-TOKEN']
+        requests.post(url=f'{host}/do/award/{cpid}/{ocid}/{award_id}',
+                      headers={
+                          'Authorization': f'Bearer {token}',
+                          'X-TOKEN': award_x_token,
+                          'X-OPERATION-ID': x_operation_id,
+                          'Content-Type': 'application/json',
+                      }, data=json.dumps(payload))
+        time.sleep(1)
+        kafka_message = get_message_from_kafka(x_operation_id)
+        print(kafka_message)
+
