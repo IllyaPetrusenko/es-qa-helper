@@ -13,6 +13,7 @@ from payloads.create_fe import fe_auction
 from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
 from payloads.create_pcr import pcr_full_no_catalogue_items_no_auction_no_criteria
 from payloads.do_bid_pcr import bid_2, bid_1, bid_3, bid_4
+from payloads.update_award_in_pcr import update_award
 from sys import argv
 
 script, env, pn_pmd_1, pn_pmd_2, pn_pmd_3, ap_pmd, auc = argv
@@ -489,5 +490,17 @@ awards_consideration(
     ocid=pcr[0],
     awards=awards
 )
+
+print('-------  UPDATE AWARD  ------')
+update_award_pcr(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    awards=awards,
+    payload=update_award
+)
 print('DONE')
+
 

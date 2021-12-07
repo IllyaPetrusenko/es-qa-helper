@@ -492,6 +492,33 @@ def awards_consideration(host, token, x_operation_id, cpid, ocid, awards):
                           'X-OPERATION-ID': x_operation_id,
                           'Content-Type': 'application/json',
                       })
-        time.sleep(10)
+        time.sleep(1)
+        kafka_message = get_message_from_kafka(x_operation_id)
+        print(kafka_message)
+
+
+# Update awards in PCR
+def update_award_pcr(host, token, x_operation_id, cpid, ocid, awards, payload):
+    for award in awards:
+        # send request
+        print("UPDATE AWARD: ", award)
+        award_id = award['id']
+        award_x_token = award['X-TOKEN']
+        public_point = ''
+        if host == 'http://10.0.20.126:8900/api/v1/':
+            public_point = 'http://dev.public.eprocurement.systems/tenders/'
+        if host == 'http://10.0.10.116:8900/api/v1/':
+            public_point = 'http://public.eprocurement.systems/tenders/'
+        public_data = requests.get(url=f'{public_point}{cpid}/{ocid}').json()
+        item_id = public_data['releases'][0]['tender']['items'][0]['id']
+        payload['award']['items'][0]['id'] = item_id
+        requests.post(url=f'{host}/update/award/{cpid}/{ocid}/{award_id}',
+                      headers={
+                          'Authorization': f'Bearer {token}',
+                          'X-TOKEN': award_x_token,
+                          'X-OPERATION-ID': x_operation_id,
+                          'Content-Type': 'application/json',
+                      }, data=json.dumps(payload))
+        time.sleep(1)
         kafka_message = get_message_from_kafka(x_operation_id)
         print(kafka_message)
