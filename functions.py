@@ -165,13 +165,11 @@ def generate_period():
 
 # Create FE
 def create_fe(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload, auction):
-    print(auction)
-    if auction == 'auction':
-        payload['preQualification']['period']['endDate'] = generate_period()
+
+    payload['preQualification']['period']['endDate'] = generate_period()
     if auction == 'no_auction':
         del payload['tender']['procurementMethodModalities']
         del payload['tender']['electronicAuctions']
-        payload['preQualification']['period']['endDate'] = generate_period()
     
     document = ''
     if host == 'http://10.0.20.126:8900/api/v1/':
@@ -421,6 +419,7 @@ def next_confirmation_step(host, token, x_operation_id, x_token, entity, cpid, o
 
 # Create PCR
 def create_pcr(host, token, x_operation_id, x_token, cpid, ocid, payload):
+    public_point = ''
     document = ''
     if host == 'http://10.0.20.126:8900/api/v1/':
         public_point = 'http://dev.public.eprocurement.systems/tenders/'
@@ -441,4 +440,36 @@ def create_pcr(host, token, x_operation_id, x_token, cpid, ocid, payload):
     kafka_message = get_message_from_kafka(x_operation_id)
     print(kafka_message)
     pcr_ocid = kafka_message['data']['outcomes']['pc'][0]['id']
-    return pcr_ocid
+    public_data = requests.get(url=f'{public_point}{cpid}/{pcr_ocid}').json()
+    lot_id_1 = public_data['releases'][0]['tender']['lots'][0]['id']
+    # lot_id_2 = public_data['releases'][0]['tender']['lots'][1]['id']
+    item_id_1 = public_data['releases'][0]['tender']['items'][0]['id']
+
+    return pcr_ocid, lot_id_1, item_id_1
+
+
+# Create bid in PCR
+def create_bid(host, token, x_operation_id, cpid, ocid, lot_id, item_id, payload):
+    document = ''
+    if host == 'http://10.0.20.126:8900/api/v1/':
+        document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
+    if host == 'http://10.0.10.116:8900/api/v1/':
+        document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
+    payload['bid']['documents'][0]['id'] = document
+    payload['bid']['relatedLots'][0] = lot_id
+    payload['bid']['items'][0]['id'] = item_id
+
+    # send request
+    requests.post(url=f'{host}/do/bid/{cpid}/{ocid}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                  }, data=json.dumps(payload))
+    time.sleep(3)
+
+    kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
+
+    return kafka_message
+

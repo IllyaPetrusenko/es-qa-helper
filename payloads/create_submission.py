@@ -64,7 +64,7 @@ sub_1 = {
                                 "period": {
                                     "startDate": "2020-09-30T14:37:13Z"
                                 },
-                                ".documents": [
+                                "documents": [
                                     {
                                         "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
                                         "documentType": "regulatoryDocument",
@@ -137,7 +137,7 @@ sub_1 = {
                 }
             }
         ],
-        ".documents": [
+        "documents": [
             {
                 "documentType": "illustration",
                 "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
@@ -214,7 +214,7 @@ sub_2 = {
                                 "period": {
                                     "startDate": "2020-09-30T14:37:13Z"
                                 },
-                                ".documents": [
+                                "documents": [
                                     {
                                         "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
                                         "documentType": "regulatoryDocument",
@@ -287,7 +287,7 @@ sub_2 = {
                 }
             }
         ],
-        ".documents": [
+        "documents": [
             {
                 "documentType": "illustration",
                 "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
@@ -364,7 +364,7 @@ sub_3 = {
                                 "period": {
                                     "startDate": "2020-09-30T14:37:13Z"
                                 },
-                                ".documents": [
+                                "documents": [
                                     {
                                         "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
                                         "documentType": "regulatoryDocument",
@@ -437,7 +437,7 @@ sub_3 = {
                 }
             }
         ],
-        ".documents": [
+        "documents": [
             {
                 "documentType": "illustration",
                 "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
@@ -514,7 +514,7 @@ sub_4 = {
                                 "period": {
                                     "startDate": "2020-09-30T14:37:13Z"
                                 },
-                                ".documents": [
+                                "documents": [
                                     {
                                         "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
                                         "documentType": "regulatoryDocument",
@@ -587,7 +587,7 @@ sub_4 = {
                 }
             }
         ],
-        ".documents": [
+        "documents": [
             {
                 "documentType": "illustration",
                 "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",

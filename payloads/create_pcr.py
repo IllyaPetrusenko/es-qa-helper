@@ -1,4 +1,4 @@
-pcr_full_no_catalogue_items_auction_criteria =     {
+pcr_full_no_catalogue_items_no_auction_no_criteria = {
         "tender": {
             "title": "PCR Title",
             "description": "PCR Description",
@@ -6,7 +6,7 @@ pcr_full_no_catalogue_items_auction_criteria =     {
                 "id": "30230000-0",
                 "scheme": "CPV"
             },
-            "targets": [
+            ".targets": [
                 {
                     "id": "1",
                     "title": "target one title",
@@ -32,14 +32,22 @@ pcr_full_no_catalogue_items_auction_criteria =     {
                     ]
                 }
             ],
-            "criteria": [
+            ".criteria": [
                 {
                     "id": "103",
                     "title": "Allowance of checks",
                     "source": "tenderer",
                     "relatesTo": "lot",
                     "relatedItem": "1",
-                    "description": "For complex products or services to be supplied or, exceptionally, for products or services which are required for a special purpose: The economic operator will allow checks  to be conducted on the production capacities or the technical capacity of the economic operator and, where necessary, on the means of study and research which are available to it and on the quality control measures? The check is to be performed by the contracting authority or, in case the latter consents to this, on its behalf by a competent official body of the country in which the supplier or service provider is established.",
+                    "description": "For complex products or services to be supplied or, exceptionally, for products or"
+                                   " services which are required for a special purpose: The economic operator will "
+                                   "allow"
+                                   " checks  to be conducted on the production capacities or the technical capacity of "
+                                   "the economic operator and, where necessary, on the means of study and research "
+                                   "which are available to it and on the quality control measures? The check is to "
+                                   "be performed by the contracting authority or, in case the latter consents to this,"
+                                   " on its behalf by a competent official body of the country in which the supplier"
+                                   " or service provider is established.",
                     "classification": {
                         "id": "CRITERION.OTHER.OTHER",
                         "scheme": "ESPD-2.2.1"
@@ -112,7 +120,7 @@ pcr_full_no_catalogue_items_auction_criteria =     {
                     ]
                 }
             ],
-            "electronicAuctions": {
+            ".electronicAuctions": {
                 "details": [
                     {
                         "id": "1",
@@ -127,10 +135,10 @@ pcr_full_no_catalogue_items_auction_criteria =     {
                     }
                 ]
             },
-            "procurementMethodModalities": [
+            ".procurementMethodModalities": [
                 "electronicAuction"
             ],
-            "conversions": [
+            ".conversions": [
                 {
                     "id": "1",
                     "description": "conversion one description",
@@ -160,7 +168,7 @@ pcr_full_no_catalogue_items_auction_criteria =     {
                     ]
                 }
             ],
-            "awardCriteria": "qualityOnly",
-            "awardCriteriaDetails": "manual"
+            "awardCriteria": "priceOnly",
+            "awardCriteriaDetails": "automated"
         }
     }

@@ -11,6 +11,8 @@ from payloads.issuing_fc import issuing
 from payloads.update_ap import up_ap
 from payloads.create_fe import fe_auction
 from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
+from payloads.create_pcr import pcr_full_no_catalogue_items_no_auction_no_criteria
+from payloads.do_bid_pcr import bid_2, bid_1, bid_3, bid_4
 from sys import argv
 
 script, env, pn_pmd_1, pn_pmd_2, pn_pmd_3, ap_pmd, auc = argv
@@ -406,13 +408,67 @@ inv_cand_next_confirmation_step = next_confirmation_step(
     x_token=qualification_protocol[1],
     role='invitedCandidate',
 )
-print("DONE")
 
 time.sleep(1)
 
 print('------  CREATE PCR  ------')
+pcr = create_pcr(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    x_token=ap[2],
+    cpid=ap[0],
+    ocid=fe,
+    payload=pcr_full_no_catalogue_items_no_auction_no_criteria
+)
 
+print('------  CREATE BID IN PCR - 1  ------')
+bid_1 = create_bid(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    lot_id=pcr[1],
+    item_id=pcr[2],
+    payload=bid_1
+)
 
-print('------ Data for PCR ------')
-print(f'LINK {host}/do/pcr/{ap[0]}/{fe}')
-print(f'X-TOKEN:  {ap[2]}')
+print('------  CREATE BID IN PCR - 2  ------')
+bid_2 = create_bid(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    lot_id=pcr[1],
+    item_id=pcr[2],
+    payload=bid_2
+)
+
+print('------  CREATE BID IN PCR - 3  ------')
+bid_3 = create_bid(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    lot_id=pcr[1],
+    item_id=pcr[2],
+    payload=bid_3
+)
+
+print('------  CREATE BID IN PCR - 4  ------')
+bid_4 = create_bid(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    lot_id=pcr[1],
+    item_id=pcr[2],
+    payload=bid_4
+)
+
+print('DONE')
+
