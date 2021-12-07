@@ -157,7 +157,7 @@ def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
 # Generate periods
 def generate_period():
     prequalification_period_end = datetime.datetime.now() - datetime.timedelta(hours=2)
-    prequalification_period_end = prequalification_period_end + datetime.timedelta(seconds=15)
+    prequalification_period_end = prequalification_period_end + datetime.timedelta(seconds=18)
     prequalification_period_end = prequalification_period_end.strftime("%Y-%m-%dT%H:%M:%SZ")
     print(str(prequalification_period_end))
     return str(prequalification_period_end)
@@ -236,7 +236,6 @@ def get_bpe_message_from_kafka(ocid, initiator):
             kafka_message = requests.get(
                 url=f'{kafka_host}/ocid/{ocid}/bpe'
             ).json()
-            print(kafka_message)
         del kafka_message[0]['_id']
         return kafka_message
     elif initiator == 'platform':
@@ -473,3 +472,9 @@ def create_bid(host, token, x_operation_id, cpid, ocid, lot_id, item_id, payload
 
     return kafka_message
 
+
+# Get awards for pcr
+def get_awards_for_pcr(ocid):
+    kafka_message = get_bpe_message_from_kafka(ocid, 'bpe')
+    awards = kafka_message[0]['data']['outcomes']['awards']
+    return awards

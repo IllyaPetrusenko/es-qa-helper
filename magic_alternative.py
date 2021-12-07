@@ -245,7 +245,7 @@ submission_4 = create_submission(
 )
 print(f'ID:   {submission_4[0]}, X-TOKEN:  {submission_4[1]}')
 
-time.sleep(13)
+time.sleep(16)
 
 print('------  QUALIFICATIONS -------')
 qualifications = get_qualifications_from_public_point(fe)
@@ -469,6 +469,13 @@ bid_4 = create_bid(
     item_id=pcr[2],
     payload=bid_4
 )
+
+
+time.sleep(18)
+
+print('------  AWARDS -------')
+awards = get_awards_for_pcr(pcr[0])
+print(awards)
 
 print('DONE')
 
