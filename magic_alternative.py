@@ -511,6 +511,23 @@ evaluate_award_pcr(
     awards=awards,
     payload=evaluate_award
 )
+
+print('------   PCR PROTOCOL   ------')
+contracts = pcr_protocol_do(
+    host=host,
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    token=get_access_token(host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    lot_id=pcr[1],
+    x_token=pcr[3]
+)
+
+print(contracts[0])
+print(contracts[1])
+print(contracts[2])
+print(contracts[3])
+
 print('DONE')
 
 

@@ -439,12 +439,13 @@ def create_pcr(host, token, x_operation_id, x_token, cpid, ocid, payload):
     kafka_message = get_message_from_kafka(x_operation_id)
     print(kafka_message)
     pcr_ocid = kafka_message['data']['outcomes']['pc'][0]['id']
+    pcr_token = kafka_message['data']['outcomes']['pc'][0]['X-TOKEN']
     public_data = requests.get(url=f'{public_point}{cpid}/{pcr_ocid}').json()
     lot_id_1 = public_data['releases'][0]['tender']['lots'][0]['id']
     # lot_id_2 = public_data['releases'][0]['tender']['lots'][1]['id']
     item_id_1 = public_data['releases'][0]['tender']['items'][0]['id']
 
-    return pcr_ocid, lot_id_1, item_id_1
+    return pcr_ocid, lot_id_1, item_id_1, pcr_token
 
 
 # Create bid in PCR
@@ -548,3 +549,18 @@ def evaluate_award_pcr(host, token, cpid, ocid, awards, payload):
         kafka_message = get_message_from_kafka(x_operation_id)
         print(kafka_message)
 
+
+# PCR protocol
+def pcr_protocol_do(host, token, x_operation_id, x_token, cpid, ocid, lot_id):
+    requests.post(url=f'{host}/do/protocol/pcr/{cpid}/{ocid}/{lot_id}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-TOKEN': x_token,
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                  })
+    time.sleep(1)
+    kafka_message = get_message_from_kafka(x_operation_id)
+    contracts = kafka_message['data']['outcomes']['contracts']
+    print(contracts)
+    return contracts
