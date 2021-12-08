@@ -650,8 +650,53 @@ next_confirmation_step(
 )
 
 
-print('------   APPLY CONFIRMATION  -------')
+print('------   APPLY CONFIRMATION - 1 -------')
+apply_confirmation(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    entity='contract',
+    entity_id=contracts[0]['id'],
+    x_token=contracts[0]['X-TOKEN']
+)
 
+print('------   APPLY CONFIRMATION - 2 -------')
+apply_confirmation(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    entity='contract',
+    entity_id=contracts[1]['id'],
+    x_token=contracts[1]['X-TOKEN']
+)
+
+print('------   APPLY CONFIRMATION - 3 -------')
+apply_confirmation(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    entity='contract',
+    entity_id=contracts[2]['id'],
+    x_token=contracts[2]['X-TOKEN']
+)
+
+print('------   APPLY CONFIRMATION - 4 -------')
+apply_confirmation(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    entity='contract',
+    entity_id=contracts[3]['id'],
+    x_token=contracts[3]['X-TOKEN']
+)
 
 print('DONE')
 

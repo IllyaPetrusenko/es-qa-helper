@@ -567,7 +567,6 @@ def pcr_protocol_do(host, token, x_operation_id, x_token, cpid, ocid, lot_id):
 
 # Get contract response id
 def get_contract_response_id_x_token(ocid):
-
     response = get_bpe_message_from_kafka(
         ocid=ocid,
         initiator='platform'
@@ -576,10 +575,16 @@ def get_contract_response_id_x_token(ocid):
     return request_x_tokens
 
 
-print(
-    json.dumps(get_contract_response_id_x_token(
-        ocid='test-t1s2t3-MD-1638961610296-PC-1638961681621'
-    ))
-)
-
-# 17,18,19,20
+# Apply confirmations
+def apply_confirmation(host, token, x_operation_id, x_token, entity, cpid, ocid, entity_id):
+    requests.post(url=f'{host}/apply/confirmations/{entity}/{cpid}/{ocid}/{entity_id}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': x_token
+                  })
+    time.sleep(5)
+    kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
+    return kafka_message
