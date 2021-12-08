@@ -523,10 +523,85 @@ contracts = pcr_protocol_do(
     x_token=pcr[3]
 )
 
+print('------ CONTRACTS ------')
 print(contracts[0])
 print(contracts[1])
 print(contracts[2])
 print(contracts[3])
+
+print('------   GET REQUESTS   ------')
+requests = get_contract_response_id_x_token(
+    ocid=pcr[0]
+)
+print(requests)
+
+print('------   CREATE CONFIRMATION RESPONSE USER 1 ------')
+create_confirmation_response(
+            host=host,
+            token=get_access_token(host),
+            x_operation_id=get_x_operation_id(get_access_token(host), host),
+            cpid=ap[0],
+            ocid=pcr[0],
+            entity='contract',
+            entity_id=contracts[0]['id'],
+            response_id=requests[0]['data']['outcomes']['requests'][0]['id'],
+            x_token=requests[0]['data']['outcomes']['requests'][0]['X-TOKEN'],
+            role='supplier',
+            payload=confirmation_response_invited_candidate
+        )
+
+print('------   CREATE CONFIRMATION RESPONSE USER 2 ------')
+create_confirmation_response(
+            host=host,
+            token=get_access_token(host),
+            x_operation_id=get_x_operation_id(get_access_token(host), host),
+            cpid=ap[0],
+            ocid=pcr[0],
+            entity='contract',
+            entity_id=contracts[1]['id'],
+            response_id=requests[1]['data']['outcomes']['requests'][0]['id'],
+            x_token=requests[1]['data']['outcomes']['requests'][0]['X-TOKEN'],
+            role='supplier',
+            payload=confirmation_response_invited_candidate
+        )
+
+print('------   CREATE CONFIRMATION RESPONSE USER 3 ------')
+create_confirmation_response(
+            host=host,
+            token=get_access_token(host),
+            x_operation_id=get_x_operation_id(get_access_token(host), host),
+            cpid=ap[0],
+            ocid=pcr[0],
+            entity='contract',
+            entity_id=contracts[2]['id'],
+            response_id=requests[2]['data']['outcomes']['requests'][0]['id'],
+            x_token=requests[2]['data']['outcomes']['requests'][0]['X-TOKEN'],
+            role='supplier',
+            payload=confirmation_response_invited_candidate
+        )
+
+print('------   CREATE CONFIRMATION RESPONSE USER 4 ------')
+create_confirmation_response(
+            host=host,
+            token=get_access_token(host),
+            x_operation_id=get_x_operation_id(get_access_token(host), host),
+            cpid=ap[0],
+            ocid=pcr[0],
+            entity='contract',
+            entity_id=contracts[3]['id'],
+            response_id=requests[3]['data']['outcomes']['requests'][0]['id'],
+            x_token=requests[3]['data']['outcomes']['requests'][0]['X-TOKEN'],
+            role='supplier',
+            payload=confirmation_response_invited_candidate
+        )
+
+print('------   NEXT CONFIRMATION STEP -1  -------')
+
+print('------   NEXT CONFIRMATION STEP -2  -------')
+
+print('------   NEXT CONFIRMATION STEP -3  -------')
+
+print('------   NEXT CONFIRMATION STEP -4  -------')
 
 print('DONE')
 

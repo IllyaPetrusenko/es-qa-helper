@@ -380,13 +380,12 @@ def create_confirmation_response(host, token, x_operation_id, x_token, entity, c
                                  payload, response_id):
     document = ''
     if host == 'http://10.0.20.126:8900/api/v1/':
-        public_point = 'http://dev.public.eprocurement.systems/tenders/'
         document = 'b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555'
     if host == 'http://10.0.10.116:8900/api/v1/':
-        public_point = 'http://public.eprocurement.systems/tenders/'
         document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
     payload['confirmationResponse']['requestId'] = f'{response_id}'
     payload['confirmationResponse']['relatedPerson']['businessFunctions'][0]['documents'][0]['id'] = document
+    print(json.dumps(payload))
     requests.post(url=f'{host}/do/confirmation/{entity}/{cpid}/{ocid}/{entity_id}?role={role}',
                   headers={
                       'Authorization': f'Bearer {token}',
@@ -564,3 +563,23 @@ def pcr_protocol_do(host, token, x_operation_id, x_token, cpid, ocid, lot_id):
     contracts = kafka_message['data']['outcomes']['contracts']
     print(contracts)
     return contracts
+
+
+# Get contract response id
+def get_contract_response_id_x_token(ocid):
+
+    response = get_bpe_message_from_kafka(
+        ocid=ocid,
+        initiator='platform'
+    )
+    request_x_tokens = response[17:21]
+    return request_x_tokens
+
+
+print(
+    json.dumps(get_contract_response_id_x_token(
+        ocid='test-t1s2t3-MD-1638961610296-PC-1638961681621'
+    ))
+)
+
+# 17,18,19,20
