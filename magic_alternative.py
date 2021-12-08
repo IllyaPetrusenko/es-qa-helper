@@ -595,13 +595,63 @@ create_confirmation_response(
             payload=confirmation_response_invited_candidate
         )
 
+
 print('------   NEXT CONFIRMATION STEP -1  -------')
+next_confirmation_step(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    entity='contract',
+    entity_id=contracts[0]['id'],
+    x_token=contracts[0]['X-TOKEN'],
+    role='supplier',
+)
+
 
 print('------   NEXT CONFIRMATION STEP -2  -------')
+next_confirmation_step(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    entity='contract',
+    entity_id=contracts[1]['id'],
+    x_token=contracts[1]['X-TOKEN'],
+    role='supplier',
+)
 
 print('------   NEXT CONFIRMATION STEP -3  -------')
+next_confirmation_step(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    entity='contract',
+    entity_id=contracts[2]['id'],
+    x_token=contracts[2]['X-TOKEN'],
+    role='supplier',
+)
 
 print('------   NEXT CONFIRMATION STEP -4  -------')
+next_confirmation_step(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=pcr[0],
+    entity='contract',
+    entity_id=contracts[3]['id'],
+    x_token=contracts[3]['X-TOKEN'],
+    role='supplier',
+)
+
+
+print('------   APPLY CONFIRMATION  -------')
+
 
 print('DONE')
 
