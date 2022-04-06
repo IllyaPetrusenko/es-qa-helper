@@ -23,7 +23,7 @@ pn = {
         "tenderPeriod": {
             "startDate": "2021-09-01T00:00:00Z"
         },
-        "lots": [
+        ".lots": [
             {
                 "id": "1",
                 "internalId": "16000-22/44",
@@ -60,12 +60,12 @@ pn = {
                     }
             }
         ],
-        "items": [
+        ".items": [
             {
                 "id": "1",
                 "internalId": "1",
                 "classification": {
-                    "id": "30230000-0"
+                    "id": "09100000-0"
                 },
                 "quantity": 10,
                 "unit": {

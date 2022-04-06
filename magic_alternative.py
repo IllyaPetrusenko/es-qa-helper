@@ -6,6 +6,7 @@ from payloads.create_ei import ei
 from payloads.create_fs import fs
 from payloads.create_pn import pn
 from payloads.create_ap import ap
+from payloads.create_rfq import create_rfq_data
 from payloads.do_qualification import active_qualification
 from payloads.evaluate_award_pcr import evaluate_award
 from payloads.issuing_fc import issuing
@@ -16,10 +17,12 @@ from payloads.create_pcr import pcr_full_no_catalogue_items_no_auction_no_criter
 from payloads.do_bid_pcr import bid_2, bid_1, bid_3, bid_4
 from payloads.update_award_in_pcr import update_award
 from sys import argv
+import requests
 
 script, env, pn_pmd_1, pn_pmd_2, pn_pmd_3, ap_pmd, auc = argv
 
 host = get_host(env)
+# host_test = "http://dev.public.eprocurement.systems/tenders/"
 print(f'------  Start of {script} -------')
 print(f'ENVIRONMENT: {env}')
 print('------  Create FS 1 -------')
@@ -110,6 +113,9 @@ print(f'CPID: {ap[0]}'
       f'  OCID: {ap[1]}'
       f'  X-TOKEN: {ap[2]}')
 
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
+
 print(f'------  Do outsourcing PN with {pn_pmd_1}  -------')
 do_outsourcing_pn_1 = do_outsourcing_pn(host=host,
                                         token=get_access_token(host),
@@ -120,6 +126,8 @@ do_outsourcing_pn_1 = do_outsourcing_pn(host=host,
                                         ap_cpid=ap[0],
                                         ap_ocid=ap[1])
 print(do_outsourcing_pn)
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print(f'------  Do outsourcing PN with {pn_pmd_2}  -------')
 do_outsourcing_pn_2 = do_outsourcing_pn(host=host,
@@ -131,6 +139,8 @@ do_outsourcing_pn_2 = do_outsourcing_pn(host=host,
                                         ap_cpid=ap[0],
                                         ap_ocid=ap[1])
 print(do_outsourcing_pn_2)
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print(f'------  Do outsourcing PN with {pn_pmd_3}  -------')
 do_outsourcing_pn_3 = do_outsourcing_pn(host=host,
@@ -153,6 +163,8 @@ do_relation_ap_pn_1 = do_relation_ap(host=host,
                                      ap_cpid=ap[0],
                                      ap_ocid=ap[1])
 print(do_relation_ap_pn_1)
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print(f'------  Do relation AP with pmd: {pn_pmd_2}  -------')
 do_relation_ap_pn_2 = do_relation_ap(host=host,
@@ -164,6 +176,8 @@ do_relation_ap_pn_2 = do_relation_ap(host=host,
                                      ap_cpid=ap[0],
                                      ap_ocid=ap[1])
 print(do_relation_ap_pn_2)
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print(f'------  Do relation AP with pmd: {pn_pmd_3}  -------')
 do_relation_ap_pn_3 = do_relation_ap(host=host,
@@ -175,6 +189,8 @@ do_relation_ap_pn_3 = do_relation_ap(host=host,
                                      ap_cpid=ap[0],
                                      ap_ocid=ap[1])
 print(do_relation_ap_pn_3)
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print('------  Update AP -------')
 update_ap_after_relation = update_ap(
@@ -187,6 +203,8 @@ update_ap_after_relation = update_ap(
     payload=up_ap
 )
 print(update_ap_after_relation)
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print('------  Create FE -------')
 fe = create_fe(
@@ -200,9 +218,10 @@ fe = create_fe(
     auction=auc
 )
 print(f'OCID:   {fe}')
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
-time.sleep(1.5)
-
+time.sleep(2)
 print('------  Create Submission 1 -------')
 submission_1 = create_submission(
     host=host,
@@ -252,6 +271,11 @@ time.sleep(16)
 print('------  QUALIFICATIONS -------')
 qualifications = get_qualifications_from_public_point(fe)
 print(qualifications)
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
+
+time.sleep(2)
+
 
 print('------  DO CONSIDERATION AND QUALIFICATION 1 -------')
 do_cons_1 = do_consideration_and_qualification(
@@ -264,7 +288,8 @@ do_cons_1 = do_consideration_and_qualification(
     payload=active_qualification
 )
 print(do_cons_1)
-
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 print('------  DO CONSIDERATION AND QUALIFICATION 2 -------')
 do_cons_2 = do_consideration_and_qualification(
     host=host,
@@ -276,7 +301,8 @@ do_cons_2 = do_consideration_and_qualification(
     payload=active_qualification
 )
 print(do_cons_2)
-
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 print('------  DO CONSIDERATION AND QUALIFICATION 3 -------')
 do_cons_3 = do_consideration_and_qualification(
     host=host,
@@ -288,7 +314,8 @@ do_cons_3 = do_consideration_and_qualification(
     payload=active_qualification
 )
 print(do_cons_3)
-
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 print('------  DO CONSIDERATION AND QUALIFICATION 4 -------')
 do_cons_4 = do_consideration_and_qualification(
     host=host,
@@ -301,7 +328,7 @@ do_cons_4 = do_consideration_and_qualification(
 )
 print(do_cons_4)
 
-time.sleep(2)
+time.sleep(5)
 
 print('------  DO QUALIFICATION PROTOCOL -------')
 qualification_protocol = do_qualification_protocol(
@@ -313,6 +340,8 @@ qualification_protocol = do_qualification_protocol(
     ap_x_token=ap[2]
 )
 print(f'CONTRACT ID:  {qualification_protocol[0]}, CONTRACT TOKEN:  {qualification_protocol[1]}')
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print('------  COMPLETE QUALIFICATION -------')
 complete_qualification = complete_qualification(
@@ -324,8 +353,10 @@ complete_qualification = complete_qualification(
     ap_x_token=ap[2]
 )
 print(complete_qualification)
-
+# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 time.sleep(2)
+
 print('------  ISSUING FC -------')
 issuing_fc = issuing_fc(
     host=host,
@@ -338,7 +369,8 @@ issuing_fc = issuing_fc(
     payload=issuing
 )
 print(f'BUYER:   REQUEST ID: {issuing_fc[0]},     REQUEST TOKEN:  {issuing_fc[1]}')
-
+resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
+print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 time.sleep(2)
 
 print('------  BUYER CONFIRMATION RESPONSE -------')
@@ -697,6 +729,22 @@ apply_confirmation(
     entity_id=contracts[3]['id'],
     x_token=contracts[3]['X-TOKEN']
 )
+
+
+# print('------   CREATE RFQ -------')
+# rfq = create_rfq(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     x_token=pn_1[2],
+#     ap_cpid=ap[0],
+#     cpid=pn_1[0],
+#     ocid=pn_1[1],
+#     pcr_ocid=pcr[0],
+#     payload=create_rfq_data,
+#     lot_id=pcr[1],
+#     item_id=pcr[2]
+# )
 
 print('DONE')
 

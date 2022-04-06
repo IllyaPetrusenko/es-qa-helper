@@ -3,7 +3,7 @@ pcr_full_no_catalogue_items_no_auction_no_criteria = {
             "title": "PCR Title",
             "description": "PCR Description",
             "classification": {
-                "id": "30230000-0",
+                "id": "15110000-2",
                 "scheme": "CPV"
             },
             ".targets": [
@@ -85,7 +85,7 @@ pcr_full_no_catalogue_items_no_auction_no_criteria = {
                     "description": "lot one description",
                     "internalId": "lot one internalID",
                     "classification": {
-                        "id": "30230000-0",
+                        "id": "15111000-9",
                         "scheme": "CPV"
                     }
                 }
@@ -94,7 +94,7 @@ pcr_full_no_catalogue_items_no_auction_no_criteria = {
                 {
                     "id": "1",
                     "classification": {
-                        "id": "30230000-0",
+                        "id": "15111000-9",
                         "scheme": "CPV"
                     },
                     "description": "Item one description",

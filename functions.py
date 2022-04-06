@@ -8,7 +8,7 @@ import time
 
 # Get access token
 def get_access_token(host):
-    token = requests.get(url=f'{host}/auth/signin', headers={
+    token = requests.get(url=f'{host}auth/signin', headers={
         'Authorization': 'Basic dXNlcjpwYXNzd29yZA=='
     }).json()['data']['tokens']['access']
     return token
@@ -16,7 +16,7 @@ def get_access_token(host):
 
 # Get x-operation-id
 def get_x_operation_id(token, host):
-    x_operation_id = requests.post(url=f'{host}/operations', headers={
+    x_operation_id = requests.post(url=f'{host}operations', headers={
         'Authorization': f'Bearer {token}'
     }).json()['data']['operationId']
     return x_operation_id
@@ -116,6 +116,7 @@ def create_ap(host, token, x_operation_id, payload, pmd):
 
 # Do outsourcing
 def do_outsourcing_pn(host, token, x_operation_id, pn_cpid, pn_ocid, pn_x_token, ap_cpid, ap_ocid):
+    print(x_operation_id)
     requests.post(url=f'{host}/do/outsourcing/{pn_cpid}/{pn_ocid}?FA={ap_cpid}&AP={ap_ocid}', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
@@ -159,7 +160,7 @@ def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
 # Generate periods
 def generate_period():
     prequalification_period_end = datetime.datetime.now() - datetime.timedelta(hours=2)
-    prequalification_period_end = prequalification_period_end + datetime.timedelta(seconds=18)
+    prequalification_period_end = prequalification_period_end + datetime.timedelta(seconds=25)
     prequalification_period_end = prequalification_period_end.strftime("%Y-%m-%dT%H:%M:%SZ")
     print(str(prequalification_period_end))
     return str(prequalification_period_end)
@@ -218,9 +219,10 @@ def get_bpe_message_from_kafka(ocid, initiator):
         kafka_message = requests.get(
             url=f'{kafka_host}/ocid/{ocid}/bpe'
         )
+        print(f'{kafka_host}/ocid/{ocid}/bpe')
         if kafka_message.status_code == 404:
             date = datetime.datetime.now()
-            date_new = datetime.datetime.now() + datetime.timedelta(seconds=25)
+            date_new = datetime.datetime.now() + datetime.timedelta(seconds=50)
             while date < date_new:
                 kafka_message = requests.get(
                     url=f'{kafka_host}/ocid/{ocid}/bpe'
@@ -237,6 +239,7 @@ def get_bpe_message_from_kafka(ocid, initiator):
             kafka_message = requests.get(
                 url=f'{kafka_host}/ocid/{ocid}/bpe'
             ).json()
+            print(kafka_message)
         del kafka_message[0]['_id']
         return kafka_message
     elif initiator == 'platform':
@@ -245,7 +248,7 @@ def get_bpe_message_from_kafka(ocid, initiator):
         )
         if kafka_message.status_code == 404:
             date = datetime.datetime.now()
-            date_new = datetime.datetime.now() + datetime.timedelta(seconds=25)
+            date_new = datetime.datetime.now() + datetime.timedelta(seconds=35)
             while date < date_new:
                 kafka_message = requests.get(
                     url=f'{kafka_host}/ocid/{ocid}/platform'
@@ -584,6 +587,23 @@ def apply_confirmation(host, token, x_operation_id, x_token, entity, cpid, ocid,
                       'Content-Type': 'application/json',
                       'X-TOKEN': x_token
                   })
+    time.sleep(5)
+    kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
+    return kafka_message
+
+
+# Create RFQ
+def create_rfq(host, token, x_operation_id, x_token, ap_cpid, cpid, ocid, pcr_ocid, payload, lot_id, item_id):
+
+    payload['tender']['tenderPeriod']['endDate'] = generate_period()
+    requests.post(url=f'{host}/do/rfq/{cpid}/{ocid}?FA={ap_cpid}&PCR={pcr_ocid}&lotId={lot_id}&itemId={item_id}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'X-OPERATION-ID': x_operation_id,
+                      'Content-Type': 'application/json',
+                      'X-TOKEN': x_token
+                  }, data=json.dumps(payload))
     time.sleep(5)
     kafka_message = get_message_from_kafka(x_operation_id)
     print(kafka_message)
