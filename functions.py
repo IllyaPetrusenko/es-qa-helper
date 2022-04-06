@@ -30,7 +30,7 @@ def get_message_from_kafka(operation_id):
     )
     if kafka_message.status_code == 404:
         date = datetime.datetime.now()
-        date_new = datetime.datetime.now() + datetime.timedelta(seconds=25)
+        date_new = datetime.datetime.now() + datetime.timedelta(seconds=28)
         while date < date_new:
             kafka_message = requests.get(
                 url=kafka_host + '/x-operation-id/' + operation_id
@@ -271,6 +271,7 @@ def get_bpe_message_from_kafka(ocid, initiator):
 
 # Get qualifications from public point
 def get_qualifications_from_public_point(ocid):
+    time.sleep(5)
     kafka_message = get_bpe_message_from_kafka(ocid, 'bpe')
     qualifications = kafka_message[0]['data']['outcomes']['qualifications']
     return qualifications
