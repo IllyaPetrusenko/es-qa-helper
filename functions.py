@@ -271,7 +271,7 @@ def get_bpe_message_from_kafka(ocid, initiator):
 
 # Get qualifications from public point
 def get_qualifications_from_public_point(ocid):
-    time.sleep(5)
+    time.sleep(15)
     kafka_message = get_bpe_message_from_kafka(ocid, 'bpe')
     qualifications = kafka_message[0]['data']['outcomes']['qualifications']
     return qualifications
