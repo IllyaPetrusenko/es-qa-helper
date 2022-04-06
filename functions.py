@@ -328,6 +328,7 @@ def do_qualification_protocol(host, token, x_operation_id, ap_cpid, fe_ocid, ap_
                       'X-TOKEN': ap_x_token
                   })
     kafka_message = get_message_from_kafka(x_operation_id)
+    print(kafka_message)
     contract_id = kafka_message['data']['outcomes']['contracts'][0]['id']
     contract_token = kafka_message['data']['outcomes']['contracts'][0]['X-TOKEN']
     return contract_id, contract_token
