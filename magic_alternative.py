@@ -364,8 +364,6 @@ issuing_fc = issuing_fc(
     payload=issuing
 )
 print(f'BUYER:   REQUEST ID: {issuing_fc[0]},     REQUEST TOKEN:  {issuing_fc[1]}')
-resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 time.sleep(2)
 
 print('------  BUYER CONFIRMATION RESPONSE -------')
