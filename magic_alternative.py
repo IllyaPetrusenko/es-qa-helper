@@ -271,8 +271,6 @@ time.sleep(16)
 print('------  QUALIFICATIONS -------')
 qualifications = get_qualifications_from_public_point(fe)
 print(qualifications)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 time.sleep(2)
 
@@ -288,8 +286,7 @@ do_cons_1 = do_consideration_and_qualification(
     payload=active_qualification
 )
 print(do_cons_1)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
+time.sleep(2)
 print('------  DO CONSIDERATION AND QUALIFICATION 2 -------')
 do_cons_2 = do_consideration_and_qualification(
     host=host,
@@ -301,8 +298,7 @@ do_cons_2 = do_consideration_and_qualification(
     payload=active_qualification
 )
 print(do_cons_2)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
+time.sleep(2)
 print('------  DO CONSIDERATION AND QUALIFICATION 3 -------')
 do_cons_3 = do_consideration_and_qualification(
     host=host,
@@ -314,8 +310,7 @@ do_cons_3 = do_consideration_and_qualification(
     payload=active_qualification
 )
 print(do_cons_3)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
+time.sleep(2)
 print('------  DO CONSIDERATION AND QUALIFICATION 4 -------')
 do_cons_4 = do_consideration_and_qualification(
     host=host,
