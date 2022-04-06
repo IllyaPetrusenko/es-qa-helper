@@ -303,6 +303,7 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
                                 'Content-Type': 'application/json',
                                 'X-TOKEN': a['X-TOKEN']
                             })
+                        print('CONSIDERATION DONE')
                         x_operation_id_2 = get_x_operation_id(get_access_token(host), host)
                         payload['qualification']['documents'][0]['id'] = document
                         requests.post(url=f'{host}do/qualification/{ap_cpid}/{fe_ocid}/{qualification_id}',
@@ -312,6 +313,7 @@ def do_consideration_and_qualification(host, token, x_operation_id, ap_cpid, fe_
                                           'Content-Type': 'application/json',
                                           'X-TOKEN': a['X-TOKEN']
                                       }, data=json.dumps(payload))
+                        print('QUAL DONE')
         else:
             continue
 
