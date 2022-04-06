@@ -47,6 +47,7 @@ def get_message_from_kafka(operation_id):
         kafka_message = requests.get(
             url=kafka_host + '/x-operation-id/' + operation_id
         ).json()
+    print(kafka_message)
     del kafka_message['_id']
     return kafka_message
 
