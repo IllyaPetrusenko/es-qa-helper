@@ -52,8 +52,8 @@ def get_message_from_kafka(operation_id):
 
 
 # Create EI
-def create_ei(host, token, x_operation_id, payload):
-    # payload['buyer']['identifier']['id'] = x_operation_id
+def create_ei(host, token, x_operation_id, payload, idno):
+    payload['buyer']['identifier']['id'] = idno
     requests.post(url=f'{host}/do/ei?country=MD&lang=ro&testMode=true', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
