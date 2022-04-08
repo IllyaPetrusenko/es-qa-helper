@@ -22,7 +22,7 @@ import requests
 script, env, pn_pmd_1, pn_pmd_2, pn_pmd_3, ap_pmd, auc = argv
 
 host = get_host(env)
-# host_test = "http://dev.public.eprocurement.systems/tenders/"
+
 print(f'------  Start of {script} -------')
 print(f'ENVIRONMENT: {env}')
 print('------  Create FS 1 -------')
@@ -116,9 +116,6 @@ print(f'CPID: {ap[0]}'
       f'  OCID: {ap[1]}'
       f'  X-TOKEN: {ap[2]}')
 
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
-
 print(f'------  Do outsourcing PN with {pn_pmd_1}  -------')
 do_outsourcing_pn_1 = do_outsourcing_pn(host=host,
                                         token=get_access_token(host),
@@ -129,8 +126,6 @@ do_outsourcing_pn_1 = do_outsourcing_pn(host=host,
                                         ap_cpid=ap[0],
                                         ap_ocid=ap[1])
 print(do_outsourcing_pn)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print(f'------  Do outsourcing PN with {pn_pmd_2}  -------')
 do_outsourcing_pn_2 = do_outsourcing_pn(host=host,
@@ -142,8 +137,6 @@ do_outsourcing_pn_2 = do_outsourcing_pn(host=host,
                                         ap_cpid=ap[0],
                                         ap_ocid=ap[1])
 print(do_outsourcing_pn_2)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print(f'------  Do outsourcing PN with {pn_pmd_3}  -------')
 do_outsourcing_pn_3 = do_outsourcing_pn(host=host,
@@ -166,8 +159,6 @@ do_relation_ap_pn_1 = do_relation_ap(host=host,
                                      ap_cpid=ap[0],
                                      ap_ocid=ap[1])
 print(do_relation_ap_pn_1)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print(f'------  Do relation AP with pmd: {pn_pmd_2}  -------')
 do_relation_ap_pn_2 = do_relation_ap(host=host,
@@ -179,8 +170,6 @@ do_relation_ap_pn_2 = do_relation_ap(host=host,
                                      ap_cpid=ap[0],
                                      ap_ocid=ap[1])
 print(do_relation_ap_pn_2)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print(f'------  Do relation AP with pmd: {pn_pmd_3}  -------')
 do_relation_ap_pn_3 = do_relation_ap(host=host,
@@ -192,8 +181,6 @@ do_relation_ap_pn_3 = do_relation_ap(host=host,
                                      ap_cpid=ap[0],
                                      ap_ocid=ap[1])
 print(do_relation_ap_pn_3)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print('------  Update AP -------')
 update_ap_after_relation = update_ap(
@@ -206,8 +193,6 @@ update_ap_after_relation = update_ap(
     payload=up_ap
 )
 print(update_ap_after_relation)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print('------  Create FE -------')
 fe = create_fe(
@@ -221,8 +206,6 @@ fe = create_fe(
     auction=auc
 )
 print(f'OCID:   {fe}')
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 time.sleep(2)
 print('------  Create Submission 1 -------')
@@ -338,8 +321,6 @@ qualification_protocol = do_qualification_protocol(
     ap_x_token=ap[2]
 )
 print(f'CONTRACT ID:  {qualification_protocol[0]}, CONTRACT TOKEN:  {qualification_protocol[1]}')
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
 
 print('------  COMPLETE QUALIFICATION -------')
 complete_qualification = complete_qualification(
@@ -351,8 +332,7 @@ complete_qualification = complete_qualification(
     ap_x_token=ap[2]
 )
 print(complete_qualification)
-# resp_cont_period = requests.get(url=f'{host_test}{ap[0]}/{ap[0]}').json()
-# print(resp_cont_period["releases"][0]["tender"]["contractPeriod"])
+
 time.sleep(2)
 
 print('------  ISSUING FC -------')

@@ -6,3 +6,4 @@ def get_host(env):
     elif env == 'sandbox':
         host = 'http://10.0.10.116:8900/api/v1/'
         return host
+

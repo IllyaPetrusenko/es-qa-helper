@@ -160,7 +160,7 @@ def update_ap(host, token, x_operation_id, ap_x_token, ap_cpid, ap_ocid, payload
 # Generate periods
 def generate_period():
     prequalification_period_end = datetime.datetime.now() - datetime.timedelta(hours=3)
-    prequalification_period_end = prequalification_period_end + datetime.timedelta(seconds=25)
+    prequalification_period_end = prequalification_period_end + datetime.timedelta(seconds=35)
     prequalification_period_end = prequalification_period_end.strftime("%Y-%m-%dT%H:%M:%SZ")
     print(str(prequalification_period_end))
     return str(prequalification_period_end)
@@ -441,9 +441,8 @@ def create_pcr(host, token, x_operation_id, x_token, cpid, ocid, payload):
                       'Content-Type': 'application/json',
                       'X-TOKEN': x_token
                   }, data=json.dumps(payload))
-    time.sleep(3)
+    time.sleep(2)
     kafka_message = get_message_from_kafka(x_operation_id)
-    print(kafka_message)
     pcr_ocid = kafka_message['data']['outcomes']['pc'][0]['id']
     pcr_token = kafka_message['data']['outcomes']['pc'][0]['X-TOKEN']
     public_data = requests.get(url=f'{public_point}{cpid}/{pcr_ocid}').json()
