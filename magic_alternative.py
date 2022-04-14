@@ -6,7 +6,6 @@ from payloads.create_ei import ei
 from payloads.create_fs import fs
 from payloads.create_pn import pn
 from payloads.create_ap import ap
-from payloads.create_rfq import create_rfq_data
 from payloads.do_qualification import active_qualification
 from payloads.evaluate_award_pcr import evaluate_award
 from payloads.issuing_fc import issuing
@@ -17,7 +16,6 @@ from payloads.create_pcr import pcr_full_no_catalogue_items_no_auction_no_criter
 from payloads.do_bid_pcr import bid_2, bid_1, bid_3, bid_4
 from payloads.update_award_in_pcr import update_award
 from sys import argv
-import requests
 
 script, env, pn_pmd_1, pn_pmd_2, pn_pmd_3, ap_pmd, auc = argv
 
@@ -482,7 +480,7 @@ bid_4 = create_bid(
 
 
 print('------  AWARDS -------')
-time.sleep(18)
+time.sleep(25)
 awards = get_awards_for_pcr(pcr[0])
 print('AWARD 1 :', awards[0])
 print('AWARD 2 :', awards[1])
