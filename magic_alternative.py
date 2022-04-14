@@ -250,7 +250,7 @@ submission_4 = create_submission(
 )
 print(f'ID:   {submission_4[0]}, X-TOKEN:  {submission_4[1]}')
 
-time.sleep(16)
+time.sleep(20)
 
 print('------  QUALIFICATIONS -------')
 qualifications = get_qualifications_from_public_point(fe)
