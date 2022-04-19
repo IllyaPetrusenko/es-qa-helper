@@ -3,7 +3,7 @@ ei = {
         "title": "tender.title",
         "description": "tender.description",
         "classification": {
-            "id": "76100000-4"
+            "id": "45200000-9"
         }
     },
     "planning": {
