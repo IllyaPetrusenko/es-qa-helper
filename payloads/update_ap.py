@@ -48,7 +48,7 @@ up_ap = {
                 "id": "1",
                 "internalId": "1",
                 "classification": {
-                    "id": "15110000-2"
+                    "id": "76100000-4"
                 },
                 "quantity": 10,
                 "unit": {

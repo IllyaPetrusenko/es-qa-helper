@@ -12,7 +12,7 @@ ap = {
         "procurementMethodRationale": "procurementMethodRationale",
         "legalBasis": "NATIONAL_PROCUREMENT_LAW",
         "classification": {
-            "id": "15100000-9"
+            "id": "76100000-4"
         },
         "tenderPeriod": {
             "startDate": "2021-09-01T00:00:00Z"
