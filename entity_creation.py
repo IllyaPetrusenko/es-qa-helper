@@ -278,7 +278,6 @@ class CreateEntity:
         payload['contracts'][0]['id'] = can_id
         print(payload)
         type(payload)
-        payload = json.loads(payload)
         print(payload)
         requests.post(
             url=f'{self.host}do/contract/{cpid}/{ocid}',
