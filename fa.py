@@ -7,7 +7,7 @@ from payloads.create_fs import fs
 from payloads.create_pn import pn
 from payloads.create_ap import ap
 from payloads.do_qualification import active_qualification
-from payloads.evaluate_award_pcr import evaluate_award
+from payloads.evaluate_award import evaluate_award
 from payloads.issuing_fc import issuing
 from payloads.update_ap import up_ap
 from payloads.create_fe import fe_auction
