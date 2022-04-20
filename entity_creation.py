@@ -1,10 +1,9 @@
 import datetime
-import time
 
-import requests, json
+import json
+import requests
+
 from payloads.create_ei import ei
-
-# Create request class
 from payloads.create_fs import fs
 
 
@@ -277,7 +276,6 @@ class CreateEntity:
         operation_id = self.get_x_operation_id()
         access_token = self.get_tokens()[0]
         payload['contracts'][0]['id'] = can_id
-        print(json.dumps(payload))
         requests.post(
             url=f'{self.host}do/contract/{cpid}/{ocid}',
             headers={

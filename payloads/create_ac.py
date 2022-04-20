@@ -1,7 +1,5 @@
 create_ac = {
-  "contracts": [
-    {
-      "id": "string"
-    }
-  ]
+    "contracts": [{
+        "id": "string"
+    }]
 }
