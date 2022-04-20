@@ -40,7 +40,6 @@ class CreateEntity:
 
     @staticmethod
     def get_message_from_kafka(operation_id):
-        time.sleep(2)
         kafka_host = 'http://82.144.223.29:5000'
         kafka_message = requests.get(
             url=kafka_host + '/x-operation-id/' + operation_id
@@ -269,6 +268,24 @@ class CreateEntity:
                 'Content-Type': 'application/json',
                 'X-TOKEN': token
             })
+        kafka_message = self.get_message_from_kafka(operation_id)
+        can_id = kafka_message['data']['outcomes']['cans'][0]['id']
+        can_x_token = kafka_message['data']['outcomes']['cans'][0]['X-TOKEN']
+        return can_id, can_x_token
+
+    def do_contract(self, token, cpid, ocid, can_id, payload):
+        operation_id = self.get_x_operation_id()
+        access_token = self.get_tokens()[0]
+        payload['contracts'][0]['id'] = can_id
+        print(payload)
+        requests.post(
+            url=f'{self.host}do/contract/{cpid}/{ocid}',
+            headers={
+                'Authorization': f'Bearer {access_token}',
+                'X-OPERATION-ID': operation_id,
+                'Content-Type': 'application/json',
+                'X-TOKEN': token
+            }, data=json.dumps(payload))
         kafka_message = self.get_message_from_kafka(operation_id)
         return kafka_message
 
