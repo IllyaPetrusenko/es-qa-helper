@@ -126,7 +126,6 @@ ac = system.do_contract(
     ocid=create_cn[1],
     cpid=create_cn[0],
     token=create_pn[2],
-    can_id={cans[0]},
-    payload=contract
+    can_id={cans[0]}
 )
 print(f'AC-ID: {ac}')
