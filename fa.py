@@ -4,7 +4,7 @@ from payloads.confirmation_response_invited_candidate import confirmation_respon
 from payloads.confirmation_response import confirmation_response
 from payloads.create_ei import ei
 from payloads.create_fs import fs
-from payloads.create_pn import pn
+from payloads.create_pn import pn_fa
 from payloads.create_ap import ap
 from payloads.do_qualification import active_qualification
 from payloads.evaluate_award import evaluate_award
@@ -77,7 +77,7 @@ pn_1 = create_pn(host=host,
                  token=get_access_token(host),
                  fs_ocid=fs_ocid_1,
                  x_operation_id=get_x_operation_id(get_access_token(host), host),
-                 payload=pn)
+                 payload=pn_fa)
 print(f'CPID: {pn_1[0]}'
       f'  OCID: {pn_1[1]}'
       f'  X-TOKEN: {pn_1[2]}')
@@ -88,7 +88,7 @@ pn_2 = create_pn(host=host,
                  token=get_access_token(host),
                  fs_ocid=fs_ocid_2,
                  x_operation_id=get_x_operation_id(get_access_token(host), host),
-                 payload=pn)
+                 payload=pn_fa)
 print(f'CPID: {pn_2[0]}'
       f'  OCID: {pn_2[1]}'
       f'  X-TOKEN: {pn_2[2]}')
@@ -99,7 +99,7 @@ pn_3 = create_pn(host=host,
                  token=get_access_token(host),
                  fs_ocid=fs_ocid_3,
                  x_operation_id=get_x_operation_id(get_access_token(host), host),
-                 payload=pn)
+                 payload=pn_fa)
 print(f'CPID: {pn_3[0]}'
       f'  OCID: {pn_3[1]}'
       f'  X-TOKEN: {pn_3[2]}')
