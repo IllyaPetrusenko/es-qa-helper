@@ -276,9 +276,6 @@ class CreateEntity:
         operation_id = self.get_x_operation_id()
         access_token = self.get_tokens()[0]
         payload['contracts'][0]['id'] = can_id
-        print(payload)
-        type(payload)
-        print(payload)
         requests.post(
             url=f'{self.host}do/contract/{cpid}/{ocid}',
             headers={
@@ -286,7 +283,7 @@ class CreateEntity:
                 'X-OPERATION-ID': operation_id,
                 'Content-Type': 'application/json',
                 'X-TOKEN': token
-            }, data=payload)
+            }, data=json.dumps(payload))
         kafka_message = self.get_message_from_kafka(operation_id)
         return kafka_message
 
