@@ -283,6 +283,7 @@ class CreateEntity:
             ]
         }
         payload['contracts'][0]['id'] = can_id
+        print(payload)
         payload = json.dumps(payload)
         print(payload)
         requests.post(
