@@ -1,7 +1,7 @@
 import time
 from config import get_host
 from entity_creation import CreateEntity
-from payloads.create_ac import create_ac
+from payloads.create_ac import contract
 from payloads.create_bid import bid
 from payloads.create_pn import pn_open
 from payloads.create_cn import cn_on_pn
@@ -127,6 +127,6 @@ ac = system.do_contract(
     cpid=create_cn[0],
     token=create_pn[2],
     can_id={cans[0]},
-    payload=create_ac
+    payload=contract
 )
 print(f'AC-ID: {ac}')
