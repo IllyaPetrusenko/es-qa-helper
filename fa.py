@@ -19,7 +19,7 @@ from sys import argv
 
 script, env, pn_pmd_1, pn_pmd_2, pn_pmd_3, ap_pmd, auc = argv
 
-host = get_host(env)
+host = get_host(env)[0]
 
 print(f'------  Start of {script} -------')
 print(f'ENVIRONMENT: {env}')
