@@ -284,7 +284,7 @@ class CreateEntity:
                 'Content-Type': 'application/json',
                 'X-TOKEN': token
             },
-            data=payload
+            data=json.dumps(payload)
         )
         kafka_message = self.get_message_from_kafka(operation_id)
         return kafka_message
