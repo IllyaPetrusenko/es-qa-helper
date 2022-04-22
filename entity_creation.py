@@ -231,8 +231,8 @@ class CreateEntity:
 
     def get_awards(self, cpid, ocid):
         kafka_message = self.get_bpe_message_from_kafka(ocid, 'bpe')
-        outcomes = kafka_message['data']['outcomes']
         for i in kafka_message:
+            outcomes = kafka_message['data']['outcomes']
             if 'awards' in outcomes:
                 message = kafka_message[i]
                 print(message)
