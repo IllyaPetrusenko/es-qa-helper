@@ -171,6 +171,7 @@ class CreateEntity:
                           'Content-Type': 'application/json'
                       }, data=json.dumps(payload))
         kafka_message = self.get_message_from_kafka(operation_id)
+        print(kafka_message)
         pn_cpid = kafka_message['data']['ocid']
         pn_ocid = kafka_message['data']['outcomes']['pn'][0]['id']
         pn_x_token = kafka_message['data']['outcomes']['pn'][0]['X-TOKEN']
