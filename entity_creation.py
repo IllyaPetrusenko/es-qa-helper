@@ -283,6 +283,7 @@ class CreateEntity:
             ]
         }
         data['contracts'][0]['id'] = can_id
+        print(data)
         requests.post(
             url=f'{self.host}do/contract/{cpid}/{ocid}',
             headers={
