@@ -283,8 +283,7 @@ class CreateEntity:
             ]
         }
         data['contracts'][0]['id'] = can_id
-        print(data)
-        data = dict(data)
+        print(type(data))
         print(data)
         requests.post(
             url=f'{self.host}do/contract/{cpid}/{ocid}',
