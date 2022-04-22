@@ -232,21 +232,16 @@ class CreateEntity:
     def get_awards(self, cpid, ocid):
         kafka_message = self.get_bpe_message_from_kafka(ocid, 'bpe')
         for i in kafka_message:
-            print(i)
-            print('----------------')
             outcomes = i['data']['outcomes']
-            print(outcomes)
-            # if 'awards' in outcomes:
-            #     message = kafka_message[i]
-            #     print(message)
-            #     awards = message['data']['outcomes']['awards']
-            #     public_awards = requests.get(url=f'{self.public_point}/{cpid}/{ocid}').json()['releases'][0]['awards']
-            #     for award in public_awards:
-            #         if award['statusDetails'] == 'awaiting':
-            #             award_1 = award['id']
-            #             for i in awards:
-            #                 if i['id'] == award_1:
-            #                     return award_1, i['X-TOKEN']
+            if 'awards' in outcomes:
+                awards = i['data']['outcomes']['awards']
+                public_awards = requests.get(url=f'{self.public_point}/{cpid}/{ocid}').json()['releases'][0]['awards']
+                for award in public_awards:
+                    if award['statusDetails'] == 'awaiting':
+                        award_1 = award['id']
+                        for i in awards:
+                            if i['id'] == award_1:
+                                return award_1, i['X-TOKEN']
 
     def do_consideration(self, award, award_token, cpid, ocid):
         operation_id = self.get_x_operation_id()
