@@ -98,7 +98,7 @@ submission_4 = system.create_submission(
 print(f'SUB-ID: {submission_4[0]}')
 print(f'SUB-TOKEN: {submission_4[1]}')
 
-time.sleep(12)
+time.sleep(15)
 
 print('------  GET QUALIFICATIONS -------')
 qualifications = system.get_qualifications(
