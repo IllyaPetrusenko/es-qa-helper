@@ -378,5 +378,6 @@ class CreateEntity:
             'X-TOKEN': token
         }, data=json.dumps(payload))
         kafka_message = self.get_message_from_kafka(operation_id)
+        print(kafka_message)
         if kafka_message['data']['ocid'] == ocid:
             return "Second stage OK"
