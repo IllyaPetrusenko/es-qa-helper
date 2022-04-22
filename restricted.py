@@ -5,6 +5,8 @@ from payloads.create_ac import contract
 from payloads.create_bid import bid
 from payloads.create_pn import pn_open
 from payloads.create_cn import cn_on_pn, cn_on_pn_rt
+from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
+from payloads.do_qualification import active_qualification
 from payloads.evaluate_award import evaluate_award
 from sys import argv
 
@@ -57,8 +59,105 @@ print(f'EV-CPID: {create_cn[0]}')
 print(f'EV-OCID: {create_cn[1]}')
 print(f'EV-LOT-ID: {create_cn[2]}')
 
-# time.sleep(6)
-#
+print('------  Create Submission - 1 -------')
+submission_1 = system.create_submission(
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    payload=sub_1,
+    document=host[2] )
+print(f'SUB-ID: {submission_1[0]}')
+print(f'SUB-TOKEN: {submission_1[1]}')
+
+print('------  Create Submission - 2 -------')
+submission_2 = system.create_submission(
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    payload=sub_2,
+    document=host[2]
+)
+print(f'SUB-ID: {submission_2[0]}')
+print(f'SUB-TOKEN: {submission_2[1]}')
+
+print('------  Create Submission - 3 -------')
+submission_3 = system.create_submission(
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    payload=sub_3,
+    document=host[2]
+)
+print(f'SUB-ID: {submission_3[0]}')
+print(f'SUB-TOKEN: {submission_3[1]}')
+
+print('------  Create Submission - 4 -------')
+submission_4 = system.create_submission(
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    payload=sub_4,
+    document=host[2]
+)
+print(f'SUB-ID: {submission_4[0]}')
+print(f'SUB-TOKEN: {submission_4[1]}')
+
+time.sleep(10)
+
+print('------  GET QUALIFICATIONS -------')
+qualifications = system.get_qualifications(
+    ocid=create_cn[1]
+)
+print(f'QUALIFICATIONS: {qualifications}')
+
+
+print('------  DO CONSIDERATION AND QUALIFICATION 1 -------')
+do_cons_1 = system.do_consideration_and_qualification(
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    qualifications=qualifications,
+    payload=active_qualification,
+    public_point=host[3],
+    document=host[2]
+)
+print(do_cons_1)
+
+time.sleep(2)
+
+print('------  DO CONSIDERATION AND QUALIFICATION 2 -------')
+do_cons_2 = system.do_consideration_and_qualification(
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    qualifications=qualifications,
+    payload=active_qualification,
+    public_point=host[3],
+    document=host[2]
+)
+print(do_cons_2)
+
+time.sleep(2)
+
+print('------  DO CONSIDERATION AND QUALIFICATION 3 -------')
+do_cons_3 = system.do_consideration_and_qualification(
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    qualifications=qualifications,
+    payload=active_qualification,
+    public_point=host[3],
+    document=host[2]
+)
+print(do_cons_3)
+
+time.sleep(2)
+
+print('------  DO CONSIDERATION AND QUALIFICATION 4 -------')
+do_cons_4 = system.do_consideration_and_qualification(
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    qualifications=qualifications,
+    payload=active_qualification,
+    public_point=host[3],
+    document=host[2]
+)
+print(do_cons_4)
+
+
 # print('------  Create BID-1 -------')
 # bid_1 = system.create_bid(
 #     payload=bid,

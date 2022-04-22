@@ -195,7 +195,6 @@ class CreateEntity:
                           'Content-Type': 'application/json'
                       }, data=json.dumps(payload))
         kafka_message = self.get_message_from_kafka(operation_id)
-        print(kafka_message)
         cn_cpid = cpid
         procedure_type = kafka_message['data']['outcomes']
 
@@ -303,3 +302,59 @@ class CreateEntity:
         ac_id = kafka_message['data']['outcomes']['ac'][0]['id']
         ac_x_token = kafka_message['data']['outcomes']['ac'][0]['X-TOKEN']
         return ac_id, ac_x_token
+
+    def create_submission(self, cpid, ocid, payload, document):
+        operation_id = self.get_x_operation_id()
+        access_token = self.get_tokens()[0]
+        payload['submission']['documents'][0]['id'] = document
+        payload['submission']['candidates'][0]['persones'][0]['businessFunctions'][0]['documents'][0][
+            'id'] = document
+        requests.post(url=f'{self.host}/do/submission/{cpid}/{ocid}', headers={
+            'Authorization': f'Bearer {access_token}',
+            'X-OPERATION-ID': operation_id,
+            'Content-Type': 'application/json'
+        }, data=json.dumps(payload))
+        kafka_message = self.get_message_from_kafka(operation_id)
+        submission_id = kafka_message['data']['outcomes']['submissions'][0]['id']
+        submission_token = kafka_message['data']['outcomes']['submissions'][0]['X-TOKEN']
+        return submission_id, submission_token
+
+    def get_qualifications(self, ocid):
+        kafka_message = self.get_bpe_message_from_kafka(ocid, 'bpe')
+        qualifications = kafka_message[0]['data']['outcomes']['qualifications']
+        return qualifications
+
+    def do_consideration_and_qualification(self, cpid, ocid, qualifications, payload, document, public_point):
+        operation_id = self.get_x_operation_id()
+        access_token = self.get_tokens()[0]
+        public_point = requests.get(url=f'{public_point}{cpid}/{ocid}').json()
+        qualific = public_point['releases'][0]['qualifications']
+        for i in qualific:
+            if 'statusDetails' in i:
+                if i['statusDetails'] == 'awaiting':
+                    for a in qualifications:
+                        if i['id'] == a['id']:
+                            qualification_id = i['id']
+                            requests.post(
+                                url=f'{self.host}do/consideration/qualification/{cpid}/{ocid}/{qualification_id}',
+                                headers={
+                                    'Authorization': f'Bearer {access_token}',
+                                    'X-OPERATION-ID': operation_id,
+                                    'Content-Type': 'application/json',
+                                    'X-TOKEN': a['X-TOKEN']
+                                })
+                            print('CONSIDERATION DONE')
+                            x_operation_id_2 = self.get_x_operation_id()
+                            payload['qualification']['documents'][0]['id'] = document
+                            requests.post(url=f'{self.host}do/qualification/{cpid}/{ocid}/{qualification_id}',
+                                          headers={
+                                              'Authorization': f'Bearer {access_token}',
+                                              'X-OPERATION-ID': x_operation_id_2,
+                                              'Content-Type': 'application/json',
+                                              'X-TOKEN': a['X-TOKEN']
+                                          }, data=json.dumps(payload))
+                            print('QUAL DONE')
+            else:
+                continue
+
+        return 'Consideration and Qualification -- DONE'
