@@ -283,7 +283,7 @@ class CreateEntity:
             ]
         }
         data['contracts'][0]['id'] = can_id
-        print(dict(data))
+        data = dict(data)
         requests.post(
             url=f'{self.host}do/contract/{cpid}/{ocid}',
             headers={
@@ -292,7 +292,7 @@ class CreateEntity:
                 'Content-Type': 'application/json',
                 'X-TOKEN': token
             },
-            data=dict(data)
+            data=json.dumps(data)
         ).json()
         kafka_message = self.get_message_from_kafka(operation_id)
         return kafka_message
