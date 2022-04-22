@@ -235,6 +235,7 @@ class CreateEntity:
         for i in kafka_message:
             if 'awards' in outcomes:
                 message = kafka_message[i]
+                print(message)
                 awards = message['data']['outcomes']['awards']
                 public_awards = requests.get(url=f'{self.public_point}/{cpid}/{ocid}').json()['releases'][0]['awards']
                 for award in public_awards:
