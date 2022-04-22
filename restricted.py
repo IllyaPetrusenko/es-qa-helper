@@ -4,7 +4,7 @@ from entity_creation import CreateEntity
 from payloads.create_ac import contract
 from payloads.create_bid import bid
 from payloads.create_pn import pn_open
-from payloads.create_cn import cn_on_pn, cn_on_pn_rt
+from payloads.create_cn import cn_on_pn_rt
 from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
 from payloads.do_qualification import active_qualification
 from payloads.evaluate_award import evaluate_award
@@ -175,75 +175,75 @@ second_stage = system.start_second_stage(
 )
 print(f'STATUS: {second_stage}')
 
-# print('------  Creaçte BID-1 -------')
-# bid_1 = system.create_bid(
-#     payload=bid,
-#     cpid=create_cn[0],
-#     ocid=create_cn[1],
-#     document=host[2],
-#     lot_id=create_cn[2]
-# )
-# print(f'BID-ID: {bid_1[0]}')
-# print(f'BID-X-TOKEN: {bid_1[1]}')
-#
-#
-# print('------  Create BID-2 -------')
-# bid_2 = system.create_bid(
-#     payload=bid,
-#     cpid=create_cn[0],
-#     ocid=create_cn[1],
-#     document=host[2],
-#     lot_id=create_cn[2]
-# )
-# print(f'BID-ID: {bid_2[0]}')
-# print(f'BID-X-TOKEN: {bid_2[1]}')
-#
-# time.sleep(15)
-#
-# print('------  GET AWAITING AWARD -------')
-# awards = system.get_awards(
-#     ocid=create_cn[1],
-#     cpid=create_cn[0]
-# )
-# print(f'Awards: {awards}')
-#
-#
-# print('------  AWARD CONSIDERATION -------')
-# consideration = system.do_consideration(
-#     ocid=create_cn[1],
-#     cpid=create_cn[0],
-#     award=awards[0],
-#     award_token=awards[1]
-# )
-# print(f'Status: {consideration}')
-#
-# print('------  AWARD EVALUATION -------')
-# evaluation = system.do_award_evaluation(
-#     ocid=create_cn[1],
-#     cpid=create_cn[0],
-#     award=awards[0],
-#     award_token=awards[1],
-#     payload=evaluate_award
-# )
-# print(f'Status: {evaluation}')
-#
-# print('------  DO LOT PROTOCOL -------')
-# cans = system.do_protocol(
-#     ocid=create_cn[1],
-#     cpid=create_cn[0],
-#     token=create_pn[2],
-#     lot_id=create_cn[2]
-# )
-# print(f'CAN-ID: {cans[0]}')
-# print(f'CAN-X-TOKEN: {cans[1]}')
-#
-# print('------  CREATE CONTRACT -------')
-# ac = system.do_contract(
-#     ocid=create_cn[1],
-#     cpid=create_cn[0],
-#     token=create_pn[2],
-#     can_id=cans[0],
-#     payload=contract
-# )
-# print(f'AC-ID: {ac[0]}')
-# print(f'AC-TOKEN: {ac[1]}')
+print('------  Creaçte BID-1 -------')
+bid_1 = system.create_bid(
+    payload=bid,
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    document=host[2],
+    lot_id=create_cn[2]
+)
+print(f'BID-ID: {bid_1[0]}')
+print(f'BID-X-TOKEN: {bid_1[1]}')
+
+
+print('------  Create BID-2 -------')
+bid_2 = system.create_bid(
+    payload=bid,
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    document=host[2],
+    lot_id=create_cn[2]
+)
+print(f'BID-ID: {bid_2[0]}')
+print(f'BID-X-TOKEN: {bid_2[1]}')
+
+time.sleep(15)
+
+print('------  GET AWAITING AWARD -------')
+awards = system.get_awards(
+    ocid=create_cn[1],
+    cpid=create_cn[0]
+)
+print(f'Awards: {awards}')
+
+
+print('------  AWARD CONSIDERATION -------')
+consideration = system.do_consideration(
+    ocid=create_cn[1],
+    cpid=create_cn[0],
+    award=awards[0],
+    award_token=awards[1]
+)
+print(f'Status: {consideration}')
+
+print('------  AWARD EVALUATION -------')
+evaluation = system.do_award_evaluation(
+    ocid=create_cn[1],
+    cpid=create_cn[0],
+    award=awards[0],
+    award_token=awards[1],
+    payload=evaluate_award
+)
+print(f'Status: {evaluation}')
+
+print('------  DO LOT PROTOCOL -------')
+cans = system.do_protocol(
+    ocid=create_cn[1],
+    cpid=create_cn[0],
+    token=create_pn[2],
+    lot_id=create_cn[2]
+)
+print(f'CAN-ID: {cans[0]}')
+print(f'CAN-X-TOKEN: {cans[1]}')
+
+print('------  CREATE CONTRACT -------')
+ac = system.do_contract(
+    ocid=create_cn[1],
+    cpid=create_cn[0],
+    token=create_pn[2],
+    can_id=cans[0],
+    payload=contract
+)
+print(f'AC-ID: {ac[0]}')
+print(f'AC-TOKEN: {ac[1]}')
