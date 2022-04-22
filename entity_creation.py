@@ -216,7 +216,6 @@ class CreateEntity:
         access_token = self.get_tokens()[0]
         payload['bid']['documents'][0]['id'] = document
         payload['bid']['relatedLots'][0] = lot_id
-        payload['bid']['tenderers'][0]['identifier']['id'] = operation_id
         requests.post(url=f'{self.host}/do/bid/{cpid}/{ocid}',
                       headers={
                           'Authorization': f'Bearer {access_token}',

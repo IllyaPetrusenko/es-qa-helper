@@ -2,7 +2,7 @@ import time
 from config import get_host
 from entity_creation import CreateEntity
 from payloads.create_ac import contract
-from payloads.create_bid import bid
+from payloads.create_bid import bid_1, bid_2
 from payloads.create_pn import pn_open
 from payloads.create_cn import cn_on_pn_rt
 from payloads.create_submission import sub_1, sub_2, sub_3, sub_4
@@ -175,9 +175,9 @@ second_stage = system.start_second_stage(
 )
 print(f'STATUS: {second_stage}')
 
-print('------  Creaçte BID-1 -------')
+print('------  Create BID-1 -------')
 bid_1 = system.create_bid(
-    payload=bid,
+    payload=bid_1,
     cpid=create_cn[0],
     ocid=create_cn[1],
     document=host[2],
@@ -189,7 +189,7 @@ print(f'BID-X-TOKEN: {bid_1[1]}')
 
 print('------  Create BID-2 -------')
 bid_2 = system.create_bid(
-    payload=bid,
+    payload=bid_2,
     cpid=create_cn[0],
     ocid=create_cn[1],
     document=host[2],
