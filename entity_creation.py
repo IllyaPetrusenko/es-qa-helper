@@ -234,7 +234,8 @@ class CreateEntity:
         for i in kafka_message:
             print(i)
             print('----------------')
-            # outcomes = kafka_message['data']['outcomes']
+            outcomes = i['data']['outcomes']
+            print(outcomes)
             # if 'awards' in outcomes:
             #     message = kafka_message[i]
             #     print(message)
