@@ -59,6 +59,8 @@ print(f'EV-CPID: {create_cn[0]}')
 print(f'EV-OCID: {create_cn[1]}')
 print(f'EV-LOT-ID: {create_cn[2]}')
 
+time.sleep(2)
+
 print('------  Create Submission - 1 -------')
 submission_1 = system.create_submission(
     cpid=create_cn[0],
@@ -160,7 +162,8 @@ print(do_cons_4)
 print('------  START SECOND STAGE -------')
 second_stage = system.start_second_stage(
     cpid=create_cn[0],
-    ocid=create_cn[1]
+    ocid=create_cn[1],
+    token=create_pn[2]
 )
 print(f'STATUS: {second_stage}')
 

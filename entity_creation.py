@@ -360,7 +360,7 @@ class CreateEntity:
 
         return 'Consideration and Qualification -- DONE'
 
-    def start_second_stage(self, cpid, ocid):
+    def start_second_stage(self, cpid, ocid, token):
         operation_id = self.get_x_operation_id()
         access_token = self.get_tokens()[0]
         payload = {
@@ -374,7 +374,8 @@ class CreateEntity:
         requests.post(url=f'{self.host}/do/secondStage/{cpid}/{ocid}', headers={
             'Authorization': f'Bearer {access_token}',
             'X-OPERATION-ID': operation_id,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-TOKEN': token
         }, data=json.dumps(payload))
         kafka_message = self.get_message_from_kafka(operation_id)
         if kafka_message['data']['ocid'] == ocid:
