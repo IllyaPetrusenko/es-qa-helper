@@ -224,6 +224,7 @@ class CreateEntity:
                           'Content-Type': 'application/json'
                       }, data=json.dumps(payload))
         kafka_message = self.get_message_from_kafka(operation_id)
+        print(kafka_message)
         bid_id = kafka_message['data']['outcomes']['bids'][0]['id']
         bid_x_token = kafka_message['data']['outcomes']['bids'][0]['X-TOKEN']
 
@@ -385,7 +386,7 @@ class CreateEntity:
             }
         }
         payload['tender']['tenderPeriod']['endDate'] = self.generate_periods()[0]
-        r = requests.post(url=f'{self.host}/do/secondStage/{cpid}/{ocid}', headers={
+        requests.post(url=f'{self.host}/do/secondStage/{cpid}/{ocid}', headers={
             'Authorization': f'Bearer {access_token}',
             'X-OPERATION-ID': operation_id,
             'Content-Type': 'application/json',
