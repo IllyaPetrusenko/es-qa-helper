@@ -120,3 +120,146 @@ cn_on_pn = {
         }]
     }
 }
+cn_on_pn_rt = {
+    "planning": {
+        "rationale": "reason",
+        "budget": {
+            "description": "fs budget"
+        }
+    },
+    "preQualification": {
+        "period": {
+            "endDate": "2021-11-18T10:43:00Z"
+        }
+    },
+    "tender": {
+        "title": "cn on pn",
+        "description": "tenderrrrr",
+        "secondStage": {
+            "minimumCandidates": 2,
+            "maximumCandidates": 5
+        },
+        "otherCriteria": {
+            "reductionCriteria": "scoring",
+            "qualificationSystemMethods": [
+                "automated"
+            ]
+        },
+        "!procurementMethodModalities": [
+            "electronicAuction"
+        ],
+        "!electronicAuctions": {
+            "details": [
+                {
+                    "id": "",
+                    "relatedLot": "",
+                    "electronicAuctionModalities": [
+                        {
+                            "eligibleMinimumDifference": {
+                                "amount": 150.00,
+                                "currency": "MDL"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "procurementMethodRationale": "pmr",
+        "procurementMethodAdditionalInfo": "pmai",
+        "awardCriteria": "priceOnly",
+        "awardCriteriaDetails": "automated",
+        "procuringEntity": {
+            "id": "MD-IDNO-1007601009820",
+            "persones": [
+                {
+                    "title": "persona 1",
+                    "name": "ira",
+                    "identifier": {
+                        "scheme": "MD-IDNO",
+                        "id": "123",
+                        "uri": ".uri"
+                    },
+                    "businessFunctions": [
+                        {
+                            "id": "1",
+                            "type": "chairman",
+                            "jobTitle": "Chief Executive Officer",
+                            "period": {
+                                "startDate": "2021-01-02T16:00:00Z"
+                            },
+                            ".documents": [
+                                {
+                                    "id": "efb260fb-cbfb-4f17-8831-b17aa5179e0d-1637231815593",
+                                    "documentType": "regulatoryDocument",
+                                    "title": "doc",
+                                    "description": "doc 1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "lots": [
+            {
+                "id": "1",
+                "internalId": "1-1",
+                "title": "lot 1",
+                "description": "looooooo1",
+                "value": {
+                    "amount": 10000,
+                    "currency": "EUR"
+                },
+                "contractPeriod": {
+                    "startDate": "2021-12-30T16:00:00Z",
+                    "endDate": "2021-12-31T16:00:00Z"
+                },
+                "placeOfPerformance": {
+                    "address": {
+                        "streetAddress": "Street",
+                        "postalCode": "123321",
+                        "addressDetails": {
+                            "country": {
+                                "id": "MD"
+                            },
+                            "region": {
+                                "id": "4100000"
+                            },
+                            "locality": {
+                                "scheme": "CUATM",
+                                "id": "4102000",
+                                "description": "1"
+                            }
+                        }
+                    },
+                    "description": "place"
+                }
+            }
+        ],
+        "items": [
+            {
+                "id": "1",
+                "quantity": 10,
+                "classification": {
+                    "id": "45200000-9"
+                },
+                "unit": {
+                    "id": "120"
+                },
+                "description": "item",
+                "relatedLot": "1"
+            }
+        ],
+        "documents": [
+            {
+                "documentType": "illustration",
+                "id": "efb260fb-cbfb-4f17-8831-b17aa5179e0d-1637231815593",
+                "title": "doc",
+                "description": "doc1",
+                "relatedLots": [
+                    "1"
+                ]
+            }
+        ]
+    }
+}

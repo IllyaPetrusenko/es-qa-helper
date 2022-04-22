@@ -180,8 +180,11 @@ class CreateEntity:
     def create_cn_on_pn(self, cpid, ocid, x_token, payload, document, public_point):
         operation_id = self.get_x_operation_id()
         access_token = self.get_tokens()[0]
-        payload['tender']['tenderPeriod']['endDate'] = self.generate_periods()[0]
-        payload['tender']['enquiryPeriod']['endDate'] = self.generate_periods()[1]
+        if payload['tender']['tenderPeriod']['endDate']:
+            payload['tender']['tenderPeriod']['endDate'] = self.generate_periods()[0]
+            payload['tender']['enquiryPeriod']['endDate'] = self.generate_periods()[1]
+        else:
+            payload['preQualification']['period']['endDate'] = self.generate_periods()[0]
         payload['tender']['documents'][0]['id'] = document
         requests.post(url=f'{self.host}/do/cn/{cpid}/{ocid}',
                       headers={
@@ -192,11 +195,17 @@ class CreateEntity:
                       }, data=json.dumps(payload))
         kafka_message = self.get_message_from_kafka(operation_id)
         cn_cpid = cpid
-        cn_ocid = kafka_message['data']['outcomes']['ev'][0]['id']
-        public_data = requests.get(url=f'{public_point}{cn_cpid}/{cn_ocid}').json()
-        lot_id = public_data['releases'][0]['tender']['lots'][0]['id']
+        if kafka_message['data']['outcomes']['ev']:
+            cn_ocid = kafka_message['data']['outcomes']['ev'][0]['id']
+            public_data = requests.get(url=f'{public_point}{cn_cpid}/{cn_ocid}').json()
+            lot_id = public_data['releases'][0]['tender']['lots'][0]['id']
+            return cn_cpid, cn_ocid, lot_id
 
-        return cn_cpid, cn_ocid, lot_id
+        if kafka_message['data']['outcomes']['tp']:
+            cn_ocid = kafka_message['data']['outcomes']['tp'][0]['id']
+            public_data = requests.get(url=f'{public_point}{cn_cpid}/{cn_ocid}').json()
+            lot_id = public_data['releases'][0]['tender']['lots'][0]['id']
+            return cn_cpid, cn_ocid, lot_id
 
     def create_bid(self, cpid, ocid, payload, document, lot_id):
         operation_id = self.get_x_operation_id()
