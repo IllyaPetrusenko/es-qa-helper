@@ -159,6 +159,14 @@ do_cons_4 = system.do_consideration_and_qualification(
 )
 print(do_cons_4)
 
+print('------  QUALIFICATION PROTOCOL -------')
+protocol = system.do_qualification_protocol(
+    cpid=create_cn[0],
+    ocid=create_cn[1],
+    token=create_pn[2]
+)
+print(f'STATUS: {protocol}')
+
 print('------  START SECOND STAGE -------')
 second_stage = system.start_second_stage(
     cpid=create_cn[0],
