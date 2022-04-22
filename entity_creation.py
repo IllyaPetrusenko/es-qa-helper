@@ -275,16 +275,16 @@ class CreateEntity:
     def do_contract(self, token, cpid, ocid, can_id):
         operation_id = self.get_x_operation_id()
         access_token = self.get_tokens()[0]
-        payload = {
+        data = {
             "contracts": [
                 {
                     "id": "adf75a7e-8690-4485-ae58-69c2de22bc67"
                 }
             ]
         }
-        payload['contracts'][0]['id'] = can_id
-        print(payload)
-        payload = json.dumps(payload, default=tuple)
+        data['contracts'][0]['id'] = can_id
+        print(data)
+        data = json.dumps(data, default=tuple)
         print(payload)
         requests.post(
             url=f'{self.host}do/contract/{cpid}/{ocid}',
@@ -294,7 +294,7 @@ class CreateEntity:
                 'Content-Type': 'application/json',
                 'X-TOKEN': token
             },
-            data=payload
-        )
+            data=json.dumps(data)
+        ).json()
         kafka_message = self.get_message_from_kafka(operation_id)
         return kafka_message
