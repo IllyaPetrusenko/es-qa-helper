@@ -371,12 +371,13 @@ class CreateEntity:
             }
         }
         payload['tender']['tenderPeriod']['endDate'] = self.generate_periods()[0]
-        requests.post(url=f'{self.host}/do/secondStage/{cpid}/{ocid}', headers={
+        r = requests.post(url=f'{self.host}/do/secondStage/{cpid}/{ocid}', headers={
             'Authorization': f'Bearer {access_token}',
             'X-OPERATION-ID': operation_id,
             'Content-Type': 'application/json',
             'X-TOKEN': token
-        }, data=json.dumps(payload))
+        }, data=json.dumps(payload)).json()
+        print(r)
         kafka_message = self.get_message_from_kafka(operation_id)
         print(kafka_message)
         if kafka_message['data']['ocid'] == ocid:
