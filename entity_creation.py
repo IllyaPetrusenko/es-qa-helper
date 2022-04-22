@@ -234,21 +234,11 @@ class CreateEntity:
         for i in kafka_message:
             print(i)
             print('----------------')
-            outcomes = kafka_message['data']['outcomes']
-            if 'awards' in outcomes:
-                message = kafka_message[i]
-                print(message)
-                awards = message['data']['outcomes']['awards']
-                public_awards = requests.get(url=f'{self.public_point}/{cpid}/{ocid}').json()['releases'][0]['awards']
-                for award in public_awards:
-                    if award['statusDetails'] == 'awaiting':
-                        award_1 = award['id']
-                        for i in awards:
-                            if i['id'] == award_1:
-                                return award_1, i['X-TOKEN']
-            # if 'awards' in i:
-            #
-            # if 'awards' in awards:
+            # outcomes = kafka_message['data']['outcomes']
+            # if 'awards' in outcomes:
+            #     message = kafka_message[i]
+            #     print(message)
+            #     awards = message['data']['outcomes']['awards']
             #     public_awards = requests.get(url=f'{self.public_point}/{cpid}/{ocid}').json()['releases'][0]['awards']
             #     for award in public_awards:
             #         if award['statusDetails'] == 'awaiting':
