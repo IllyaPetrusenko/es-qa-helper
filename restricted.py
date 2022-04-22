@@ -157,8 +157,14 @@ do_cons_4 = system.do_consideration_and_qualification(
 )
 print(do_cons_4)
 
+print('------  START SECOND STAGE -------')
+second_stage = system.start_second_stage(
+    cpid=create_cn[0],
+    ocid=create_cn[1]
+)
+print(f'STATUS: {second_stage}')
 
-# print('------  Create BID-1 -------')
+# print('------  Creaçte BID-1 -------')
 # bid_1 = system.create_bid(
 #     payload=bid,
 #     cpid=create_cn[0],

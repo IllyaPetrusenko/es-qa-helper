@@ -359,3 +359,23 @@ class CreateEntity:
                 continue
 
         return 'Consideration and Qualification -- DONE'
+
+    def start_second_stage(self, cpid, ocid):
+        operation_id = self.get_x_operation_id()
+        access_token = self.get_tokens()[0]
+        payload = {
+            "tender": {
+                "tenderPeriod": {
+                    "endDate": "2021-02-11T19:25:00Z"
+                }
+            }
+        }
+        payload['tender']['tenderPeriod']['endDate'] = self.generate_periods()[0]
+        requests.post(url=f'{self.host}/do/secondStage/{cpid}/{ocid}', headers={
+            'Authorization': f'Bearer {access_token}',
+            'X-OPERATION-ID': operation_id,
+            'Content-Type': 'application/json'
+        }, data=json.dumps(payload))
+        kafka_message = self.get_message_from_kafka(operation_id)
+        if kafka_message['data']['ocid'] == ocid:
+            return "Second stage OK"
