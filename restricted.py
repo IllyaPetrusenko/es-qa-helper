@@ -4,7 +4,7 @@ from entity_creation import CreateEntity
 from payloads.create_ac import contract
 from payloads.create_bid import bid
 from payloads.create_pn import pn_open
-from payloads.create_cn import cn_on_pn
+from payloads.create_cn import cn_on_pn, cn_on_pn_rt
 from payloads.evaluate_award import evaluate_award
 from sys import argv
 

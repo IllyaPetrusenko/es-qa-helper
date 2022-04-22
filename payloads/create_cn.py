@@ -172,7 +172,7 @@ cn_on_pn_rt = {
             "id": "MD-IDNO-1007601009820",
             "persones": [
                 {
-                    "title": "persona 1",
+                    "title": "Mr.",
                     "name": "ira",
                     "identifier": {
                         "scheme": "MD-IDNO",
@@ -208,11 +208,11 @@ cn_on_pn_rt = {
                 "description": "looooooo1",
                 "value": {
                     "amount": 10000,
-                    "currency": "EUR"
+                    "currency": "MDL"
                 },
                 "contractPeriod": {
-                    "startDate": "2021-12-30T16:00:00Z",
-                    "endDate": "2021-12-31T16:00:00Z"
+                    "startDate": "2022-11-26T16:00:00Z",
+                    "endDate": "2022-11-27T16:00:00Z"
                 },
                 "placeOfPerformance": {
                     "address": {
