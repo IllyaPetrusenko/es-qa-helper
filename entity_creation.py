@@ -287,6 +287,7 @@ class CreateEntity:
             json=json.dumps(payload)
         )
         kafka_message = self.get_message_from_kafka(operation_id)
+        print(kafka_message)
         ac_id = kafka_message['data']['outcomes']['ac'][0]['id']
         ac_x_token = kafka_message['data']['outcomes']['ac'][0]['X-TOKEN']
         return ac_id, ac_x_token
