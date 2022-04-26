@@ -63,7 +63,7 @@ class CreateEntity:
                 url=kafka_host + '/x-operation-id/' + operation_id
             ).json()
         del kafka_message['_id']
-
+        print(kafka_message)
         return kafka_message
 
     @staticmethod
