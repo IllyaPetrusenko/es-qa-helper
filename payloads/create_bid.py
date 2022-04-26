@@ -5,7 +5,7 @@ bid_1 = {
                 "name": "FOP Petrusenko I.V",
                 "identifier": {
                     "id": "444-111",
-                    "legalName": "Petrusenko I.V",
+                    "legalName": "KATEKATE",
                     "scheme": "MD-IDNO",
                     "uri": "http://petrusenko.com/fop"
                 },
