@@ -236,7 +236,7 @@ class CreateEntity:
             if 'awards' in outcomes:
                 awards = i['data']['outcomes']['awards']
                 public_awards = requests.get(url=f'{self.public_point}/{cpid}/{ocid}').json()['releases'][0]['awards']
-                for award in public_awards:
+                for award in public_awards: 
                     if award['statusDetails'] == 'awaiting':
                         award_1 = award['id']
                         for i in awards:
