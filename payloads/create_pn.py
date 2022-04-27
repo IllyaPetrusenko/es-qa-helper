@@ -97,7 +97,7 @@ pn_open = {
         "title": "TITLE of TEST_TITLE PUBLIC PORTAL 22222",
         "description": "descr",
         "legalBasis": "NATIONAL_PROCUREMENT_LAW",
-        "procurementMethodRationale": "null",
+        "procurementMethodRationale": "kate",
         "procurementMethodAdditionalInfo": "procurementMethodAdditionalInfo ",
         "tenderPeriod": {
             "startDate": "2021-11-01T00:00:00Z"
