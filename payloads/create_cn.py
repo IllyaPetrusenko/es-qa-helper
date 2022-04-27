@@ -204,7 +204,7 @@ cn_on_pn_rt = {
             {
                 "id": "1",
                 "internalId": "1-1",
-                "title": "lot 1",
+                "title": "lot kate",
                 "description": "looooooo1",
                 "value": {
                     "amount": 10000,
