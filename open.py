@@ -91,43 +91,43 @@ awards = system.get_awards(
 )
 print(f'Awards: {awards}')
 
-
-print('------  AWARD CONSIDERATION -------')
-consideration = system.do_consideration(
-    ocid=create_cn[1],
-    cpid=create_cn[0],
-    award=awards[0],
-    award_token=awards[1]
-)
-print(f'Status: {consideration}')
-
-print('------  AWARD EVALUATION -------')
-evaluation = system.do_award_evaluation(
-    ocid=create_cn[1],
-    cpid=create_cn[0],
-    award=awards[0],
-    award_token=awards[1],
-    payload=evaluate_award
-)
-print(f'Status: {evaluation}')
-
-print('------  DO LOT PROTOCOL -------')
-cans = system.do_protocol(
-    ocid=create_cn[1],
-    cpid=create_cn[0],
-    token=create_pn[2],
-    lot_id=create_cn[2]
-)
-print(f'CAN-ID: {cans[0]}')
-print(f'CAN-X-TOKEN: {cans[1]}')
-
-print('------  CREATE CONTRACT -------')
-ac = system.do_contract(
-    ocid=create_cn[1],
-    cpid=create_cn[0],
-    token=create_pn[2],
-    can_id=cans[0],
-    payload=contract
-)
-print(f'AC-ID: {ac[0]}')
-print(f'AC-TOKEN: {ac[1]}')
+#
+# print('------  AWARD CONSIDERATION -------')
+# consideration = system.do_consideration(
+#     ocid=create_cn[1],
+#     cpid=create_cn[0],
+#     award=awards[0],
+#     award_token=awards[1]
+# )
+# print(f'Status: {consideration}')
+#
+# print('------  AWARD EVALUATION -------')
+# evaluation = system.do_award_evaluation(
+#     ocid=create_cn[1],
+#     cpid=create_cn[0],
+#     award=awards[0],
+#     award_token=awards[1],
+#     payload=evaluate_award
+# )
+# print(f'Status: {evaluation}')
+#
+# print('------  DO LOT PROTOCOL -------')
+# cans = system.do_protocol(
+#     ocid=create_cn[1],
+#     cpid=create_cn[0],
+#     token=create_pn[2],
+#     lot_id=create_cn[2]
+# )
+# print(f'CAN-ID: {cans[0]}')
+# print(f'CAN-X-TOKEN: {cans[1]}')
+#
+# print('------  CREATE CONTRACT -------')
+# ac = system.do_contract(
+#     ocid=create_cn[1],
+#     cpid=create_cn[0],
+#     token=create_pn[2],
+#     can_id=cans[0],
+#     payload=contract
+# )
+# print(f'AC-ID: {ac[0]}')
+# print(f'AC-TOKEN: {ac[1]}')
