@@ -53,7 +53,7 @@ fs = {
       		"period":
 			{
         		"startDate": "2022-05-02T00:00:00Z",
-        		"endDate": "2022-10-29T00:00:00Z"
+        		"endDate": "2022-10-29T10:00:00Z"
       		},
       		"amount":
 			{

@@ -50,7 +50,7 @@ ei = {
 			"period":
 			{
         		  "startDate": "2022-05-01T00:00:00Z",
-        		  "endDate": "2022-10-30T00:00:00Z"
+        		  "endDate": "2022-10-30T10:00:00Z"
       		}
     	},
     	 "rationale": "Rationale for EI"
