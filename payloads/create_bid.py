@@ -162,17 +162,6 @@ bid_1 = {
     ],
     "relatedLots": [
       "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
-    ],
-    "documents": [
-      {
-        "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
-        "title": "title of BID document",
-        "description": "description of BID document",
-        "relatedLots": [
-          "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
-        ],
-        "documentType": "illustration"
-      }
     ]
   }
 }
@@ -340,17 +329,6 @@ bid_2 = {
     ],
     "relatedLots": [
       "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
-    ],
-    "documents": [
-      {
-        "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
-        "title": "title of BID document",
-        "description": "description of BID document",
-        "relatedLots": [
-          "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
-        ],
-        "documentType": "illustration"
-      }
     ]
   }
 }
