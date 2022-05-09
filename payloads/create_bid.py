@@ -153,14 +153,22 @@ bid_1 = {
       }
     ],
     "relatedLots": [
-      "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
+      "{{ev-lot-id-1}}"
+    ],
+    "documents": [
+      {
+        "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
+        "title": "title of BID document",
+        "description": "description of BID document",
+        "documentType": "illustration"
+      }
     ]
   }
 }
 bid_2 = {
   "bid": {
     "value": {
-      "amount": 46750,
+      "amount": 45750,
       "currency": "MDL"
     },
     "tenderers": [
@@ -174,7 +182,7 @@ bid_2 = {
         },
         "additionalIdentifiers": [
           {
-            "id": "tenderer11",
+            "id": "tenderer1",
             "legalName": "legalName of tenderer11",
             "scheme": "MD",
             "uri": "tenderer11.uri"
@@ -211,7 +219,7 @@ bid_2 = {
         "persones": [
           {
             "title": "Mr.",
-            "name": "TNDRR11",
+            "name": "TNDRR1",
             "identifier": {
               "scheme": "MD-IDNO",
               "id": "PRSN-TD",
@@ -312,7 +320,15 @@ bid_2 = {
       }
     ],
     "relatedLots": [
-      "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
+      "{{ev-lot-id-1}}"
+    ],
+    "documents": [
+      {
+        "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
+        "title": "title of BID document",
+        "description": "description of BID document",
+        "documentType": "illustration"
+      }
     ]
   }
 }
