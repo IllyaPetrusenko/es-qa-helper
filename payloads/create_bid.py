@@ -1,352 +1,356 @@
 bid_1 = {
-    "bid": {
-        "tenderers": [
-            {
-                "name": "FOP Petrusenko I.V",
-                "identifier": {
-                    "id": "444-111",
-                    "legalName": "KATEKATE",
-                    "scheme": "MD-IDNO",
-                    "uri": "http://petrusenko.com/fop"
-                },
-                "additionalIdentifiers": [
-                    {
-                        "id": "66-222",
-                        "legalName": "eNotice Company",
-                        "scheme": "MD-ENOT",
-                        "uri": "enotice.com/eduard-eduardovich"
-                    }
-                ],
-                "address": {
-                    "streetAddress": "Heroev Nebesnoj sotni",
-                    "postalCode": "12345",
-                    "addressDetails": {
-                        "country": {
-                            "id": "MD",
-                            "description": "qq",
-                            "scheme": "iso-alpha2"
-                        },
-                        "region": {
-                            "id": "0301000",
-                            "description": "Moldova",
-                            "scheme": "CUATM"
-                        },
-                        "locality": {
-                            "id": "0112001",
-                            "description": "gfg",
-                            "scheme": "other"
-                        }
-                    }
-                },
-                "contactPoint": {
-                    "name": "Illia Petrusenko",
-                    "email": "illya.petrusenko@gmail.com",
-                    "telephone": "+380632074071",
-                    "faxNumber": "+380445450099",
-                    "url": "http://petrusenko.com/illia"
-                },
-                "persones": [
-                    {
-                        "id": "BY-ADR-888888",
-                        "title": "Mr.",
-                        "name": "persones.name",
-                        "identifier": {
-                            "scheme": "BY-ADR",
-                            "id": "888888",
-                            "uri": "http://petrusenko.com/fop"
-                        },
-                        "businessFunctions": [
-                            {
-                                "id": "",
-                                "type": "authority",
-                                "jobTitle": "Owner of the company tyjtytyjtyjtyjtjtyj",
-                                "period": {
-                                    "startDate": "2019-10-28T15:20:10Z"
-                                },
-                                "`documents": [
-                                    {
-                                        "documentType": "regulatoryDocument",
-                                        "id": "3f10d764-1e97-4f1b-aeb8-eef138b7e4a3-1621939957856",
-                                        "title": "",
-                                        "description": "regulatoryDocument description"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "details": {
-                    "typeOfSupplier": "company",
-                    "mainEconomicActivities": [
-                        {
-                            "id": "string",
-                            "scheme": "string",
-                            "description": "string",
-                            "uri": "string"
-                        }
-                    ],
-                    "scale": "micro",
-                    "permits": [
-                        {
-                            "scheme": "MD-MD",
-                            "id": "4569512354785220000",
-                            "url": "4",
-                            "permitDetails": {
-                                "issuedBy": {
-                                    "id": "changed",
-                                    "name": "vasia changed pupkin"
-                                },
-                                "issuedThought": {
-                                    "id": "fgfgfgfg",
-                                    "name": "changed"
-                                },
-                                "validityPeriod": {
-                                    "startDate": "2018-12-05T00:00:00Z",
-                                    "endDate": "2018-12-05T00:00:00Z"
-                                }
-                            }
-                        }
-                    ],
-                    "bankAccounts": [
-                        {
-                            "description": "description",
-                            "bankName": "bankName",
-                            "address": {
-                                "streetAddress": "Steet",
-                                "postalCode": "5",
-                                "addressDetails": {
-                                    "country": {
-                                        "id": "MD",
-                                        "description": "",
-                                        "scheme": "iso-alpha2"
-                                    },
-                                    "region": {
-                                        "id": "0301000",
-                                        "description": "descr",
-                                        "scheme": "CUATM"
-                                    },
-                                    "locality": {
-                                        "id": "0301000",
-                                        "description": "ergerg",
-                                        "scheme": "other"
-                                    }
-                                }
-                            },
-                            "identifier": {
-                                "scheme": "UA-MFO",
-                                "id": "300711"
-                            },
-                            "accountIdentification": {
-                                "scheme": "IBAN",
-                                "id": "2600000625637"
-                            },
-                            "additionalAccountIdentifiers": [
-                                {
-                                    "scheme": "settlement",
-                                    "id": "458-9652"
-                                }
-                            ]
-                        }
-                    ],
-                    "legalForm": {
-                        "scheme": "BY-ADR",
-                        "id": "4592",
-                        "description": "description",
-                        "uri": "uri"
-                    }
-                }
-            }
-        ],
-        "value": {
-            "amount": 100,
-            "currency": "MDL"
+  "bid": {
+    "value": {
+      "amount": 48750,
+      "currency": "MDL"
+    },
+    "tenderers": [
+      {
+        "name": "TNDRR",
+        "identifier": {
+          "id": "TNDRR2",
+          "legalName": "legalName of TNDRR2",
+          "scheme": "MD-IDNO",
+          "uri": "tndrr1.uri"
         },
-        "documents": [
-            {
-                "title": "doc_1",
-                "description": "doc1_description",
-                "documentType": "submissionDocuments",
-                "id": "b93b9f56-9192-4376-a62e-9ad2bd93993c-1623144802142"
-            }
+        "additionalIdentifiers": [
+          {
+            "id": "tenderer1",
+            "legalName": "legalName of tenderer1",
+            "scheme": "MD",
+            "uri": "tenderer1.uri"
+          }
         ],
+        "address": {
+          "streetAddress": "Streer of TNDRR1",
+          "postalCode": "TNDRR1 postal code",
+          "addressDetails": {
+            "country": {
+              "id": "MD",
+              "description": "string",
+              "scheme": "iso-alpha2"
+            },
+            "region": {
+              "id": "8500000",
+              "description": "description of 8500000",
+              "scheme": "CUATM"
+            },
+            "locality": {
+              "id": "8514000",
+              "description": "description of 8514000",
+              "scheme": "CUATM"
+            }
+          }
+        },
+        "contactPoint": {
+          "name": "name of CP TNDRR1",
+          "email": "cptndrr1@gmail.com",
+          "telephone": "0676544343",
+          "faxNumber": "0633453432",
+          "url": "cptndrr1.uri"
+        },
+        "persones": [
+          {
+            "title": "Mr.",
+            "name": "TNDRR1",
+            "identifier": {
+              "scheme": "MD-IDNO",
+              "id": "PRSN-TD",
+              "uri": "PRSN-TD.uri"
+            },
+            "businessFunctions": [
+              {
+                "id": "1",
+                "type": "contactPoint",
+                "jobTitle": "jobTitle of PRSN-TD",
+                "period": {
+                  "startDate": "2021-07-05T09:56:39Z"
+                },
+                "documents": [
+                  {
+                    "documentType": "regulatoryDocument",
+                    "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
+                    "title": "PRSN-TD document",
+                    "description": "description of PRSN-TD document"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "details": {
+          "typeOfSupplier": "company",
+          "mainEconomicActivities": [
+            {
+              "id": "1",
+              "scheme": "MEA",
+              "description": "description of mea",
+              "uri": "mea.uri"
+            }
+          ],
+          "scale": "micro",
+          "permits": [
+            {
+              "id": "1",
+              "scheme": "PRMTS",
+              "url": "prmts.uri",
+              "permitDetails": {
+                "issuedBy": {
+                  "id": "MD-1",
+                  "name": "first"
+                },
+                "issuedThought": {
+                  "id": "MD-2",
+                  "name": "second"
+                },
+                "validityPeriod": {
+                  "startDate": "2021-07-05T12:06:11Z",
+                  "endDate": "2021-07-06T12:06:11Z"
+                }
+              }
+            }
+          ],
+          "bankAccounts": [
+            {
+              "description": "description of bankAccounts",
+              "bankName": "monobank",
+              "address": {
+                "streetAddress": "Street of monobank",
+                "postalCode": "monobank postal code",
+                "addressDetails": {
+                  "country": {
+                    "id": "MD",
+                    "description": "description of MD",
+                    "scheme": "iso-alpha2"
+                  },
+                  "region": {
+                    "id": "9200000",
+                    "description": "description of 9200000",
+                    "scheme": "CUATM"
+                  },
+                  "locality": {
+                    "id": "9202001",
+                    "description": "description of 9202001",
+                    "scheme": "CUATM"
+                  }
+                }
+              },
+              "identifier": {
+                "scheme": "UA-MFO",
+                "id": "1"
+              },
+              "accountIdentification": {
+                "scheme": "IBAN",
+                "id": "UA34976254762465876254"
+              },
+              "additionalAccountIdentifiers": [
+                {
+                  "scheme": "fiscal",
+                  "id": "1"
+                }
+              ]
+            }
+          ],
+          "legalForm": {
+            "scheme": "MD-CFOJ",
+            "id": "1",
+            "description": "description of legalForm in bid",
+            "uri": "string"
+          }
+        }
+      }
+    ],
+    "relatedLots": [
+      "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
+    ],
+    "documents": [
+      {
+        "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
+        "title": "title of BID document",
+        "description": "description of BID document",
         "relatedLots": [
-            "{{ev-lot-id-1}}"
-        ]
-    }
+          "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
+        ],
+        "documentType": "illustration"
+      }
+    ]
+  }
 }
 bid_2 = {
-    "bid": {
-        "tenderers": [
-            {
-                "name": "FOP Petrusenko I.V",
-                "identifier": {
-                    "id": "444-444",
-                    "legalName": "Petrusenko I.V",
-                    "scheme": "MD-IDNO",
-                    "uri": "http://petrusenko.com/fop"
-                },
-                "additionalIdentifiers": [
-                    {
-                        "id": "66-222",
-                        "legalName": "eNotice Company",
-                        "scheme": "MD-ENOT",
-                        "uri": "enotice.com/eduard-eduardovich"
-                    }
-                ],
-                "address": {
-                    "streetAddress": "Heroev Nebesnoj sotni",
-                    "postalCode": "12345",
-                    "addressDetails": {
-                        "country": {
-                            "id": "MD",
-                            "description": "qq",
-                            "scheme": "iso-alpha2"
-                        },
-                        "region": {
-                            "id": "0301000",
-                            "description": "Moldova",
-                            "scheme": "CUATM"
-                        },
-                        "locality": {
-                            "id": "0112001",
-                            "description": "gfg",
-                            "scheme": "other"
-                        }
-                    }
-                },
-                "contactPoint": {
-                    "name": "Illia Petrusenko",
-                    "email": "illya.petrusenko@gmail.com",
-                    "telephone": "+380632074071",
-                    "faxNumber": "+380445450099",
-                    "url": "http://petrusenko.com/illia"
-                },
-                "persones": [
-                    {
-                        "id": "BY-ADR-888888",
-                        "title": "Mr.",
-                        "name": "persones.name",
-                        "identifier": {
-                            "scheme": "BY-ADR",
-                            "id": "888888",
-                            "uri": "http://petrusenko.com/fop"
-                        },
-                        "businessFunctions": [
-                            {
-                                "id": "",
-                                "type": "authority",
-                                "jobTitle": "Owner of the company tyjtytyjtyjtyjtjtyj",
-                                "period": {
-                                    "startDate": "2019-10-28T15:20:10Z"
-                                },
-                                "`documents": [
-                                    {
-                                        "documentType": "regulatoryDocument",
-                                        "id": "3f10d764-1e97-4f1b-aeb8-eef138b7e4a3-1621939957856",
-                                        "title": "",
-                                        "description": "regulatoryDocument description"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "details": {
-                    "typeOfSupplier": "company",
-                    "mainEconomicActivities": [
-                        {
-                            "id": "string",
-                            "scheme": "string",
-                            "description": "string",
-                            "uri": "string"
-                        }
-                    ],
-                    "scale": "micro",
-                    "permits": [
-                        {
-                            "scheme": "MD-MD",
-                            "id": "4569512354785220000",
-                            "url": "4",
-                            "permitDetails": {
-                                "issuedBy": {
-                                    "id": "changed",
-                                    "name": "vasia changed pupkin"
-                                },
-                                "issuedThought": {
-                                    "id": "fgfgfgfg",
-                                    "name": "changed"
-                                },
-                                "validityPeriod": {
-                                    "startDate": "2018-12-05T00:00:00Z",
-                                    "endDate": "2018-12-05T00:00:00Z"
-                                }
-                            }
-                        }
-                    ],
-                    "bankAccounts": [
-                        {
-                            "description": "description",
-                            "bankName": "bankName",
-                            "address": {
-                                "streetAddress": "Steet",
-                                "postalCode": "5",
-                                "addressDetails": {
-                                    "country": {
-                                        "id": "MD",
-                                        "description": "",
-                                        "scheme": "iso-alpha2"
-                                    },
-                                    "region": {
-                                        "id": "0301000",
-                                        "description": "descr",
-                                        "scheme": "CUATM"
-                                    },
-                                    "locality": {
-                                        "id": "0301000",
-                                        "description": "ergerg",
-                                        "scheme": "other"
-                                    }
-                                }
-                            },
-                            "identifier": {
-                                "scheme": "UA-MFO",
-                                "id": "300711"
-                            },
-                            "accountIdentification": {
-                                "scheme": "IBAN",
-                                "id": "2600000625637"
-                            },
-                            "additionalAccountIdentifiers": [
-                                {
-                                    "scheme": "settlement",
-                                    "id": "458-9652"
-                                }
-                            ]
-                        }
-                    ],
-                    "legalForm": {
-                        "scheme": "BY-ADR",
-                        "id": "4592",
-                        "description": "description",
-                        "uri": "uri"
-                    }
-                }
-            }
-        ],
-        "value": {
-            "amount": 100,
-            "currency": "MDL"
+  "bid": {
+    "value": {
+      "amount": 46750,
+      "currency": "MDL"
+    },
+    "tenderers": [
+      {
+        "name": "TNDRR1",
+        "identifier": {
+          "id": "TNDRR1",
+          "legalName": "legalName of TNDRR1",
+          "scheme": "MD-IDNO",
+          "uri": "tndrr11.uri"
         },
-        "documents": [
-            {
-                "title": "doc_1",
-                "description": "doc1_description",
-                "documentType": "submissionDocuments",
-                "id": "b93b9f56-9192-4376-a62e-9ad2bd93993c-1623144802142"
-            }
+        "additionalIdentifiers": [
+          {
+            "id": "tenderer11",
+            "legalName": "legalName of tenderer11",
+            "scheme": "MD",
+            "uri": "tenderer11.uri"
+          }
         ],
+        "address": {
+          "streetAddress": "Streer of TNDRR11",
+          "postalCode": "TNDRR11 postal code",
+          "addressDetails": {
+            "country": {
+              "id": "MD",
+              "description": "string",
+              "scheme": "iso-alpha2"
+            },
+            "region": {
+              "id": "8500000",
+              "description": "description of 8500000",
+              "scheme": "CUATM"
+            },
+            "locality": {
+              "id": "8514000",
+              "description": "description of 8514000",
+              "scheme": "CUATM"
+            }
+          }
+        },
+        "contactPoint": {
+          "name": "name of CP TNDRR11",
+          "email": "cptndrr11@gmail.com",
+          "telephone": "0676544343",
+          "faxNumber": "0633453432",
+          "url": "cptndrr11.uri"
+        },
+        "persones": [
+          {
+            "title": "Mr.",
+            "name": "TNDRR11",
+            "identifier": {
+              "scheme": "MD-IDNO",
+              "id": "PRSN-TD",
+              "uri": "PRSN-TD.uri"
+            },
+            "businessFunctions": [
+              {
+                "id": "1",
+                "type": "contactPoint",
+                "jobTitle": "jobTitle of PRSN-TD",
+                "period": {
+                  "startDate": "2021-07-05T09:56:39Z"
+                },
+                "documents": [
+                  {
+                    "documentType": "regulatoryDocument",
+                    "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
+                    "title": "PRSN-TD document",
+                    "description": "description of PRSN-TD document"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "details": {
+          "typeOfSupplier": "company",
+          "mainEconomicActivities": [
+            {
+              "id": "1",
+              "scheme": "MEA",
+              "description": "description of mea",
+              "uri": "mea.uri"
+            }
+          ],
+          "scale": "micro",
+          "permits": [
+            {
+              "id": "1",
+              "scheme": "PRMTS",
+              "url": "prmts.uri",
+              "permitDetails": {
+                "issuedBy": {
+                  "id": "MD-1",
+                  "name": "first"
+                },
+                "issuedThought": {
+                  "id": "MD-2",
+                  "name": "second"
+                },
+                "validityPeriod": {
+                  "startDate": "2021-07-05T12:06:11Z",
+                  "endDate": "2021-07-06T12:06:11Z"
+                }
+              }
+            }
+          ],
+          "bankAccounts": [
+            {
+              "description": "description of bankAccounts",
+              "bankName": "monobank",
+              "address": {
+                "streetAddress": "Street of monobank",
+                "postalCode": "monobank postal code",
+                "addressDetails": {
+                  "country": {
+                    "id": "MD",
+                    "description": "description of MD",
+                    "scheme": "iso-alpha2"
+                  },
+                  "region": {
+                    "id": "9200000",
+                    "description": "description of 9200000",
+                    "scheme": "CUATM"
+                  },
+                  "locality": {
+                    "id": "9202001",
+                    "description": "description of 9202001",
+                    "scheme": "CUATM"
+                  }
+                }
+              },
+              "identifier": {
+                "scheme": "UA-MFO",
+                "id": "1"
+              },
+              "accountIdentification": {
+                "scheme": "IBAN",
+                "id": "UA34976254762465876254"
+              },
+              "additionalAccountIdentifiers": [
+                {
+                  "scheme": "fiscal",
+                  "id": "1"
+                }
+              ]
+            }
+          ],
+          "legalForm": {
+            "scheme": "MD-CFOJ",
+            "id": "1",
+            "description": "description of legalForm in bid",
+            "uri": "string"
+          }
+        }
+      }
+    ],
+    "relatedLots": [
+      "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
+    ],
+    "documents": [
+      {
+        "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
+        "title": "title of BID document",
+        "description": "description of BID document",
         "relatedLots": [
-            "{{ev-lot-id-1}}"
-        ]
-    }
+          "453162af-3c2c-49b2-ab3f-014c5bd6a57c"
+        ],
+        "documentType": "illustration"
+      }
+    ]
+  }
 }
