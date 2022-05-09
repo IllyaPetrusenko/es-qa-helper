@@ -60,7 +60,7 @@ fs = {
         		"amount": 100000,
         		"currency": "MDL"
       		},
-      		"isEuropeanUnionFunded": true,
+      		"isEuropeanUnionFunded": True,
 			"europeanUnionFunding":
 			{
       			"projectName": "name of project",
