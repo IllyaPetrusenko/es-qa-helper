@@ -148,13 +148,6 @@ pn_open = {
                 "faxNumber": "0677656554",
                 "url": "pepncp.url"
             }
-        },
-        "documents":
-        [{
-            "documentType": "procurementPlan",
-            "id": "b7032fe9-100d-4a42-86f8-f2df9ef09bc8-1652083076593",
-            "title": "PN document 1",
-            "description": "description of PN document 1"
-        }]
+        }
     }
 }
