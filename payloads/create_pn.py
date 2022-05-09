@@ -78,70 +78,83 @@ pn_fa = {
     }
 }
 pn_open = {
-    "planning": {
-        "rationale": "rationale is an optional field",
-        "budget": {
-            "description": "description",
-            "budgetBreakdown": [
+    "planning":
+    {
+        "rationale": "rationale for PN",
+        "budget":
+        {
+            "description": "description of budget in PN",
+            "budgetBreakdown":
+            [{
+                "id": "ocds-t1s2t3-MD-1629100833045-FS-1629100840747",
+                "amount":
                 {
-                    "id": "test-b3wdp1-MD-1643396534456-FS-1643398052236",
-                    "amount": {
-                        "amount": 315620.00,
-                        "currency": "MDL"
-                    }
+                    "amount": 100000,
+                    "currency": "MDL"
                 }
-            ]
+            }]
         }
     },
-    "tender": {
-        "title": "TITLE of sighsosldnv PUBLIC PORTAL 22222",
-        "description": "descr",
-        "legalBasis": "NATIONAL_PROCUREMENT_LAW",
-        "procurementMethodRationale": "null",
-        "procurementMethodAdditionalInfo": "procurementMethodAdditionalInfo ",
-        "tenderPeriod": {
-            "startDate": "2021-11-01T00:00:00Z"
+    "tender":
+    {
+        "title": "tender title in PN",
+        "description": "description of tender in PN",
+        "legalBasis": "DIRECTIVE_2014_23_EU",
+        "procurementMethodRationale": "procurement Method Rationale of PN",
+        "procurementMethodAdditionalInfo": "procurement Method Additional Info of PN",
+        "tenderPeriod":
+        {
+            "startDate": "2022-05-01T00:00:00Z"
         },
-        "procuringEntity": {
-            "name": "Direcția Agricultura, Relații Funciare și Cadastru a Consiliului Raional Edineț",
-            "identifier": {
-                "id": "1007601009820",
+        "procuringEntity":
+        {
+            "name": "PE in PN",
+            "identifier":
+            {
                 "scheme": "MD-IDNO",
-                "legalName": "Direcția Agricultura, Relații Funciare și Cadastru a Consiliului Raional Edineț",
-                "uri": "http://reference.iatistandard.org"
+                "id": "PEPN",
+                "legalName": "legalName PEPN",
+                "uri": "PEPN.uri"
             },
+            "additionalIdentifiers":
+            [{
+                "scheme": "MD",
+                "id": "PP",
+                "legalName": "legalName PP",
+                "uri": "PP.uri"
+            }],
             "address": {
-                "streetAddress": "str. Șoseaua Bucovinei 37",
-                "postalCode": "MD4601",
+                "streetAddress": "Street of PEPN",
+                "postalCode": "PEPN postal code",
                 "addressDetails": {
                     "country": {
-                        "id": "MD"
+                      "id": "MD"
                     },
                     "region": {
-                        "id": "4100000"
+                      "id": "0501000"
                     },
                     "locality": {
-                        "scheme": "CUATM",
-                        "id": "4101000",
-                        "description": "mun.Chişinău"
+                      "scheme": "CUATM",
+                      "id": "0510000",
+                      "description": "description of 0510000"
                     }
                 }
             },
-            "additionalIdentifiers": [
-                {
-                    "id": "1003600152606",
-                    "scheme": "MD-IDNO",
-                    "legalName": "IMSP Institutul de Medicina Urgenta",
-                    "uri": "http://hrystynivka.miskrada.org.ua/"
-                }
-            ],
-            "contactPoint": {
-                "name": "Serviciul achizitii publice",
-                "email": "achizitii@urgenta.md",
-                "telephone": "022250809, 022250707",
-                "faxNumber": "022250809, 022250707",
-                "url": "http://hrystynivka.miskrada.org.ua/"
+            "contactPoint":
+            {
+                "name": "PEPN contact point",
+                "email": "pepncp@gmail.com",
+                "telephone": "0989878776",
+                "faxNumber": "0677656554",
+                "url": "pepncp.url"
             }
-        }
+        },
+        "documents":
+        [{
+            "documentType": "procurementPlan",
+            "id": "b7032fe9-100d-4a42-86f8-f2df9ef09bc8-1652083076593",
+            "title": "PN document 1",
+            "description": "description of PN document 1"
+        }]
     }
 }
