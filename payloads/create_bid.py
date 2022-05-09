@@ -65,15 +65,7 @@ bid_1 = {
                 "jobTitle": "jobTitle of PRSN-TD",
                 "period": {
                   "startDate": "2021-07-05T09:56:39Z"
-                },
-                "documents": [
-                  {
-                    "documentType": "regulatoryDocument",
-                    "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
-                    "title": "PRSN-TD document",
-                    "description": "description of PRSN-TD document"
-                  }
-                ]
+                }
               }
             ]
           }
@@ -232,15 +224,7 @@ bid_2 = {
                 "jobTitle": "jobTitle of PRSN-TD",
                 "period": {
                   "startDate": "2021-07-05T09:56:39Z"
-                },
-                "documents": [
-                  {
-                    "documentType": "regulatoryDocument",
-                    "id": "d68bcb6e-5bc2-4d01-9098-10d8ac6cbf9c-1652085140002",
-                    "title": "PRSN-TD document",
-                    "description": "description of PRSN-TD document"
-                  }
-                ]
+                }
               }
             ]
           }
