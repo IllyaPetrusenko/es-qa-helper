@@ -135,9 +135,9 @@ cn_on_pn = {
     "documents": [
       {
         "id": "b7032fe9-100d-4a42-86f8-f2df9ef09bc8-1652083076593",
-        "title": "CN document 1",
-        "documentType": "tenderNotice",
-        "description": "description of CN document 1",
+        "title": "PN document 1",
+        "documentType": "procurementPlan",
+        "description": "description of PN document 1",
         "relatedLots": [
           "1"
         ]
