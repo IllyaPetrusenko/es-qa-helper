@@ -14,7 +14,7 @@ cn_on_pn = {
       "id": "MD-IDNO-PEPN",
       "persones": [
         {
-          "title": "CN Person",
+          "title": "Mr.",
           "name": "name of CN Person",
           "identifier": {
             "id": "CN-PRSN",
