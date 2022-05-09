@@ -31,7 +31,7 @@ cn_on_pn = {
               },
               "documents": [
                 {
-                  "id": "{{doc2}}",
+                  "id": "157822d5-e88f-478f-abb6-0ed547f8d8b9-1652083954576",
                   "title": "title of business document",
                   "documentType": "regulatoryDocument",
                   "description": "description of business document"
@@ -154,7 +154,6 @@ cn_on_pn = {
     ]
   }
 }
-
 cn_on_pn_rt = {
     "planning": {
         "rationale": "reason",
