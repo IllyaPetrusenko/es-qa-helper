@@ -1,70 +1,88 @@
 up_ap = {
-    "tender": {
-        "title": "Мороженный хек",
-        "description": "FA EDIT 2222",
-        "procurementMethodRationale": "привет, Эдик))",
-        "tenderPeriod": {
-            "startDate": "2021-11-01T00:00:00Z"
+  "tender": {
+    "title": "AP tender title",
+    "description": "AP tender description",
+    "procurementMethodRationale": "AP PMR",
+    "tenderPeriod": {
+      "startDate": "2021-05-01T16:00:00Z"
+    },
+    "lots": [
+      {
+        "id": "1",
+        "internalId": "lot 1",
+        "title": "first lot in AP",
+        "description": "description of first lot in AP",
+        "placeOfPerformance": {
+          "address": {
+            "streetAddress": "Peremogi",
+            "postalCode": "10040",
+            "addressDetails": {
+              "country": {
+                "id": "MD"
+              },
+              "region": {
+                "id": "7800000"
+              },
+              "locality": {
+                "id": "7811000",
+                "scheme": "CUATM",
+                "description": "string"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "items": [
+      {
+        "id": "1",
+        "internalId": "item 1",
+        "classification": {
+          "id": "37411110-6"
         },
-        "lots": [
-            {
-                "id": "1",
-                "internalId": "16000-22/44",
-                "title": "Ноутбуки",
-                "description": "Список ноутбуков, которые хоелось бы закупить",
-                "value": {
-                    "amount": 315620.34,
-                    "currency": "MDL"
-                },
-                "contractPeriod": {
-                    "startDate": "2021-12-15T00:00:00Z",
-                    "endDate": "2021-12-31T00:00:00Z"
-                },
-                "placeOfPerformance":
-                    {
-                        "address": {
-                            "streetAddress": "Piaţa Marii Adunări Naţionale, 1",
-                            "postalCode": "MD-2033",
-                            "addressDetails": {
-                                "country": {
-                                    "id": "MD"
-                                },
-                                "region": {
-                                    "id": "0101000"
-                                },
-                                "locality": {
-                                    "scheme": "CUATM",
-                                    "id": "0142000",
-                                    "description": "mun. Chişinău"
-                                }
-                            }
-                        },
-                        "description": "Место поставки товаров"
-                    }
-            }
+        "additionalClassifications": [
+          {
+            "id": "QA04-7"
+          }
         ],
-        "items": [
-            {
-                "id": "1",
-                "internalId": "1",
-                "classification": {
-                    "id": "45200000-9"
-                },
-                "quantity": 10,
-                "unit": {
-                    "id": "10"
-                },
-                "description": "Ноутбуки",
-                "relatedLot": "1"
+        "quantity": 100,
+        "unit": {
+          "id": "120"
+        },
+        "description": "description of first item in AP",
+        "relatedLot": "1",
+        "deliveryAddress": {
+          "streetAddress": "Franka",
+          "postalCode": "20010",
+          "addressDetails": {
+            "country": {
+              "id": "MD"
+            },
+            "region": {
+              "id": "7800000"
+            },
+            "locality": {
+              "id": "7812000",
+              "description": "string",
+              "scheme": "CUATM"
             }
-        ],
-        "documents": [
-            {
-                "documentType": "evaluationCriteria",
-                "id": "5069cb6e-8933-44fd-9831-4de6a81fc412-1637851258753",
-                "title": "doctitle`",
-                "description": "docdesc`"
-            }
+          }
+        }
+      }
+    ],
+    "documents": [
+      {
+        "documentType": "procurementPlan",
+        "id": "377ca816-c7c9-4d38-bd83-c70f99a113ab-1652163991404",
+        "title": "title of AP document",
+        "description": "description of AP document",
+        "relatedLots": [
+          "1"
         ]
+      }
+    ],
+    "!value": {
+      "currency": "MDL"
     }
+  }
 }

@@ -1,33 +1,33 @@
 confirmation_response_invited_candidate = {
-    "confirmationResponse": {
-        "requestId": "406605c0-c793-11eb-9486-df4bf4b634d9",
-        "type": "document",
-        "value": True,
-        "relatedPerson": {
-            "title": "Mr.",
-            "name": "Twister",
-            "identifier": {
-                "scheme": "MD-IDNO",
-                "id": "380632074071"
-            },
-            "businessFunctions": [
-                {
-                    "type": "authority",
-                    "jobTitle": "CEO",
-                    "period": {
-                        "startDate": "2020-06-07T13:25:02Z"
-                    },
-                    "documents": [
-                        {
-                            "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
-                            "documentType": "regulatoryDocument",
-                            "title": "document.title",
-                            "description": "document.description"
-                        }
-                    ],
-                    "id": "406605c0-c793-11eb-9486-df4bf4b634d9"
-                }
-            ]
+  "confirmationResponse": {
+    "requestId": "10077401-7dd6-11ec-98df-99afc6a846a4",
+    "type": "document",
+    "value": "2e7247f2-66d8-4ebf-96a9-1c5ae5b40216-1652163854914",
+    "relatedPerson": {
+      "title": "Mr.",
+      "name": "name of related person",
+      "identifier": {
+        "scheme": "MD-IDNO",
+        "id": "RP1"
+      },
+      "businessFunctions": [
+        {
+          "type": "authority",
+          "jobTitle": "jobTitle of RP1",
+          "period": {
+            "startDate": "2022-01-25T11:16:50Z"
+          },
+          "documents": [
+            {
+              "id": "2e7247f2-66d8-4ebf-96a9-1c5ae5b40216-1652163854914",
+              "documentType": "regulatoryDocument",
+              "title": "title of bus doc of RP1",
+              "description": "description of of bus doc of RP1"
+            }
+          ],
+          "id": "1"
         }
+      ]
     }
+  }
 }
