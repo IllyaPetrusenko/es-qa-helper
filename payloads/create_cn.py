@@ -155,145 +155,151 @@ cn_on_pn = {
   }
 }
 cn_on_pn_rt = {
-    "planning": {
-        "rationale": "reason",
-        "budget": {
-            "description": "fs budget"
-        }
-    },
-    "preQualification": {
-        "period": {
-            "endDate": "2021-11-18T10:43:00Z"
-        }
-    },
-    "tender": {
-        "title": "cn on pn",
-        "description": "tenderrrrr",
-        "secondStage": {
-            "minimumCandidates": 2,
-            "maximumCandidates": 5
-        },
-        "otherCriteria": {
-            "reductionCriteria": "scoring",
-            "qualificationSystemMethods": [
-                "automated"
-            ]
-        },
-        "!procurementMethodModalities": [
-            "electronicAuction"
-        ],
-        "!electronicAuctions": {
-            "details": [
-                {
-                    "id": "",
-                    "relatedLot": "",
-                    "electronicAuctionModalities": [
-                        {
-                            "eligibleMinimumDifference": {
-                                "amount": 150.00,
-                                "currency": "MDL"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        "procurementMethodRationale": "pmr",
-        "procurementMethodAdditionalInfo": "pmai",
-        "awardCriteria": "priceOnly",
-        "awardCriteriaDetails": "automated",
-        "procuringEntity": {
-            "id": "MD-IDNO-1007601009820",
-            "persones": [
-                {
-                    "title": "Mr.",
-                    "name": "ira",
-                    "identifier": {
-                        "scheme": "MD-IDNO",
-                        "id": "123",
-                        "uri": ".uri"
-                    },
-                    "businessFunctions": [
-                        {
-                            "id": "1",
-                            "type": "chairman",
-                            "jobTitle": "Chief Executive Officer",
-                            "period": {
-                                "startDate": "2021-01-02T16:00:00Z"
-                            },
-                            ".documents": [
-                                {
-                                    "id": "efb260fb-cbfb-4f17-8831-b17aa5179e0d-1637231815593",
-                                    "documentType": "regulatoryDocument",
-                                    "title": "doc",
-                                    "description": "doc 1"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        "lots": [
-            {
-                "id": "1",
-                "internalId": "1-1",
-                "title": "lot 1",
-                "description": "looooooo1",
-                "value": {
-                    "amount": 10000,
-                    "currency": "MDL"
-                },
-                "contractPeriod": {
-                    "startDate": "2022-11-26T16:00:00Z",
-                    "endDate": "2022-11-27T16:00:00Z"
-                },
-                "placeOfPerformance": {
-                    "address": {
-                        "streetAddress": "Street",
-                        "postalCode": "123321",
-                        "addressDetails": {
-                            "country": {
-                                "id": "MD"
-                            },
-                            "region": {
-                                "id": "4100000"
-                            },
-                            "locality": {
-                                "scheme": "CUATM",
-                                "id": "4102000",
-                                "description": "1"
-                            }
-                        }
-                    },
-                    "description": "place"
-                }
-            }
-        ],
-        "items": [
-            {
-                "id": "1",
-                "quantity": 10,
-                "classification": {
-                    "id": "45200000-9"
-                },
-                "unit": {
-                    "id": "120"
-                },
-                "description": "item",
-                "relatedLot": "1"
-            }
-        ],
-        "documents": [
-            {
-                "documentType": "illustration",
-                "id": "efb260fb-cbfb-4f17-8831-b17aa5179e0d-1637231815593",
-                "title": "doc",
-                "description": "doc1",
-                "relatedLots": [
-                    "1"
-                ]
-            }
-        ]
+  "planning": {
+    "rationale": "reason",
+    "budget": {
+      "description": "fs budget"
     }
+  },
+  "preQualification": {
+    "period": {
+       "endDate": "2021-06-30T10:14:00Z"
+    }
+  },
+  "tender": {
+    "title": "cn on pn",
+    "description": "tenderrrrr",
+    "secondStage": {
+      "minimumCandidates": 2,
+      "maximumCandidates": 5
+    },
+    "otherCriteria": {
+        "reductionCriteria": "scoring",
+        "qualificationSystemMethods":["manual"]
+    },
+    "procurementMethodRationale": "pmr",
+    "procurementMethodAdditionalInfo": "pmai",
+    "awardCriteria": "priceOnly",
+    "awardCriteriaDetails": "automated",
+    "procuringEntity": {
+      "id": "MD-IDNO-380676308755",
+      "persones": [
+        {
+          "title": "Mr.",
+          "name": "ira",
+          "identifier": {
+            "scheme": "MD-IDNO",
+            "id": "123",
+            "uri": ".uri"
+          },
+          "businessFunctions": [
+            {
+              "id": "1",
+              "type": "chairman",
+              "jobTitle": "Chief Executive Officer",
+              "period": {
+                "startDate": "2021-01-02T16:00:00Z"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "lots": [
+     {
+            "id":"1",
+            "internalId":"1-1",
+            "title":"lot 1",
+            "description":"first lot",
+            "value":{
+               "amount":10000,
+               "currency":"MDL"
+            },
+            "contractPeriod":{
+               "startDate":"2021-07-01T00:00:00Z",
+               "endDate":"2021-07-02T00:00:00Z"
+            },
+            "placeOfPerformance":{
+               "address":{
+                  "streetAddress":"Lesnaya",
+                  "postalCode":"100200",
+                  "addressDetails":{
+                     "country":{
+                        "id":"MD"
+                     },
+                     "region":{
+                        "id":"6700000"
+                     },
+                     "locality":{
+                        "scheme":"CUATM",
+                        "id":"6701002",
+                        "description":"loc"
+                     }
+                  }
+               },
+               "description":"description of locality"
+            },
+            "!hasOptions": false,
+            "!options": [
+             {
+                  "description": "The buyer has the option to buy an additional hundred uniforms.",
+                  "period": {
+                     "durationInDays": 180,
+                     "startDate": "2021-02-10T00:00:00Z",
+                     "endDate": "2024-02-10T00:00:00Z",
+                     "maxExtentDate": "2024-02-10T00:00:00Z"
+                   }
+                 }
+             ],
+            "!hasRecurrence": false,
+            "!recurrence": {
+                  "dates": [
+               {
+                     "startDate": "2020-01-01T00:00:00Z"
+               },
+               {
+                     "startDate": "2021-01-01T00:00:00Z"
+                 }
+              ],
+                  "description": "The duration of this contract and recurrent contracts will not exceed three years."
+        },
+            "!hasRenewal": false,
+            "!renewal": {
+                  "description": "The contracting authority reserves the right to extend the term for a period or periods of up to 1 year with a maximum of 2 such extensions on the same terms and conditions, subject to the contracting authority's obligations at law.",
+                  "minimumRenewals": 2,
+                  "maximumRenewals": 7,
+                  "period": {
+                     "durationInDays": 365,
+                     "startDate": "2021-02-10T00:00:00Z",
+                     "endDate": "2024-02-10T00:00:00Z",
+                     "maxExtentDate": "2024-02-10T00:00:00Z"
+                  }
+                }
+             }
+    ],
+      "items":[
+         {
+            "id":"1",
+            "quantity":10,
+            "classification":{
+               "id":"45100000-8"},
+            "unit":{
+               "id":"120"
+            },
+            "description":"item",
+            "relatedLot":"1"
+         }
+      ],
+    "documents": [
+      {
+        "documentType": "illustration",
+        "id": "377ca816-c7c9-4d38-bd83-c70f99a113ab-1652163991404",
+        "title": "doc",
+        "description": "doc1",
+        "relatedLots": [
+          "1"
+        ]
+      }
+    ]
+  }
 }
