@@ -1,69 +1,70 @@
 sub_1 = {
-  "submission": {
-    "candidates": [
-      {
-        "name": "candidat 7",
-        "identifier": {
-          "id": "1",
-          "legalName": "Nana",
-          "scheme": "MD-IDNO",
-          "uri": "cand.uri"
-        },
-        "additionalIdentifiers": [
-          {
-            "id": "1-2",
-            "legalName": "Markova",
-            "scheme": "MD-IDNO",
-            "uri": "mark.uri"
-          }
-        ],
-        "address": {
-          "streetAddress": "Gonchara",
-          "postalCode": "100400",
-          "addressDetails": {
-            "country": {
-              "id": "MD",
-              "description": "mold",
-              "scheme": "iso-alpha2"
-            },
-            "region": {
-              "id": "4800000",
-              "description": "reg",
-              "scheme": "CUATM"
-            },
-            "locality": {
-              "id": "4824000",
-              "description": "loc",
-              "scheme": "CUATM"
-            }
-          }
-        },
-        "contactPoint": {
-          "name": "irina",
-          "email": "i@gmail.com",
-          "telephone": "0635330195",
-          "faxNumber": "0676308755",
-          "url": "i.url"
-        },
-        "persones": [
-          {
-            "id": "1",
-            "title": "Mr.",
-            "name": "persona 1",
-            "identifier": {
-              "scheme": "MD-IDNO",
-              "id": "123-123",
-              "uri": "persona.uri"
-            },
-            "businessFunctions": [
-              {
-                "id": "1",
-                "type": "authority",
-                "jobTitle": "boss",
-                "period": {
-                  "startDate": "2021-01-21T10:43:03Z"
+    "submission": {
+        "id": "4",
+        "candidates": [
+            {
+                "name": "Kate",
+                "identifier": {
+                    "id": "444-444",
+                    "legalName": "FOP Petrusenko",
+                    "scheme": "MD-IDNO",
+                    "uri": "candidate4.uri"
                 },
-                "documents": [
+                "additionalIdentifiers": [
+                    {
+                        "id": "123456",
+                        "legalName": "Mar",
+                        "scheme": "Idno",
+                        "uri": "addiden.uri"
+                    }
+                ],
+                "address": {
+                    "streetAddress": "Lyatoshynskogo",
+                    "postalCode": "100015",
+                    "addressDetails": {
+                        "country": {
+                            "id": "MD",
+                            "description": "bnn",
+                            "scheme": "iso-alpha2"
+                        },
+                        "region": {
+                            "id": "1700000",
+                            "description": "string",
+                            "scheme": "CUATM"
+                        },
+                        "locality": {
+                            "id": "1700000",
+                            "description": "string",
+                            "scheme": "other"
+                        }
+                    }
+                },
+                "contactPoint": {
+                    "name": "Irina",
+                    "email": "iramarkova@gmail.com",
+                    "telephone": "+380676308755",
+                    "faxNumber": "11222334455",
+                    "url": "URI*"
+                },
+                "persones": [
+                    {
+                        "id": "1",
+                        "title": "Mr.",
+                        "name": "Mister`",
+                        "identifier": {
+                            "scheme": "MD-IDNO",
+                            "id": "888-111",
+                            "uri": "uri.uri.uri"
+                        },
+                        "businessFunctions": [
+                            {
+                                "id": "1",
+                                "type": "authority",
+                                "jobTitle": "boss",
+                                "period": {
+                                    "startDate": "2020-09-30T14:37:13Z"
+                                },
+                                "documents": [
                                     {
                                         "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
                                         "documentType": "regulatoryDocument",
@@ -71,148 +72,149 @@ sub_1 = {
                                         "description": "description of regdoc"
                                     }
                                 ]
-              }
-            ]
-          }
+                            }
+                        ]
+                    }
+                ],
+                "details": {
+                    "typeOfSupplier": "company",
+                    "mainEconomicActivities": [
+                        {
+                            "scheme": "MD-CAEM",
+                            "id": "555-999",
+                            "description": "main company",
+                            "uri": "uri.company"
+                        }
+                    ],
+                    "scale": "sme",
+                    "bankAccounts": [
+                        {
+                            "description": "bank",
+                            "bankName": "monobank",
+                            "address": {
+                                "streetAddress": "Vasilkivska",
+                                "postalCode": "10056",
+                                "addressDetails": {
+                                    "country": {
+                                        "id": "ее",
+                                        "description": "country MD",
+                                        "scheme": "iso-alpha2"
+                                    },
+                                    "region": {
+                                        "id": "8300000",
+                                        "description": "string",
+                                        "scheme": "CUATM"
+                                    },
+                                    "locality": {
+                                        "id": "8311000",
+                                        "description": "string",
+                                        "scheme": "CUATM"
+                                    }
+                                }
+                            },
+                            "identifier": {
+                                "scheme": "UA-MFO",
+                                "id": "333-938"
+                            },
+                            "accountIdentification": {
+                                "scheme": "IBAN",
+                                "id": "UA213223130000026007233566001"
+                            },
+                            "additionalAccountIdentifiers": [
+                                {
+                                    "scheme": "fiscal",
+                                    "id": "1234567"
+                                }
+                            ]
+                        }
+                    ],
+                    "legalForm": {
+                        "scheme": "MD-CFOJ",
+                        "id": "109",
+                        "description": "legal 1",
+                        "uri": "uri.legal"
+                    }
+                }
+            }
         ],
-        "details": {
-          "typeOfSupplier": "company",
-          "mainEconomicActivities": [
+        "documents": [
             {
-              "scheme": "MD-CAEM",
-              "id": "11-111",
-              "description": "company 1",
-              "uri": "comp.uri"
+                "documentType": "illustration",
+                "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                "title": "title of document",
+                "description": "description of document"
             }
-          ],
-          "scale": "micro",
-          "bankAccounts": [
-            {
-              "description": "bank",
-              "bankName": "privat",
-              "address": {
-                "streetAddress": "Gorkogo",
-                "postalCode": "111222",
-                "addressDetails": {
-                  "country": {
-                    "id": "MD",
-                    "description": "mold",
-                    "scheme": "iso-alpha2"
-                  },
-                  "region": {
-                    "id": "4100000",
-                    "description": "reg1",
-                    "scheme": "CUATM"
-                  },
-                  "locality": {
-                    "id": "4102000",
-                    "description": "loc1",
-                    "scheme": "CUATM"
-                  }
-                }
-              },
-              "identifier": {
-                "scheme": "UA-MFO",
-                "id": "125"
-              },
-              "accountIdentification": {
-                "scheme": "IBAN",
-                "id": "UA12345678910111213141516"
-              },
-"additionalAccountIdentifiers": [
-                {
-                  "scheme": "fiscal",
-                  "id": "64566"
-                }
-              ]
-            }
-          ],
-          "legalForm": {
-            "scheme": "MD-CFOJ",
-            "id": "11",
-            "description": "leg form 11",
-            "uri": "legal.uri"
-          }
-        }
-      }
-    ],
-    "documents": [
-      {
-        "documentType": "illustration",
-        "id": "377ca816-c7c9-4d38-bd83-c70f99a113ab-1652163991404",
-        "title": "doc 1",
-        "description": "1"
-      }
-    ]
-  }
+        ]
+    }
 }
 
 sub_2 = {
-  "submission": {
-    "candidates": [
-      {
-        "name": "candidat 6",
-        "identifier": {
-          "id": "2",
-          "legalName": "Nano",
-          "scheme": "MD-IDNO",
-          "uri": "cand.uri"
-        },
-        "additionalIdentifiers": [
-          {
-            "id": "1-2",
-            "legalName": "Markova",
-            "scheme": "MD-IDNO",
-            "uri": "mark.uri"
-          }
-        ],
-        "address": {
-          "streetAddress": "Gonchara",
-          "postalCode": "100400",
-          "addressDetails": {
-            "country": {
-              "id": "MD",
-              "description": "mold",
-              "scheme": "iso-alpha2"
-            },
-            "region": {
-              "id": "4800000",
-              "description": "reg",
-              "scheme": "CUATM"
-            },
-            "locality": {
-              "id": "4824000",
-              "description": "loc",
-              "scheme": "CUATM"
-            }
-          }
-        },
-        "contactPoint": {
-          "name": "irina",
-          "email": "i@gmail.com",
-          "telephone": "0635330195",
-          "faxNumber": "0676308755",
-          "url": "i.url"
-        },
-        "persones": [
-          {
-            "id": "1",
-            "title": "Mr.",
-            "name": "persona 1",
-            "identifier": {
-              "scheme": "MD-IDNO",
-              "id": "123-123",
-              "uri": "persona.uri"
-            },
-            "businessFunctions": [
-              {
-                "id": "1",
-                "type": "authority",
-                "jobTitle": "boss",
-                "period": {
-                  "startDate": "2021-01-21T10:43:03Z"
+    "submission": {
+        "id": "3",
+        "candidates": [
+            {
+                "name": "Kate",
+                "identifier": {
+                    "id": "444-333",
+                    "legalName": "FOP Petrusenko",
+                    "scheme": "MD-IDNO",
+                    "uri": "candidate4.uri"
                 },
-                "documents": [
+                "additionalIdentifiers": [
+                    {
+                        "id": "123456",
+                        "legalName": "Mar",
+                        "scheme": "Idno",
+                        "uri": "addiden.uri"
+                    }
+                ],
+                "address": {
+                    "streetAddress": "Lyatoshynskogo",
+                    "postalCode": "100015",
+                    "addressDetails": {
+                        "country": {
+                            "id": "MD",
+                            "description": "bnn",
+                            "scheme": "iso-alpha2"
+                        },
+                        "region": {
+                            "id": "1700000",
+                            "description": "string",
+                            "scheme": "CUATM"
+                        },
+                        "locality": {
+                            "id": "1700000",
+                            "description": "string",
+                            "scheme": "other"
+                        }
+                    }
+                },
+                "contactPoint": {
+                    "name": "Irina",
+                    "email": "iramarkova@gmail.com",
+                    "telephone": "+380676308755",
+                    "faxNumber": "11222334455",
+                    "url": "URI*"
+                },
+                "persones": [
+                    {
+                        "id": "1",
+                        "title": "Mr.",
+                        "name": "Mister`",
+                        "identifier": {
+                            "scheme": "MD-IDNO",
+                            "id": "888-111",
+                            "uri": "uri.uri.uri"
+                        },
+                        "businessFunctions": [
+                            {
+                                "id": "1",
+                                "type": "authority",
+                                "jobTitle": "boss",
+                                "period": {
+                                    "startDate": "2020-09-30T14:37:13Z"
+                                },
+                                "documents": [
                                     {
                                         "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
                                         "documentType": "regulatoryDocument",
@@ -220,148 +222,149 @@ sub_2 = {
                                         "description": "description of regdoc"
                                     }
                                 ]
-              }
-            ]
-          }
+                            }
+                        ]
+                    }
+                ],
+                "details": {
+                    "typeOfSupplier": "company",
+                    "mainEconomicActivities": [
+                        {
+                            "scheme": "MD-CAEM",
+                            "id": "555-999",
+                            "description": "main company",
+                            "uri": "uri.company"
+                        }
+                    ],
+                    "scale": "sme",
+                    "bankAccounts": [
+                        {
+                            "description": "bank",
+                            "bankName": "monobank",
+                            "address": {
+                                "streetAddress": "Vasilkivska",
+                                "postalCode": "10056",
+                                "addressDetails": {
+                                    "country": {
+                                        "id": "ее",
+                                        "description": "country MD",
+                                        "scheme": "iso-alpha2"
+                                    },
+                                    "region": {
+                                        "id": "8300000",
+                                        "description": "string",
+                                        "scheme": "CUATM"
+                                    },
+                                    "locality": {
+                                        "id": "8311000",
+                                        "description": "string",
+                                        "scheme": "CUATM"
+                                    }
+                                }
+                            },
+                            "identifier": {
+                                "scheme": "UA-MFO",
+                                "id": "333-938"
+                            },
+                            "accountIdentification": {
+                                "scheme": "IBAN",
+                                "id": "UA213223130000026007233566001"
+                            },
+                            "additionalAccountIdentifiers": [
+                                {
+                                    "scheme": "fiscal",
+                                    "id": "1234567"
+                                }
+                            ]
+                        }
+                    ],
+                    "legalForm": {
+                        "scheme": "MD-CFOJ",
+                        "id": "109",
+                        "description": "legal 1",
+                        "uri": "uri.legal"
+                    }
+                }
+            }
         ],
-        "details": {
-          "typeOfSupplier": "company",
-          "mainEconomicActivities": [
+        "documents": [
             {
-              "scheme": "MD-CAEM",
-              "id": "11-111",
-              "description": "company 1",
-              "uri": "comp.uri"
+                "documentType": "illustration",
+                "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                "title": "title of document",
+                "description": "description of document"
             }
-          ],
-          "scale": "micro",
-          "bankAccounts": [
-            {
-              "description": "bank",
-              "bankName": "privat",
-              "address": {
-                "streetAddress": "Gorkogo",
-                "postalCode": "111222",
-                "addressDetails": {
-                  "country": {
-                    "id": "MD",
-                    "description": "mold",
-                    "scheme": "iso-alpha2"
-                  },
-                  "region": {
-                    "id": "4100000",
-                    "description": "reg1",
-                    "scheme": "CUATM"
-                  },
-                  "locality": {
-                    "id": "4102000",
-                    "description": "loc1",
-                    "scheme": "CUATM"
-                  }
-                }
-              },
-              "identifier": {
-                "scheme": "UA-MFO",
-                "id": "125"
-              },
-              "accountIdentification": {
-                "scheme": "IBAN",
-                "id": "UA12345678910111213141516"
-              },
-"additionalAccountIdentifiers": [
-                {
-                  "scheme": "fiscal",
-                  "id": "64566"
-                }
-              ]
-            }
-          ],
-          "legalForm": {
-            "scheme": "MD-CFOJ",
-            "id": "11",
-            "description": "leg form 11",
-            "uri": "legal.uri"
-          }
-        }
-      }
-    ],
-    "documents": [
-      {
-        "documentType": "illustration",
-        "id": "377ca816-c7c9-4d38-bd83-c70f99a113ab-1652163991404",
-        "title": "doc 1",
-        "description": "1"
-      }
-    ]
-  }
+        ]
+    }
 }
 
 sub_3 = {
-  "submission": {
-    "candidates": [
-      {
-        "name": "candidat 4",
-        "identifier": {
-          "id": "3",
-          "legalName": "Nani",
-          "scheme": "MD-IDNO",
-          "uri": "cand.uri"
-        },
-        "additionalIdentifiers": [
-          {
-            "id": "1-2",
-            "legalName": "Markova",
-            "scheme": "MD-IDNO",
-            "uri": "mark.uri"
-          }
-        ],
-        "address": {
-          "streetAddress": "Gonchara",
-          "postalCode": "100400",
-          "addressDetails": {
-            "country": {
-              "id": "MD",
-              "description": "mold",
-              "scheme": "iso-alpha2"
-            },
-            "region": {
-              "id": "4800000",
-              "description": "reg",
-              "scheme": "CUATM"
-            },
-            "locality": {
-              "id": "4824000",
-              "description": "loc",
-              "scheme": "CUATM"
-            }
-          }
-        },
-        "contactPoint": {
-          "name": "irina",
-          "email": "i@gmail.com",
-          "telephone": "0635330195",
-          "faxNumber": "0676308755",
-          "url": "i.url"
-        },
-        "persones": [
-          {
-            "id": "1",
-            "title": "Mr.",
-            "name": "persona 1",
-            "identifier": {
-              "scheme": "MD-IDNO",
-              "id": "123-123",
-              "uri": "persona.uri"
-            },
-            "businessFunctions": [
-              {
-                "id": "1",
-                "type": "authority",
-                "jobTitle": "boss",
-                "period": {
-                  "startDate": "2021-01-21T10:43:03Z"
+    "submission": {
+        "id": "2",
+        "candidates": [
+            {
+                "name": "Kate",
+                "identifier": {
+                    "id": "444-222",
+                    "legalName": "FOP Petrusenko",
+                    "scheme": "MD-IDNO",
+                    "uri": "candidate4.uri"
                 },
-                "documents": [
+                "additionalIdentifiers": [
+                    {
+                        "id": "123456",
+                        "legalName": "Mar",
+                        "scheme": "Idno",
+                        "uri": "addiden.uri"
+                    }
+                ],
+                "address": {
+                    "streetAddress": "Lyatoshynskogo",
+                    "postalCode": "100015",
+                    "addressDetails": {
+                        "country": {
+                            "id": "MD",
+                            "description": "bnn",
+                            "scheme": "iso-alpha2"
+                        },
+                        "region": {
+                            "id": "1700000",
+                            "description": "string",
+                            "scheme": "CUATM"
+                        },
+                        "locality": {
+                            "id": "1700000",
+                            "description": "string",
+                            "scheme": "other"
+                        }
+                    }
+                },
+                "contactPoint": {
+                    "name": "Irina",
+                    "email": "iramarkova@gmail.com",
+                    "telephone": "+380676308755",
+                    "faxNumber": "11222334455",
+                    "url": "URI*"
+                },
+                "persones": [
+                    {
+                        "id": "1",
+                        "title": "Mr.",
+                        "name": "Mister`",
+                        "identifier": {
+                            "scheme": "MD-IDNO",
+                            "id": "888-111",
+                            "uri": "uri.uri.uri"
+                        },
+                        "businessFunctions": [
+                            {
+                                "id": "1",
+                                "type": "authority",
+                                "jobTitle": "boss",
+                                "period": {
+                                    "startDate": "2020-09-30T14:37:13Z"
+                                },
+                                "documents": [
                                     {
                                         "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
                                         "documentType": "regulatoryDocument",
@@ -369,140 +372,149 @@ sub_3 = {
                                         "description": "description of regdoc"
                                     }
                                 ]
-              }
-            ]
-          }
+                            }
+                        ]
+                    }
+                ],
+                "details": {
+                    "typeOfSupplier": "company",
+                    "mainEconomicActivities": [
+                        {
+                            "scheme": "MD-CAEM",
+                            "id": "555-999",
+                            "description": "main company",
+                            "uri": "uri.company"
+                        }
+                    ],
+                    "scale": "sme",
+                    "bankAccounts": [
+                        {
+                            "description": "bank",
+                            "bankName": "monobank",
+                            "address": {
+                                "streetAddress": "Vasilkivska",
+                                "postalCode": "10056",
+                                "addressDetails": {
+                                    "country": {
+                                        "id": "ее",
+                                        "description": "country MD",
+                                        "scheme": "iso-alpha2"
+                                    },
+                                    "region": {
+                                        "id": "8300000",
+                                        "description": "string",
+                                        "scheme": "CUATM"
+                                    },
+                                    "locality": {
+                                        "id": "8311000",
+                                        "description": "string",
+                                        "scheme": "CUATM"
+                                    }
+                                }
+                            },
+                            "identifier": {
+                                "scheme": "UA-MFO",
+                                "id": "333-938"
+                            },
+                            "accountIdentification": {
+                                "scheme": "IBAN",
+                                "id": "UA213223130000026007233566001"
+                            },
+                            "additionalAccountIdentifiers": [
+                                {
+                                    "scheme": "fiscal",
+                                    "id": "1234567"
+                                }
+                            ]
+                        }
+                    ],
+                    "legalForm": {
+                        "scheme": "MD-CFOJ",
+                        "id": "109",
+                        "description": "legal 1",
+                        "uri": "uri.legal"
+                    }
+                }
+            }
         ],
-        "details": {
-          "typeOfSupplier": "company",
-          "mainEconomicActivities": [
+        "documents": [
             {
-              "scheme": "MD-CAEM",
-              "id": "11-111",
-              "description": "company 1",
-              "uri": "comp.uri"
+                "documentType": "illustration",
+                "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                "title": "title of document",
+                "description": "description of document"
             }
-          ],
-          "scale": "micro",
-          "bankAccounts": [
-            {
-              "description": "bank",
-              "bankName": "privat",
-              "address": {
-                "streetAddress": "Gorkogo",
-                "postalCode": "111222",
-                "addressDetails": {
-                  "country": {
-                    "id": "MD",
-                    "description": "mold",
-                    "scheme": "iso-alpha2"
-                  },
-                  "region": {
-                    "id": "4100000",
-                    "description": "reg1",
-                    "scheme": "CUATM"
-                  },
-                  "locality": {
-                    "id": "4102000",
-                    "description": "loc1",
-                    "scheme": "CUATM"
-                  }
-                }
-              },
-              "identifier": {
-                "scheme": "UA-MFO",
-                "id": "125"
-              },
-              "accountIdentification": {
-                "scheme": "IBAN",
-                "id": "UA12345678910111213141516"
-              },
-"additionalAccountIdentifiers": [
-                {
-                  "scheme": "fiscal",
-                  "id": "64566"
-                }
-              ]
-            }
-          ],
-          "legalForm": {
-            "scheme": "MD-CFOJ",
-            "id": "11",
-            "description": "leg form 11",
-            "uri": "legal.uri"
-          }
-        }
-      }
-    ]
-  }
+        ]
+    }
 }
 
 sub_4 = {
-  "submission": {
-    "candidates": [
-      {
-        "name": "candidat 2",
-        "identifier": {
-          "id": "4",
-          "legalName": "Nane",
-          "scheme": "MD-IDNO",
-          "uri": "cand.uri"
-        },
-        "additionalIdentifiers": [
-          {
-            "id": "1-2",
-            "legalName": "Markova",
-            "scheme": "MD-IDNO",
-            "uri": "mark.uri"
-          }
-        ],
-        "address": {
-          "streetAddress": "Gonchara",
-          "postalCode": "100400",
-          "addressDetails": {
-            "country": {
-              "id": "MD",
-              "description": "mold",
-              "scheme": "iso-alpha2"
-            },
-            "region": {
-              "id": "4800000",
-              "description": "reg",
-              "scheme": "CUATM"
-            },
-            "locality": {
-              "id": "4824000",
-              "description": "loc",
-              "scheme": "CUATM"
-            }
-          }
-        },
-        "contactPoint": {
-          "name": "irina",
-          "email": "i@gmail.com",
-          "telephone": "0635330195",
-          "faxNumber": "0676308755",
-          "url": "i.url"
-        },
-        "persones": [
-          {
-            "id": "1",
-            "title": "Mr.",
-            "name": "persona 1",
-            "identifier": {
-              "scheme": "MD-IDNO",
-              "id": "123-123",
-              "uri": "persona.uri"
-            },
-            "businessFunctions": [
-              {
-                "id": "1",
-                "type": "authority",
-                "jobTitle": "boss",
-                "period": {
-                  "startDate": "2021-01-21T10:43:03Z"
+    "submission": {
+        "id": "1",
+        "candidates": [
+            {
+                "name": "Kate",
+                "identifier": {
+                    "id": "444-111",
+                    "legalName": "FOP Petrusenko",
+                    "scheme": "MD-IDNO",
+                    "uri": "candidate4.uri"
                 },
-                "documents": [
+                "additionalIdentifiers": [
+                    {
+                        "id": "123456",
+                        "legalName": "Mar",
+                        "scheme": "Idno",
+                        "uri": "addiden.uri"
+                    }
+                ],
+                "address": {
+                    "streetAddress": "Lyatoshynskogo",
+                    "postalCode": "100015",
+                    "addressDetails": {
+                        "country": {
+                            "id": "MD",
+                            "description": "bnn",
+                            "scheme": "iso-alpha2"
+                        },
+                        "region": {
+                            "id": "1700000",
+                            "description": "string",
+                            "scheme": "CUATM"
+                        },
+                        "locality": {
+                            "id": "1700000",
+                            "description": "string",
+                            "scheme": "other"
+                        }
+                    }
+                },
+                "contactPoint": {
+                    "name": "Irina",
+                    "email": "iramarkova@gmail.com",
+                    "telephone": "+380676308755",
+                    "faxNumber": "11222334455",
+                    "url": "URI*"
+                },
+                "persones": [
+                    {
+                        "id": "1",
+                        "title": "Mr.",
+                        "name": "Mister`",
+                        "identifier": {
+                            "scheme": "MD-IDNO",
+                            "id": "888-111",
+                            "uri": "uri.uri.uri"
+                        },
+                        "businessFunctions": [
+                            {
+                                "id": "1",
+                                "type": "authority",
+                                "jobTitle": "boss",
+                                "period": {
+                                    "startDate": "2020-09-30T14:37:13Z"
+                                },
+                                "documents": [
                                     {
                                         "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
                                         "documentType": "regulatoryDocument",
@@ -510,78 +522,78 @@ sub_4 = {
                                         "description": "description of regdoc"
                                     }
                                 ]
-              }
-            ]
-          }
+                            }
+                        ]
+                    }
+                ],
+                "details": {
+                    "typeOfSupplier": "company",
+                    "mainEconomicActivities": [
+                        {
+                            "scheme": "MD-CAEM",
+                            "id": "555-999",
+                            "description": "main company",
+                            "uri": "uri.company"
+                        }
+                    ],
+                    "scale": "sme",
+                    "bankAccounts": [
+                        {
+                            "description": "bank",
+                            "bankName": "monobank",
+                            "address": {
+                                "streetAddress": "Vasilkivska",
+                                "postalCode": "10056",
+                                "addressDetails": {
+                                    "country": {
+                                        "id": "ее",
+                                        "description": "country MD",
+                                        "scheme": "iso-alpha2"
+                                    },
+                                    "region": {
+                                        "id": "8300000",
+                                        "description": "string",
+                                        "scheme": "CUATM"
+                                    },
+                                    "locality": {
+                                        "id": "8311000",
+                                        "description": "string",
+                                        "scheme": "CUATM"
+                                    }
+                                }
+                            },
+                            "identifier": {
+                                "scheme": "UA-MFO",
+                                "id": "333-938"
+                            },
+                            "accountIdentification": {
+                                "scheme": "IBAN",
+                                "id": "UA213223130000026007233566001"
+                            },
+                            "additionalAccountIdentifiers": [
+                                {
+                                    "scheme": "fiscal",
+                                    "id": "1234567"
+                                }
+                            ]
+                        }
+                    ],
+                    "legalForm": {
+                        "scheme": "MD-CFOJ",
+                        "id": "109",
+                        "description": "legal 1",
+                        "uri": "uri.legal"
+                    }
+                }
+            }
         ],
-        "details": {
-          "typeOfSupplier": "company",
-          "mainEconomicActivities": [
+        "documents": [
             {
-              "scheme": "MD-CAEM",
-              "id": "11-111",
-              "description": "company 1",
-              "uri": "comp.uri"
+                "documentType": "illustration",
+                "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                "title": "title of document",
+                "description": "description of document"
             }
-          ],
-          "scale": "micro",
-          "bankAccounts": [
-            {
-              "description": "bank",
-              "bankName": "privat",
-              "address": {
-                "streetAddress": "Gorkogo",
-                "postalCode": "111222",
-                "addressDetails": {
-                  "country": {
-                    "id": "MD",
-                    "description": "mold",
-                    "scheme": "iso-alpha2"
-                  },
-                  "region": {
-                    "id": "4100000",
-                    "description": "reg1",
-                    "scheme": "CUATM"
-                  },
-                  "locality": {
-                    "id": "4102000",
-                    "description": "loc1",
-                    "scheme": "CUATM"
-                  }
-                }
-              },
-              "identifier": {
-                "scheme": "UA-MFO",
-                "id": "125"
-              },
-              "accountIdentification": {
-                "scheme": "IBAN",
-                "id": "UA12345678910111213141516"
-              },
-"additionalAccountIdentifiers": [
-                {
-                  "scheme": "fiscal",
-                  "id": "64566"
-                }
-              ]
-            }
-          ],
-          "legalForm": {
-            "scheme": "MD-CFOJ",
-            "id": "11",
-            "description": "leg form 11",
-            "uri": "legal.uri"
-          }
-        }
-      }
-    ],
-    "documents": [
-      {
-        "documentType": "illustration",
-        "id": "377ca816-c7c9-4d38-bd83-c70f99a113ab-1652163991404",
-        "title": "doc 1",
-        "description": "1"
-      }
-    ]
-  }
+        ]
+    }
 }
