@@ -11,7 +11,7 @@ ei = {
               "id": "1",
               "description": "first item in EI",
               "classification": {
-                  "id": "15110000-2"
+                  "id": "37400000-2"
                },
               "additionalClassifications": [{
                   "id": "BA43-8"
