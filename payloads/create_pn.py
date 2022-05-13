@@ -5,7 +5,7 @@ pn_fa = {
         {
           "id": "ocds-t1s2t3-MD-1643107017630-FS-1643107028795",
           "amount": {
-            "amount": 500000,
+            "amount": 100000,
             "currency": "MDL"
           }
         }
