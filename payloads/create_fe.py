@@ -1,10 +1,43 @@
 fe_auction = {
   "preQualification": {
     "period": {
-      "endDate": "2022-01-25T10:47:00Z"
+      "endDate": "2022-01-18T15:25:00Z"
     }
   },
   "tender": {
+    "procurementMethodModalities": "PMR in FE",
+    "title": "FE tender title",
+    "description": "FE tender description",
+    "secondStage": {
+      "minimumCandidates": 1,
+      "maximumCandidates": 10
+    },
+    "procurementMethodRationale": "PMR in FE",
+    "procuringEntity": {
+      "id": "MD-IDNO-00000-001",
+      "persones": [
+        {
+          "title": "Mr.",
+          "id": "Twister",
+          "name": "Person 1",
+          "identifier": {
+            "scheme": "MD-IDNO",
+            "id": "FE-person",
+            "uri": "twister.uri"
+          },
+          "businessFunctions": [
+            {
+              "id": "1",
+              "type": "chairman",
+              "jobTitle": "boss",
+              "period": {
+                "startDate": "2021-01-29T10:58:32Z"
+              }
+            }
+          ]
+        }
+      ]
+    },
     "otherCriteria": {
       "qualificationSystemMethods": [
         "automated"
@@ -13,9 +46,10 @@ fe_auction = {
     },
     "documents": [
       {
-        "documentType": "illustration",
-        "id": "5c78f85e-c4e7-464a-a4a9-3951520922a8-1652163224146",
-        "title": "FE doc title"
+        "documentType": "evaluationCriteria",
+        "id": "16009246-c02d-42a1-bfe2-cc4ad6752cac-1642510769694",
+        "title": "FE document",
+        "description": "description of FE document",
       }
     ]
   }
