@@ -5,7 +5,7 @@ ei = {
     	 "description": "Expenditure Item description",
     	   "classification":
 	    {
-      		"id": "15100000-9"
+      		"id": "37400000-2"
     	  },
            "items": [{
               "id": "1",
