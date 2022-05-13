@@ -4,7 +4,7 @@ ap = {
     "description": "AP description",
     "legalBasis": "DIRECTIVE_2014_23_EU",
     "classification": {
-      "id": "71240000-2"
+      "id": "15100000-9"
     },
     "tenderPeriod": {
       "startDate": "2022-02-01T00:00:00Z"
