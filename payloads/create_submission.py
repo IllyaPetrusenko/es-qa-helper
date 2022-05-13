@@ -62,7 +62,15 @@ sub_1 = {
                 "jobTitle": "boss",
                 "period": {
                   "startDate": "2021-01-21T10:43:03Z"
-                }
+                },
+                "documents": [
+                                    {
+                                        "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                                        "documentType": "regulatoryDocument",
+                                        "title": "regdoc",
+                                        "description": "description of regdoc"
+                                    }
+                                ]
               }
             ]
           }
@@ -203,7 +211,15 @@ sub_2 = {
                 "jobTitle": "boss",
                 "period": {
                   "startDate": "2021-01-21T10:43:03Z"
-                }
+                },
+                "documents": [
+                                    {
+                                        "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                                        "documentType": "regulatoryDocument",
+                                        "title": "regdoc",
+                                        "description": "description of regdoc"
+                                    }
+                                ]
               }
             ]
           }
@@ -344,7 +360,15 @@ sub_3 = {
                 "jobTitle": "boss",
                 "period": {
                   "startDate": "2021-01-21T10:43:03Z"
-                }
+                },
+                "documents": [
+                                    {
+                                        "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                                        "documentType": "regulatoryDocument",
+                                        "title": "regdoc",
+                                        "description": "description of regdoc"
+                                    }
+                                ]
               }
             ]
           }
@@ -477,7 +501,15 @@ sub_4 = {
                 "jobTitle": "boss",
                 "period": {
                   "startDate": "2021-01-21T10:43:03Z"
-                }
+                },
+                "documents": [
+                                    {
+                                        "id": "b5802bf4-b838-431e-831b-7d0ef5ed9437-1593170692555",
+                                        "documentType": "regulatoryDocument",
+                                        "title": "regdoc",
+                                        "description": "description of regdoc"
+                                    }
+                                ]
               }
             ]
           }
