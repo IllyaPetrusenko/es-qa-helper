@@ -39,8 +39,8 @@ ap = {
       }
     },
     "contractPeriod": {
-      "startDate": "2022-01-26T00:00:00Z",
-      "endDate": "2022-01-28T00:00:00Z"
+      "startDate": "2022-05-26T00:00:00Z",
+      "endDate": "2022-05-28T00:00:00Z"
     },
     "value": {
       "currency": "MDL"
