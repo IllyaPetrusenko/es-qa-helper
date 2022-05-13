@@ -3,35 +3,35 @@ create_rfq_data = {
     "lots": [
       {
         "id": "1",
-        "internalId": "Lot 1",
-        "title": "lot 1 title",
-        "description": "lot 1 description",
+        "internalId": "l-1",
+        "title": "first lot in RFQ",
+        "description": "description of first lot in RFQ",
         "value": {
           "currency": "MDL"
         },
         "contractPeriod": {
-          "startDate": "2022-12-30T20:39:24Z",
-          "endDate": "2022-12-31T20:39:24Z"
+          "startDate": "2021-08-29T09:28:18Z",
+          "endDate": "2021-08-31T09:28:18Z"
         },
         "placeOfPerformance": {
-          "description": "placeOfPerformance.description",
+          "description": "description of pOP first RFQ lot",
           "address": {
-            "streetAddress": "address.streetAddress",
-            "postalCode": "02217",
+            "streetAddress": "streetAddress of first lot in RFQ",
+            "postalCode": "postalCode of first lot in RFQ",
             "addressDetails": {
               "country": {
                 "id": "MD",
-                "description": "string",
+                "description": "string coun",
                 "scheme": "iso-alpha2"
               },
               "region": {
-                "id": "0101000",
-                "description": "string",
+                "id": "2900000",
+                "description": "string reg",
                 "scheme": "CUATM"
               },
               "locality": {
-                "id": "0101000",
-                "description": "string",
+                "id": "2912000",
+                "description": "string loc",
                 "scheme": "CUATM"
               }
             }
@@ -41,39 +41,20 @@ create_rfq_data = {
     ],
     "items": [
       {
-        "id": "1",
-        "internalId": "item 1 internal id",
-        "description": "item 1 description",
-        "quantity": 100,
+        "id": "3cd68298-b9ea-413e-b2ad-c7d3d02f170b",
+        "internalId": "i-1",
+        "description": "description of first RFQ item",
+        "quantity": 1000,
         "unit": {
-          "id": "10"
+          "id": "911"
         },
         "relatedLot": "1"
       }
     ],
     "tenderPeriod": {
-      "endDate": "2021-12-08T20:39:24.991Z"
+      "endDate": "2021-08-27T15:28:18Z"
     },
-    ".electronicAuctions": {
-      "details": [
-        {
-          "id": "string",
-          "relatedLot": "string",
-          "electronicAuctionModalities": [
-            {
-              "eligibleMinimumDifference": {
-                "amount": 0,
-                "currency": "string"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    ".procurementMethodModalities": [
-      "electronicAuction"
-    ],
-    "title": "RFQ",
-    "description": "RFQ description"
+    "title": "title of RFQ tender",
+    "description": "description of RFQ tender"
   }
 }
