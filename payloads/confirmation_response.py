@@ -12,12 +12,12 @@ confirmation_response = {
       },
       "businessFunctions": [
         {
-          "type": "authority",
+          "type": "chairman",
           "jobTitle": "jobTitle of RP1",
           "period": {
             "startDate": "2022-01-25T11:16:50Z"
           },
-          "documents": [
+          "!documents": [
             {
               "id": "2e7247f2-66d8-4ebf-96a9-1c5ae5b40216-1652163854914",
               "documentType": "regulatoryDocument",
