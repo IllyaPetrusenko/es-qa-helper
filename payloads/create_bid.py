@@ -58,7 +58,7 @@ bid_1 = {
                         "businessFunctions": [
                             {
                                 "id": "",
-                                "type": "authority",
+                                "type": "contactPoint",
                                 "jobTitle": "Owner of the company tyjtytyjtyjtyjtjtyj",
                                 "period": {
                                     "startDate": "2019-10-28T15:20:10Z"
