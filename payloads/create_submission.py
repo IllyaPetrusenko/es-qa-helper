@@ -409,14 +409,6 @@ sub_3 = {
           }
         }
       }
-    ],
-    "documents": [
-      {
-        "documentType": "illustration",
-        "id": "377ca816-c7c9-4d38-bd83-c70f99a113ab-1652163991404",
-        "title": "doc 1",
-        "description": "1"
-      }
     ]
   }
 }
