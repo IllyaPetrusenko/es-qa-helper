@@ -28,7 +28,8 @@ pcr_full_no_catalogue_items_no_auction_no_criteria = {
                     "description": "Item one description",
                     "quantity": 1000,
                     "unit": {
-                        "id": "10"
+                        "id": "10",
+                        "name": "name of unit"
                     },
                     "relatedLot": "1",
                     "internalId": "item one internalID"
