@@ -87,7 +87,7 @@ sub_1 = {
                         }
                     ],
                     "scale": "sme",
-                    "bankAccounts": [
+                    "!bankAccounts": [
                         {
                             "description": "bank",
                             "bankName": "monobank",
@@ -237,7 +237,7 @@ sub_2 = {
                         }
                     ],
                     "scale": "sme",
-                    "bankAccounts": [
+                    "!bankAccounts": [
                         {
                             "description": "bank",
                             "bankName": "monobank",
@@ -387,7 +387,7 @@ sub_3 = {
                         }
                     ],
                     "scale": "sme",
-                    "bankAccounts": [
+                    "!bankAccounts": [
                         {
                             "description": "bank",
                             "bankName": "monobank",
@@ -537,7 +537,7 @@ sub_4 = {
                         }
                     ],
                     "scale": "sme",
-                    "bankAccounts": [
+                    "!bankAccounts": [
                         {
                             "description": "bank",
                             "bankName": "monobank",
