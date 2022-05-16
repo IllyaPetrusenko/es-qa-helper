@@ -8,7 +8,7 @@ bid_1 = {
       {
         "name": "nana",
         "identifier": {
-          "id": "1",
+          "id": "444-444",
           "legalName": "Irina",
           "scheme": "MD-IDNO",
           "!uri": "uri.yri"
@@ -70,89 +70,21 @@ bid_1 = {
           }
         ],
         "details": {
-          "!typeOfSupplier": "company",
-          "!mainEconomicActivities": [
-            {
-              "id": "string",
-              "scheme": "string",
-              "description": "string",
-              "uri": "string"
-            }
-          ],
-          "scale": "micro",
-          "!permits": [
-            {
-              "scheme": "string",
-              "id": "string",
-              "url": "string",
-              "permitDetails": {
-                "issuedBy": {
-                  "id": "string",
-                  "name": "string"
-                },
-                "issuedThought": {
-                  "id": "string",
-                  "name": "string"
-                },
-                "validityPeriod": {
-                  "startDate": "string",
-                  "endDate": "string"
-                }
-              }
-            }
-          ],
-          "!bankAccounts": [
-            {
-              "description": "string",
-              "bankName": "string",
-              "address": {
-                "streetAddress": "string",
-                "postalCode": "string",
-                "addressDetails": {
-                  "country": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  },
-                  "region": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  },
-                  "locality": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  }
-                }
-              },
-              "identifier": {
-                "scheme": "UA-MFO",
-                "id": "string"
-              },
-              "accountIdentification": {
-                "scheme": "IBAN",
-                "id": "string"
-              },
-              "additionalAccountIdentifiers": [
-                {
-                  "scheme": "fiscal",
-                  "id": "string"
-                }
-              ]
-            }
-          ],
-          "!legalForm": {
-            "scheme": "MD-CFOJ",
-            "id": "string",
-            "description": "string",
-            "uri": "string"
-          }
+          "typeOfSupplier": "company",
+          "scale": "micro"
         }
       }
     ],
     "relatedLots": [
       "59f99c51-8531-4de5-ad29-c6d334226491"
+    ],
+    "documents": [
+      {
+        "id": "{{doc_id}}",
+        "title": "string",
+        "description": "string",
+        "documentType": "illustration"
+      }
     ],
     "items": [
       {
@@ -181,13 +113,13 @@ bid_2 = {
   "bid": {
     "value": {
       "currency": "MDL",
-      "amount": 6221
+      "amount": 7221
     },
     "tenderers": [
       {
         "name": "nana",
         "identifier": {
-          "id": "2",
+          "id": "444-444",
           "legalName": "Irina",
           "scheme": "MD-IDNO",
           "!uri": "uri.yri"
@@ -249,89 +181,21 @@ bid_2 = {
           }
         ],
         "details": {
-          "!typeOfSupplier": "company",
-          "!mainEconomicActivities": [
-            {
-              "id": "string",
-              "scheme": "string",
-              "description": "string",
-              "uri": "string"
-            }
-          ],
-          "scale": "micro",
-          "!permits": [
-            {
-              "scheme": "string",
-              "id": "string",
-              "url": "string",
-              "permitDetails": {
-                "issuedBy": {
-                  "id": "string",
-                  "name": "string"
-                },
-                "issuedThought": {
-                  "id": "string",
-                  "name": "string"
-                },
-                "validityPeriod": {
-                  "startDate": "string",
-                  "endDate": "string"
-                }
-              }
-            }
-          ],
-          "!bankAccounts": [
-            {
-              "description": "string",
-              "bankName": "string",
-              "address": {
-                "streetAddress": "string",
-                "postalCode": "string",
-                "addressDetails": {
-                  "country": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  },
-                  "region": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  },
-                  "locality": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  }
-                }
-              },
-              "identifier": {
-                "scheme": "UA-MFO",
-                "id": "string"
-              },
-              "accountIdentification": {
-                "scheme": "IBAN",
-                "id": "string"
-              },
-              "additionalAccountIdentifiers": [
-                {
-                  "scheme": "fiscal",
-                  "id": "string"
-                }
-              ]
-            }
-          ],
-          "!legalForm": {
-            "scheme": "MD-CFOJ",
-            "id": "string",
-            "description": "string",
-            "uri": "string"
-          }
+          "typeOfSupplier": "company",
+          "scale": "micro"
         }
       }
     ],
     "relatedLots": [
       "59f99c51-8531-4de5-ad29-c6d334226491"
+    ],
+    "documents": [
+      {
+        "id": "{{doc_id}}",
+        "title": "string",
+        "description": "string",
+        "documentType": "illustration"
+      }
     ],
     "items": [
       {
@@ -360,13 +224,13 @@ bid_3 = {
   "bid": {
     "value": {
       "currency": "MDL",
-      "amount": 6221
+      "amount": 8221
     },
     "tenderers": [
       {
         "name": "nana",
         "identifier": {
-          "id": "3",
+          "id": "444-444",
           "legalName": "Irina",
           "scheme": "MD-IDNO",
           "!uri": "uri.yri"
@@ -428,89 +292,21 @@ bid_3 = {
           }
         ],
         "details": {
-          "!typeOfSupplier": "company",
-          "!mainEconomicActivities": [
-            {
-              "id": "string",
-              "scheme": "string",
-              "description": "string",
-              "uri": "string"
-            }
-          ],
-          "scale": "micro",
-          "!permits": [
-            {
-              "scheme": "string",
-              "id": "string",
-              "url": "string",
-              "permitDetails": {
-                "issuedBy": {
-                  "id": "string",
-                  "name": "string"
-                },
-                "issuedThought": {
-                  "id": "string",
-                  "name": "string"
-                },
-                "validityPeriod": {
-                  "startDate": "string",
-                  "endDate": "string"
-                }
-              }
-            }
-          ],
-          "!bankAccounts": [
-            {
-              "description": "string",
-              "bankName": "string",
-              "address": {
-                "streetAddress": "string",
-                "postalCode": "string",
-                "addressDetails": {
-                  "country": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  },
-                  "region": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  },
-                  "locality": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  }
-                }
-              },
-              "identifier": {
-                "scheme": "UA-MFO",
-                "id": "string"
-              },
-              "accountIdentification": {
-                "scheme": "IBAN",
-                "id": "string"
-              },
-              "additionalAccountIdentifiers": [
-                {
-                  "scheme": "fiscal",
-                  "id": "string"
-                }
-              ]
-            }
-          ],
-          "!legalForm": {
-            "scheme": "MD-CFOJ",
-            "id": "string",
-            "description": "string",
-            "uri": "string"
-          }
+          "typeOfSupplier": "company",
+          "scale": "micro"
         }
       }
     ],
     "relatedLots": [
       "59f99c51-8531-4de5-ad29-c6d334226491"
+    ],
+    "documents": [
+      {
+        "id": "{{doc_id}}",
+        "title": "string",
+        "description": "string",
+        "documentType": "illustration"
+      }
     ],
     "items": [
       {
@@ -539,13 +335,13 @@ bid_4 = {
   "bid": {
     "value": {
       "currency": "MDL",
-      "amount": 6221
+      "amount": 9221
     },
     "tenderers": [
       {
         "name": "nana",
         "identifier": {
-          "id": "4",
+          "id": "444-444",
           "legalName": "Irina",
           "scheme": "MD-IDNO",
           "!uri": "uri.yri"
@@ -607,89 +403,21 @@ bid_4 = {
           }
         ],
         "details": {
-          "!typeOfSupplier": "company",
-          "!mainEconomicActivities": [
-            {
-              "id": "string",
-              "scheme": "string",
-              "description": "string",
-              "uri": "string"
-            }
-          ],
-          "scale": "micro",
-          "!permits": [
-            {
-              "scheme": "string",
-              "id": "string",
-              "url": "string",
-              "permitDetails": {
-                "issuedBy": {
-                  "id": "string",
-                  "name": "string"
-                },
-                "issuedThought": {
-                  "id": "string",
-                  "name": "string"
-                },
-                "validityPeriod": {
-                  "startDate": "string",
-                  "endDate": "string"
-                }
-              }
-            }
-          ],
-          "!bankAccounts": [
-            {
-              "description": "string",
-              "bankName": "string",
-              "address": {
-                "streetAddress": "string",
-                "postalCode": "string",
-                "addressDetails": {
-                  "country": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  },
-                  "region": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  },
-                  "locality": {
-                    "id": "string",
-                    "description": "string",
-                    "scheme": "string"
-                  }
-                }
-              },
-              "identifier": {
-                "scheme": "UA-MFO",
-                "id": "string"
-              },
-              "accountIdentification": {
-                "scheme": "IBAN",
-                "id": "string"
-              },
-              "additionalAccountIdentifiers": [
-                {
-                  "scheme": "fiscal",
-                  "id": "string"
-                }
-              ]
-            }
-          ],
-          "!legalForm": {
-            "scheme": "MD-CFOJ",
-            "id": "string",
-            "description": "string",
-            "uri": "string"
-          }
+          "typeOfSupplier": "company",
+          "scale": "micro"
         }
       }
     ],
     "relatedLots": [
       "59f99c51-8531-4de5-ad29-c6d334226491"
+    ],
+    "documents": [
+      {
+        "id": "{{doc_id}}",
+        "title": "string",
+        "description": "string",
+        "documentType": "illustration"
+      }
     ],
     "items": [
       {
