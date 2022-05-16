@@ -35,7 +35,7 @@ sub_1 = {
                         "locality": {
                             "id": "1700000",
                             "description": "string",
-                            "scheme": "other"
+                            "scheme": "CUATM"
                         }
                     }
                 },
@@ -185,7 +185,7 @@ sub_2 = {
                         "locality": {
                             "id": "1700000",
                             "description": "string",
-                            "scheme": "other"
+                            "scheme": "CUATM"
                         }
                     }
                 },
@@ -335,7 +335,7 @@ sub_3 = {
                         "locality": {
                             "id": "1700000",
                             "description": "string",
-                            "scheme": "other"
+                            "scheme": "CUATM"
                         }
                     }
                 },
@@ -485,7 +485,7 @@ sub_4 = {
                         "locality": {
                             "id": "1700000",
                             "description": "string",
-                            "scheme": "other"
+                            "scheme": "CUATM"
                         }
                     }
                 },
