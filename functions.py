@@ -434,6 +434,7 @@ def create_pcr(host, token, x_operation_id, x_token, cpid, ocid, payload):
         document = '21a5d5ef-84c0-4730-892c-338db4e3e98d-1631521816681'
     payload['tender']['documents'][0]['id'] = document
     payload['tender']['tenderPeriod']['endDate'] = generate_period()
+    print(payload)
     requests.post(url=f'{host}/do/pcr/{cpid}/{ocid}',
                   headers={
                       'Authorization': f'Bearer {token}',
