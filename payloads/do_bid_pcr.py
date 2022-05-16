@@ -102,7 +102,7 @@ bid_1 = {
             "amount": 1000,
             "currency": "MDL"
           },
-          "id": "794"
+          "id": "10"
         }
       }
     ]
@@ -213,7 +213,7 @@ bid_2 = {
             "amount": 1000,
             "currency": "MDL"
           },
-          "id": "794"
+          "id": "10"
         }
       }
     ]
@@ -324,7 +324,7 @@ bid_3 = {
             "amount": 1000,
             "currency": "MDL"
           },
-          "id": "794"
+          "id": "10"
         }
       }
     ]
@@ -435,7 +435,7 @@ bid_4 = {
             "amount": 1000,
             "currency": "MDL"
           },
-          "id": "794"
+          "id": "10"
         }
       }
     ]
