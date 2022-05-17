@@ -116,7 +116,7 @@ cn_on_pn = {
         "id": "1",
         "internalId": "I-1-1",
         "classification": {
-          "id": "15115200-9"
+          "id": "37400000-2"
         },
         "additionalClassifications": [
           {
