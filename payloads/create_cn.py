@@ -246,7 +246,7 @@ cn_on_pn_rt = {
             "id":"1",
             "quantity":10,
             "classification":{
-               "id":"45100000-8"},
+               "id":"37400000-2"},
             "unit":{
                "id":"120"
             },
