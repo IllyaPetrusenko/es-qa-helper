@@ -216,8 +216,8 @@ cn_on_pn_rt = {
                "currency":"MDL"
             },
             "contractPeriod":{
-               "startDate":"2021-07-01T00:00:00Z",
-               "endDate":"2021-07-02T00:00:00Z"
+               "startDate":"2022-05-20T00:00:00Z",
+               "endDate":"2022-05-22T00:00:00Z"
             },
             "placeOfPerformance":{
                "address":{
