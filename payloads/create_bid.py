@@ -8,7 +8,7 @@ bid_1 = {
       {
         "name": "TNDRR",
         "identifier": {
-          "id": "TNDRR2",
+          "id": "444-333",
           "legalName": "legalName of TNDRR2",
           "scheme": "MD-IDNO",
           "uri": "tndrr1.uri"
@@ -173,7 +173,7 @@ bid_2 = {
     },
     "tenderers": [
       {
-        "name": "TNDRR1",
+        "name": "444-111",
         "identifier": {
           "id": "TNDRR1",
           "legalName": "legalName of TNDRR1",
