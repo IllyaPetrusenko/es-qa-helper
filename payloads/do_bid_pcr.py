@@ -8,7 +8,7 @@ bid_1 = {
       {
         "name": "nana",
         "identifier": {
-          "id": "444-444",
+          "id": "444-111",
           "legalName": "Irina",
           "scheme": "MD-IDNO",
           "!uri": "uri.yri"
@@ -119,7 +119,7 @@ bid_2 = {
       {
         "name": "nana",
         "identifier": {
-          "id": "444-444",
+          "id": "444-222",
           "legalName": "Irina",
           "scheme": "MD-IDNO",
           "!uri": "uri.yri"
@@ -230,7 +230,7 @@ bid_3 = {
       {
         "name": "nana",
         "identifier": {
-          "id": "444-444",
+          "id": "444-333",
           "legalName": "Irina",
           "scheme": "MD-IDNO",
           "!uri": "uri.yri"
