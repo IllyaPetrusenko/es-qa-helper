@@ -182,7 +182,7 @@ cn_on_pn_rt = {
     "awardCriteria": "priceOnly",
     "awardCriteriaDetails": "automated",
     "procuringEntity": {
-      "id": "MD-IDNO-380676308755",
+      "id": "MD-IDNO-PEPN",
       "persones": [
         {
           "title": "Mr.",
