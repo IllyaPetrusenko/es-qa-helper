@@ -238,43 +238,7 @@ cn_on_pn_rt = {
                   }
                },
                "description":"description of locality"
-            },
-            "!hasOptions": false,
-            "!options": [
-             {
-                  "description": "The buyer has the option to buy an additional hundred uniforms.",
-                  "period": {
-                     "durationInDays": 180,
-                     "startDate": "2021-02-10T00:00:00Z",
-                     "endDate": "2024-02-10T00:00:00Z",
-                     "maxExtentDate": "2024-02-10T00:00:00Z"
-                   }
-                 }
-             ],
-            "!hasRecurrence": false,
-            "!recurrence": {
-                  "dates": [
-               {
-                     "startDate": "2020-01-01T00:00:00Z"
-               },
-               {
-                     "startDate": "2021-01-01T00:00:00Z"
-                 }
-              ],
-                  "description": "The duration of this contract and recurrent contracts will not exceed three years."
-        },
-            "!hasRenewal": false,
-            "!renewal": {
-                  "description": "The contracting authority reserves the right to extend the term for a period or periods of up to 1 year with a maximum of 2 such extensions on the same terms and conditions, subject to the contracting authority's obligations at law.",
-                  "minimumRenewals": 2,
-                  "maximumRenewals": 7,
-                  "period": {
-                     "durationInDays": 365,
-                     "startDate": "2021-02-10T00:00:00Z",
-                     "endDate": "2024-02-10T00:00:00Z",
-                     "maxExtentDate": "2024-02-10T00:00:00Z"
-                  }
-                }
+            }
              }
     ],
       "items":[
