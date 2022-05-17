@@ -5,10 +5,10 @@ cn_on_pn = {
     "awardCriteria": "priceOnly",
     "awardCriteriaDetails": "automated",
     "tenderPeriod": {
-      "endDate": "2022-05-09T08:15:00Z"
+      "endDate": "2022-05-17T05:20:00Z"
     },
     "enquiryPeriod": {
-      "endDate": "2022-05-09T08:17:00Z"
+      "endDate": "2022-05-17T05:15:00Z"
     },
     "procuringEntity": {
       "id": "MD-IDNO-PEPN",
@@ -53,7 +53,7 @@ cn_on_pn = {
           "currency": "MDL"
         },
         "contractPeriod": {
-          "startDate": "2022-05-17T10:00:00Z",
+          "startDate": "2022-05-19T10:00:00Z",
           "endDate": "2022-05-25T10:00:00Z"
         },
         "placeOfPerformance": {
