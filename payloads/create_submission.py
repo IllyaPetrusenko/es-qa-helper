@@ -90,7 +90,7 @@ sub_1 = {
                     "bankAccounts": [
                         {
                             "description": "bank",
-                            "bankName": "monobank",
+                            "bankName": "monobank1",
                             "address": {
                                 "streetAddress": "Vasilkivska",
                                 "postalCode": "10056",
