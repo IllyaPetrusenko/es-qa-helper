@@ -96,7 +96,7 @@ sub_1 = {
                                 "postalCode": "10056",
                                 "addressDetails": {
                                     "country": {
-                                        "id": "ее",
+                                        "id": "MD",
                                         "description": "country MD",
                                         "scheme": "iso-alpha2"
                                     },
