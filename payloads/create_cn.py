@@ -29,7 +29,7 @@ cn_on_pn = {
               "period": {
                 "startDate": "2021-07-05T09:56:39Z"
               },
-              "documents": [
+              "!documents": [
                 {
                   "id": "157822d5-e88f-478f-abb6-0ed547f8d8b9-1652083954576",
                   "title": "title of business document",
@@ -138,15 +138,6 @@ cn_on_pn = {
         "title": "PN document 1",
         "documentType": "procurementPlan",
         "description": "description of PN document 1",
-        "relatedLots": [
-          "1"
-        ]
-      },
-      {
-        "id": "a524910a-8728-4939-8562-7f3f2161b7e2-1652083532134",
-        "title": "CN document 2",
-        "documentType": "illustration",
-        "description": "description of CN document 2",
         "relatedLots": [
           "1"
         ]
