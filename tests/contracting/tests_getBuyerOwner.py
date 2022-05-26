@@ -20,9 +20,7 @@ from tests.contracting.payloads.get_buyer_owner import data
 class Test1:
     @allure.title('Incorrect cpid')
     def test_check_service_response_with_incorrect_cpid(self):
-        step_number = 1
-
-        with allure.step(f'# {step_number}. Insert data into DB'):
+        with allure.step(f'Insert data into DB'):
             insert = CassandraSession(
                 cassandra_username='caclient',
                 cassandra_password='6AH7vbrkMWnfK',
@@ -31,19 +29,19 @@ class Test1:
             )
             insert.insert_contract_status_issued()
 
-        with allure.step(f'# {step_number}. Prepare request for service'):
+        with allure.step(f'Prepare request for service'):
             data['params']['cpid'] = 'ocds-t1s2t3-MD-1652879244229'
             data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
             data['id'] = f'{uuid.uuid4()}'
             payload = json.dumps(data)
 
-        with allure.step(f'# {step_number}. Send request'):
+        with allure.step(f'Send request'):
             r = requests.post(
                 url='http://10.0.20.127:9151/command2',
                 data=payload
             )
 
-        with allure.step(f'# {step_number}. See result'):
+        with allure.step(f'See result'):
             assert r.status_code == 200
             assert r.json() == {'version': '2.0.0', 'id': data['id'],
                                 'status': 'error', 'result': [{'code': 'VR.COM-6.27.2/9', 'description':
@@ -53,9 +51,8 @@ class Test1:
 
     @allure.title('VR.COM-6.27.2 Должна присутствовать запись о рекорде contract в сервисе по cpid и ocid из запроса')
     def test_check_service_response_with_incorrect_ocid(self):
-        step_number = 1
 
-        with allure.step(f'# {step_number}. Insert data into DB'):
+        with allure.step(f'Insert data into DB'):
             insert = CassandraSession(
                 cassandra_username='caclient',
                 cassandra_password='6AH7vbrkMWnfK',
@@ -64,20 +61,20 @@ class Test1:
             )
             insert.insert_contract_status_issued()
 
-        with allure.step(f'# {step_number}. Prepare request for service'):
+        with allure.step(f'Prepare request for service'):
             data['params']['cpid'] = 'ocds-t1s2t3-MD-1652879244220'
-            data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244229-AC-1652879488470'
+            data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
             data['id'] = f'{uuid.uuid4()}'
             payload = json.dumps(data)
 
-        with allure.step(f'# {step_number}. Send request'):
+        with allure.step(f'Send request'):
             print(payload)
             r = requests.post(
                 url='http://10.0.20.127:9151/command2',
                 data=payload
             )
 
-        with allure.step(f'# {step_number}. See result'):
+        with allure.step(f'See result'):
             assert r.status_code == 200
             print(r.json())
             assert r.json() == {'version': '2.0.0', 'id': data['id'],
@@ -88,9 +85,8 @@ class Test1:
 
     @allure.title('VR.COM-6.27.2 Должна присутствовать запись о рекорде contract в сервисе по cpid и ocid из запроса')
     def test_check_service_response_with_correct_data(self):
-        step_number = 1
 
-        with allure.step(f'# {step_number}. Insert data into DB'):
+        with allure.step(f'Insert data into DB'):
             insert = CassandraSession(
                 cassandra_username='caclient',
                 cassandra_password='6AH7vbrkMWnfK',
@@ -99,20 +95,20 @@ class Test1:
             )
             insert.insert_contract_status_issued()
 
-        with allure.step(f'# {step_number}. Prepare request for service'):
+        with allure.step(f'Prepare request for service'):
             data['params']['cpid'] = 'ocds-t1s2t3-MD-1652879244220'
             data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
             data['id'] = f'{uuid.uuid4()}'
             payload = json.dumps(data)
 
-        with allure.step(f'# {step_number}. Send request'):
+        with allure.step(f'Send request'):
             print(payload)
             r = requests.post(
                 url='http://10.0.20.127:9151/command2',
                 data=payload
             )
 
-        with allure.step(f'# {step_number}. See result'):
+        with allure.step(f'See result'):
             assert r.status_code == 200
             print(r.json())
             assert r.json() == {'version': '2.0.0', 'id': data['id'],
