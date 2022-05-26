@@ -63,7 +63,7 @@ class Test1:
 
         with allure.step(f'Prepare request for service'):
             data['params']['cpid'] = 'ocds-t1s2t3-MD-1652879244220'
-            data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
+            data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244229-AC-1652879488470'
             data['id'] = f'{uuid.uuid4()}'
             payload = json.dumps(data)
 
