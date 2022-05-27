@@ -19,7 +19,7 @@ from tests.contracting.payloads.get_buyer_owner import data
                       'cpid и ocid из запроса')
 class Test1:
     @allure.title('VR.COM-6.27.2 Проверить ответ от сервиса, если отправлен некорректный cpid')
-    def test_check_service_response_with_incorrect_cpid(self):
+    def test_1_negative(self):
         with allure.step(f'Insert data into DB'):
             insert = CassandraSession(
                 cassandra_username='caclient',
@@ -52,7 +52,7 @@ class Test1:
                     " from the request."}]}
 
     @allure.title('VR.COM-6.27.2 Проверить ответ от сервиса, если отправлен некорректный ocid')
-    def test_check_service_response_with_incorrect_ocid(self):
+    def test_2_negative(self):
         with allure.step(f'Insert data into DB'):
             insert = CassandraSession(
                 cassandra_username='caclient',
@@ -86,7 +86,7 @@ class Test1:
                     " from the request."}]}
 
     @allure.title('VR.COM-6.27.2 проверить ответ от сервиса при отправке корректных данных')
-    def test_check_service_response_with_correct_data(self):
+    def test_3_positive(self):
         with allure.step(f'Insert data into DB'):
             insert = CassandraSession(
                 cassandra_username='caclient',
@@ -118,7 +118,8 @@ class Test1:
                                                                           'owner': '445f6851-c908-407d-9b45'
                                                                                    '-14b92f3e964b'}}}
 
-
+@allure.parent_suite('Contracting Integration Tests')
+@allure.suite('Contracting : getBuyerOwner')
 @allure.sub_suite('VR.COM-6.27.1 Сервис должен работать только со списком допустимых этапов контрактного процесса.'
                   'допустимые stage = AC, PO')
 @allure.severity('Critical')
@@ -224,3 +225,6 @@ class Test2:
                                 'result': [{'code': 'VR.COM-6.27.1/9',
                                             'description': 'Service should work only with the list of allowable s'
                                                            'tages of the contract process.'}]}
+
+#
+# VR.COM-6.27.3
