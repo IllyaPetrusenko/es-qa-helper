@@ -336,9 +336,9 @@ class Test3:
             assert r.status_code == 200
             assert r.json() == {'version': '2.0.0', 'id': data['id'],
                                 'status': 'error', 'result': [{'code': 'VR.COM-6.27.3/9',
-                                'description': 'There must be a record of the organization with the buyer role'
-                                            ' for the contract record in the service by cpid and ocid from'
-                                                                            ' the request.'}]}
+                                                               'description': 'There must be a record of the organization with the buyer role'
+                                                                              ' for the contract record in the service by cpid and ocid from'
+                                                                              ' the request.'}]}
 
     @allure.title('VR.COM-6.27.3 Проверить ответ от сервиса если в РО нет баера')
     def test_2_negative(self):
@@ -369,21 +369,21 @@ class Test3:
             assert r.status_code == 200
             assert r.json() == {'version': '2.0.0', 'id': data['id'],
                                 'status': 'error', 'result': [{'code': 'VR.COM-6.27.3/9',
-                                'description': 'There must be a record of the organization with the buyer role'
-                                            ' for the contract record in the service by cpid and ocid from'
-                                                                            ' the request.'}]}
+                                                               'description': 'There must be a record of the organization with the buyer role'
+                                                                              ' for the contract record in the service by cpid and ocid from'
+                                                                              ' the request.'}]}
 
 
 @allure.parent_suite('Contracting Integration Tests')
 @allure.suite('Contracting : getBuyerOwner')
-@allure.sub_suite('FR.COM-6.27.5, FR.COM-6.27.4, FR.COM-6.27.3, FR.COM-6.27.2, FR.COM-6.27.1'
+@allure.sub_suite('FR.COM-6.27.5'
                   ' Сервис должен вернуть объект buyer c атрибутами id, name, owner')
 @allure.severity('Critical')
 @allure.testcase(url='https://ustudio.atlassian.net/wiki/spaces/ES/pages/2658893825/R10.6.27+eContracting+'
                      'Get+Buyer+Owner',
                  name='FR.COM-6.27.5 Сервис должен вернуть объект buyer c атрибутами id, name, owner')
 class Test4:
-    @allure.title('FR.COM-6.27.5, FR.COM-6.27.4, FR.COM-6.27.3, FR.COM-6.27.2, FR.COM-6.27.1'
+    @allure.title('FR.COM-6.27.5'
                   ' Проверить ответ от сервиса для AC')
     def test_1_positive(self):
         with allure.step(f'Insert data into DB'):
@@ -416,7 +416,7 @@ class Test4:
             assert r.json()['result']['buyer']['name']
             assert r.json()['result']['buyer']['owner']
 
-    @allure.title('FR.COM-6.27.5, FR.COM-6.27.4, FR.COM-6.27.3, FR.COM-6.27.2, FR.COM-6.27.1'
+    @allure.title('FR.COM-6.27.5'
                   ' Проверить ответ от сервиса для PO')
     def test_2_positive(self):
         with allure.step(f'Insert data into DB'):
@@ -448,3 +448,77 @@ class Test4:
             assert r.json()['result']['buyer']['id']
             assert r.json()['result']['buyer']['name']
             assert r.json()['result']['buyer']['owner']
+
+
+@allure.parent_suite('Contracting Integration Tests')
+@allure.suite('Contracting : getBuyerOwner')
+@allure.sub_suite('FR.COM-6.27.2'
+                  ' Сервис должен извлечь атрибуты id, name организации с ролью buyer найденной согласно FR.COM-6.27.1')
+@allure.severity('Critical')
+@allure.testcase(url='https://ustudio.atlassian.net/wiki/spaces/ES/pages/2658893825/R10.6.27+eContracting+'
+                     'Get+Buyer+Owner',
+                 name='FR.COM-6.27.2'
+                      ' Сервис должен извлечь атрибуты id, name организации с ролью buyer'
+                      ' найденной согласно FR.COM-6.27.1')
+class Test5:
+    @allure.title('FR.COM-6.27.2'
+                  ' Проверить ответ от сервиса для AC')
+    def test_1_positive(self):
+        with allure.step(f'Insert data into DB'):
+            insert = CassandraSession(
+                cassandra_username='caclient',
+                cassandra_password='6AH7vbrkMWnfK',
+                cassandra_cluster='10.0.20.106',
+                json_data=issued_contract
+            )
+            insert.insert_contract_ac_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
+                                                    ocid='ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
+                                                    )
+
+        with allure.step(f'Prepare request for service'):
+            data['params']['cpid'] = 'ocds-t1s2t3-MD-1652879244220'
+            data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
+            data['id'] = f'{uuid.uuid4()}'
+            payload = json.dumps(data)
+
+        with allure.step(f'Send request'):
+            r = requests.post(
+                url='http://10.0.20.127:9151/command2',
+                data=payload
+            )
+
+        with allure.step(f'See result'):
+            assert r.status_code == 200
+            assert r.json()['result']['buyer']['id'] == 'MD-IDNO-BYR'
+            assert r.json()['result']['buyer']['name'] == 'EI BUYER NAME'
+
+    @allure.title('FR.COM-6.27.2'
+                  ' Проверить ответ от сервиса для PO')
+    def test_2_positive(self):
+        with allure.step(f'Insert data into DB'):
+            insert = CassandraSession(
+                cassandra_username='caclient',
+                cassandra_password='6AH7vbrkMWnfK',
+                cassandra_cluster='10.0.20.106',
+                json_data=issued_contract
+            )
+            insert.insert_contract_po_status_issued(cpid='ocds-t1s2t3-MD-1652879244221',
+                                                    ocid='ocds-t1s2t3-MD-1652879244221-PO-1652879488470'
+                                                    )
+
+        with allure.step(f'Prepare request for service'):
+            data['params']['cpid'] = 'ocds-t1s2t3-MD-1652879244221'
+            data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244221-PO-1652879488470'
+            data['id'] = f'{uuid.uuid4()}'
+            payload = json.dumps(data)
+
+        with allure.step(f'Send request'):
+            r = requests.post(
+                url='http://10.0.20.127:9151/command2',
+                data=payload
+            )
+
+        with allure.step(f'See result'):
+            assert r.status_code == 200
+            assert r.json()['result']['buyer']['id'] == 'MD-IDNO-BYR'
+            assert r.json()['result']['buyer']['name'] == 'EI BUYER NAME'
