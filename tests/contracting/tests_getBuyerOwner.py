@@ -27,7 +27,7 @@ class Test1:
                 cassandra_cluster='10.0.20.106',
                 json_data=issued_contract
             )
-            insert.insert_contract_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
+            insert.insert_contract_ac_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
                                                  ocid='ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
                                                  )
 
@@ -60,7 +60,7 @@ class Test1:
                 cassandra_cluster='10.0.20.106',
                 json_data=issued_contract
             )
-            insert.insert_contract_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
+            insert.insert_contract_ac_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
                                                  ocid='ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
                                                  )
 
@@ -71,7 +71,6 @@ class Test1:
             payload = json.dumps(data)
 
         with allure.step(f'Send request'):
-            print(payload)
             r = requests.post(
                 url='http://10.0.20.127:9151/command2',
                 data=payload
@@ -79,7 +78,6 @@ class Test1:
 
         with allure.step(f'See result'):
             assert r.status_code == 200
-            print(r.json())
             assert r.json() == {'version': '2.0.0', 'id': data['id'],
                                 'status': 'error', 'result': [{'code': 'VR.COM-6.27.2/9', 'description':
                     "There must be a record of the contract record in the service "
@@ -96,7 +94,7 @@ class Test1:
                 cassandra_cluster='10.0.20.106',
                 json_data=issued_contract
             )
-            insert.insert_contract_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
+            insert.insert_contract_ac_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
                                                  ocid='ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
                                                  )
 
@@ -107,7 +105,6 @@ class Test1:
             payload = json.dumps(data)
 
         with allure.step(f'Send request'):
-            print(payload)
             r = requests.post(
                 url='http://10.0.20.127:9151/command2',
                 data=payload
@@ -115,7 +112,6 @@ class Test1:
 
         with allure.step(f'See result'):
             assert r.status_code == 200
-            print(r.json())
             assert r.json() == {'version': '2.0.0', 'id': data['id'],
                                 'status': 'success', 'result': {'buyer': {'id': 'MD-IDNO-BYR',
                                                                           'name': 'EI BUYER NAME',
@@ -139,7 +135,7 @@ class Test2:
                 cassandra_cluster='10.0.20.106',
                 json_data=issued_contract
             )
-            insert.insert_contract_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
+            insert.insert_contract_ac_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
                                                  ocid='ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
                                                  )
 
@@ -172,18 +168,17 @@ class Test2:
                 cassandra_cluster='10.0.20.106',
                 json_data=issued_contract
             )
-            insert.insert_contract_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
-                                                 ocid='ocds-t1s2t3-MD-1652879244220-PO-1652879488470'
+            insert.insert_contract_po_status_issued(cpid='ocds-t1s2t3-MD-1652879244221',
+                                                 ocid='ocds-t1s2t3-MD-1652879244221-PO-1652879488470'
                                                  )
 
         with allure.step(f'Prepare request for service'):
-            data['params']['cpid'] = 'ocds-t1s2t3-MD-1652879244220'
-            data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244220-PO-1652879488470'
+            data['params']['cpid'] = 'ocds-t1s2t3-MD-1652879244221'
+            data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244221-PO-1652879488470'
             data['id'] = f'{uuid.uuid4()}'
             payload = json.dumps(data)
 
         with allure.step(f'Send request'):
-            print(payload)
             r = requests.post(
                 url='http://10.0.20.127:9151/command2',
                 data=payload
@@ -191,7 +186,6 @@ class Test2:
 
         with allure.step(f'See result'):
             assert r.status_code == 200
-            print(r.json())
             assert r.json() == {'version': '2.0.0', 'id': data['id'],
                                 'status': 'success', 'result': {'buyer': {'id': 'MD-IDNO-BYR',
                                                                           'name': 'EI BUYER NAME',
@@ -207,7 +201,7 @@ class Test2:
                 cassandra_cluster='10.0.20.106',
                 json_data=issued_contract
             )
-            insert.insert_contract_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
+            insert.insert_contract_ac_status_issued(cpid='ocds-t1s2t3-MD-1652879244220',
                                                  ocid='ocds-t1s2t3-MD-1652879244220-PN-1652879488470'
                                                  )
 

@@ -19,7 +19,7 @@ class CassandraSession:
         self.contracting_keyspace = self.cluster.connect('contracting')
         self.json_data = json_data
 
-    def insert_contract_status_issued(self, cpid, ocid):
+    def insert_contract_ac_status_issued(self, cpid, ocid):
         query = f"""INSERT INTO ac (
         "cpid",
         "ocid",
@@ -29,8 +29,8 @@ class CassandraSession:
         "status", 
         "status_details", 
         "token_entity") VALUES (
-        'ocds-t1s2t3-MD-1652879244220', 
-        'ocds-t1s2t3-MD-1652879244220-AC-1652879488470', 
+        '{cpid}', 
+        '{ocid}', 
         '2022-05-18 13:11:29.000+0000', 
         '{json.dumps(self.json_data)}', 
         '445f6851-c908-407d-9b45-14b92f3e964b', 
@@ -40,6 +40,26 @@ class CassandraSession:
         i = self.contracting_keyspace.execute(query)
         return i
 
+    def insert_contract_po_status_issued(self, cpid, ocid):
+        query = f"""INSERT INTO po (
+        "cpid",
+        "ocid",
+        "created_date",
+        "json_data", 
+        "owner", 
+        "status", 
+        "status_details", 
+        "token_entity") VALUES (
+        '{cpid}', 
+        '{ocid}', 
+        '2022-05-18 13:11:29.000+0000', 
+        '{json.dumps(self.json_data)}', 
+        '445f6851-c908-407d-9b45-14b92f3e964b', 
+        'pending', 
+        'contractPreparation', 
+        '591cd009-258b-4c69-bc18-07e462f9a758');"""
+        i = self.contracting_keyspace.execute(query)
+        return i
 
 # insert = CassandraSession(
 #     cassandra_username='caclient',
