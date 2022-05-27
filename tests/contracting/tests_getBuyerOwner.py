@@ -594,3 +594,32 @@ class Test5:
             assert r.status_code == 200
             assert r.json()['result']['buyer']['owner'] == '445f6851-c908-407d-9b45-14b92f3e964b'
 
+    @allure.title('FR.COM-6.27.3'
+                  ' Проверить ответ от сервиса для AC, если овнер не корректный')
+    def test_1_negative(self):
+        with allure.step(f'Insert data into DB'):
+            insert = CassandraSession(
+                cassandra_username='caclient',
+                cassandra_password='6AH7vbrkMWnfK',
+                cassandra_cluster='10.0.20.106',
+                json_data=issued_contract
+            )
+            insert.insert_contract_ac_status_issued_other_owner(cpid='ocds-t1s2t3-MD-1652879244220',
+                                                                ocid='ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
+                                                                )
+
+        with allure.step(f'Prepare request for service'):
+            data['params']['cpid'] = 'ocds-t1s2t3-MD-1652879244220'
+            data['params']['ocid'] = 'ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
+            data['id'] = f'{uuid.uuid4()}'
+            payload = json.dumps(data)
+
+        with allure.step(f'Send request'):
+            r = requests.post(
+                url='http://10.0.20.127:9151/command2',
+                data=payload
+            )
+
+        with allure.step(f'See result'):
+            assert r.status_code == 200
+            assert r.json()['result']['buyer']['owner'] == '445f6851-c908-407d-9b45-14b92f3e964b'
