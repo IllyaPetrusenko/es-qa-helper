@@ -5,7 +5,8 @@ import allure
 import requests
 
 from tests.db_functions.functions import CassandraSession
-from tests.db_functions.json_data.issued_contract import issued_contract, issued_contract_no_buyer
+from tests.db_functions.json_data.issued_contract import issued_contract, issued_contract_no_buyer, \
+    issued_contract_other_owner
 from tests.contracting.payloads.get_buyer_owner import data
 
 
@@ -602,7 +603,7 @@ class Test5:
                 cassandra_username='caclient',
                 cassandra_password='6AH7vbrkMWnfK',
                 cassandra_cluster='10.0.20.106',
-                json_data=issued_contract
+                json_data=issued_contract_other_owner
             )
             insert.insert_contract_ac_status_issued_other_owner(cpid='ocds-t1s2t3-MD-1652879244220',
                                                                 ocid='ocds-t1s2t3-MD-1652879244220-AC-1652879488470'
