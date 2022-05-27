@@ -19,7 +19,7 @@ class CassandraSession:
         self.contracting_keyspace = self.cluster.connect('contracting')
         self.json_data = json_data
 
-    def insert_contract_status_issued(self):
+    def insert_contract_status_issued(self, cpid, ocid):
         query = f"""INSERT INTO ac (
         "cpid",
         "ocid",
