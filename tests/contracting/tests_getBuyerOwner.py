@@ -623,4 +623,4 @@ class Test5:
 
         with allure.step(f'See result'):
             assert r.status_code == 200
-            assert r.json()['result']['buyer']['owner'] == '445f6851-c908-407d-9b45-14b92f3e964b'
+            assert r.json()['result']['buyer']['owner'] == '443f6851-c908-407d-9b45-14b92f3e964b'
