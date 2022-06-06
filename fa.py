@@ -419,16 +419,16 @@ inv_cand_next_confirmation_step = next_confirmation_step(
 
 time.sleep(1)
 
-print('------  CREATE PCR  ------')
-pcr = create_pcr(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    x_token=ap[2],
-    cpid=ap[0],
-    ocid=fe,
-    payload=pcr_full_no_catalogue_items_no_auction_no_criteria
-)
+# print('------  CREATE PCR  ------')
+# pcr = create_pcr(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     x_token=ap[2],
+#     cpid=ap[0],
+#     ocid=fe,
+#     payload=pcr_full_no_catalogue_items_no_auction_no_criteria
+# )
 
 # print('------  CREATE BID IN PCR - 1  ------')
 # bid_1 = create_bid(
