@@ -20,7 +20,7 @@ ap = {
         "procuringEntity": {
             "name": "ЦЗО-1",
             "identifier": {
-                "id": "00000-001",
+                "id": "001",
                 "legalName": "OOO ЦЗО-1",
                 "scheme": "MD-IDNO"
             },
