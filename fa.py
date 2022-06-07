@@ -205,109 +205,109 @@ fe = create_fe(
 )
 print(f'OCID:   {fe}')
 
-time.sleep(2)
-print('------  Create Submission 1 -------')
-submission_1 = create_submission(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    ap_cpid=ap[0],
-    fe_ocid=fe,
-    payload=sub_1
-)
-print(f'ID:   {submission_1[0]}, X-TOKEN:  {submission_1[1]}')
-
-print('------  Create Submission 2 -------')
-submission_2 = create_submission(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    ap_cpid=ap[0],
-    fe_ocid=fe,
-    payload=sub_2
-)
-print(f'ID:   {submission_2[0]}, X-TOKEN:  {submission_2[1]}')
-
-print('------  Create Submission 3 -------')
-submission_3 = create_submission(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    ap_cpid=ap[0],
-    fe_ocid=fe,
-    payload=sub_3
-)
-print(f'ID:   {submission_3[0]}, X-TOKEN:  {submission_3[1]}')
-
-print('------  Create Submission 4 -------')
-submission_4 = create_submission(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    ap_cpid=ap[0],
-    fe_ocid=fe,
-    payload=sub_4
-)
-print(f'ID:   {submission_4[0]}, X-TOKEN:  {submission_4[1]}')
-
-time.sleep(20)
-
-print('------  QUALIFICATIONS -------')
-qualifications = get_qualifications_from_public_point(fe)
-print(qualifications)
-
-time.sleep(2)
-
-
-print('------  DO CONSIDERATION AND QUALIFICATION 1 -------')
-do_cons_1 = do_consideration_and_qualification(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    ap_cpid=ap[0],
-    fe_ocid=fe,
-    qualifications=qualifications,
-    payload=active_qualification
-)
-print(do_cons_1)
-time.sleep(2)
-print('------  DO CONSIDERATION AND QUALIFICATION 2 -------')
-do_cons_2 = do_consideration_and_qualification(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    ap_cpid=ap[0],
-    fe_ocid=fe,
-    qualifications=qualifications,
-    payload=active_qualification
-)
-print(do_cons_2)
-time.sleep(2)
-print('------  DO CONSIDERATION AND QUALIFICATION 3 -------')
-do_cons_3 = do_consideration_and_qualification(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    ap_cpid=ap[0],
-    fe_ocid=fe,
-    qualifications=qualifications,
-    payload=active_qualification
-)
-print(do_cons_3)
-time.sleep(2)
-print('------  DO CONSIDERATION AND QUALIFICATION 4 -------')
-do_cons_4 = do_consideration_and_qualification(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    ap_cpid=ap[0],
-    fe_ocid=fe,
-    qualifications=qualifications,
-    payload=active_qualification
-)
-print(do_cons_4)
-
-time.sleep(5)
+# time.sleep(2)
+# print('------  Create Submission 1 -------')
+# submission_1 = create_submission(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     ap_cpid=ap[0],
+#     fe_ocid=fe,
+#     payload=sub_1
+# )
+# print(f'ID:   {submission_1[0]}, X-TOKEN:  {submission_1[1]}')
+#
+# print('------  Create Submission 2 -------')
+# submission_2 = create_submission(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     ap_cpid=ap[0],
+#     fe_ocid=fe,
+#     payload=sub_2
+# )
+# print(f'ID:   {submission_2[0]}, X-TOKEN:  {submission_2[1]}')
+#
+# print('------  Create Submission 3 -------')
+# submission_3 = create_submission(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     ap_cpid=ap[0],
+#     fe_ocid=fe,
+#     payload=sub_3
+# )
+# print(f'ID:   {submission_3[0]}, X-TOKEN:  {submission_3[1]}')
+#
+# print('------  Create Submission 4 -------')
+# submission_4 = create_submission(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     ap_cpid=ap[0],
+#     fe_ocid=fe,
+#     payload=sub_4
+# )
+# print(f'ID:   {submission_4[0]}, X-TOKEN:  {submission_4[1]}')
+#
+# time.sleep(20)
+#
+# print('------  QUALIFICATIONS -------')
+# qualifications = get_qualifications_from_public_point(fe)
+# print(qualifications)
+#
+# time.sleep(2)
+#
+#
+# print('------  DO CONSIDERATION AND QUALIFICATION 1 -------')
+# do_cons_1 = do_consideration_and_qualification(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     ap_cpid=ap[0],
+#     fe_ocid=fe,
+#     qualifications=qualifications,
+#     payload=active_qualification
+# )
+# print(do_cons_1)
+# time.sleep(2)
+# print('------  DO CONSIDERATION AND QUALIFICATION 2 -------')
+# do_cons_2 = do_consideration_and_qualification(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     ap_cpid=ap[0],
+#     fe_ocid=fe,
+#     qualifications=qualifications,
+#     payload=active_qualification
+# )
+# print(do_cons_2)
+# time.sleep(2)
+# print('------  DO CONSIDERATION AND QUALIFICATION 3 -------')
+# do_cons_3 = do_consideration_and_qualification(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     ap_cpid=ap[0],
+#     fe_ocid=fe,
+#     qualifications=qualifications,
+#     payload=active_qualification
+# )
+# print(do_cons_3)
+# time.sleep(2)
+# print('------  DO CONSIDERATION AND QUALIFICATION 4 -------')
+# do_cons_4 = do_consideration_and_qualification(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     ap_cpid=ap[0],
+#     fe_ocid=fe,
+#     qualifications=qualifications,
+#     payload=active_qualification
+# )
+# print(do_cons_4)
+#
+# time.sleep(5)
 
 # print('------  DO QUALIFICATION PROTOCOL -------')
 # qualification_protocol = do_qualification_protocol(
