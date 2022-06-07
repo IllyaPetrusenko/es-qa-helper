@@ -380,44 +380,44 @@ buyer_next_confirmation_step = next_confirmation_step(
 buyer_next_confirmation_step = buyer_next_confirmation_step['data']['outcomes']['requests']
 print(f'INVITED CANDIDATES REQUESTS:  {buyer_next_confirmation_step}')
 
-# print('------  INVITED CANDIDATES CONFIRMATION RESPONSES -------')
-# num = 0
-# for i in buyer_next_confirmation_step:
-#     if num == 3:
-#         break
-#     else:
-#         create_confirmation_response(
-#             host=host,
-#             token=get_access_token(host),
-#             x_operation_id=get_x_operation_id(get_access_token(host), host),
-#             cpid=ap[0],
-#             ocid=fe,
-#             entity='contract',
-#             entity_id=qualification_protocol[0],
-#             response_id=i['id'],
-#             x_token=i['X-TOKEN'],
-#             role='invitedCandidate',
-#             payload=confirmation_response_invited_candidate
-#         )
-#         num = num + 1
-#         print(f'PARTICIPANT {num} --- DONE')
-#
-# time.sleep(1)
-#
-# print('------  INVITED CANDIDATES NEXT CONFIRMATION STEP -------')
-# inv_cand_next_confirmation_step = next_confirmation_step(
-#     host=host,
-#     token=get_access_token(host),
-#     x_operation_id=get_x_operation_id(get_access_token(host), host),
-#     cpid=ap[0],
-#     ocid=fe,
-#     entity='contract',
-#     entity_id=qualification_protocol[0],
-#     x_token=qualification_protocol[1],
-#     role='invitedCandidate',
-# )
-#
-# time.sleep(1)
+print('------  INVITED CANDIDATES CONFIRMATION RESPONSES -------')
+num = 0
+for i in buyer_next_confirmation_step:
+    if num == 3:
+        break
+    else:
+        create_confirmation_response(
+            host=host,
+            token=get_access_token(host),
+            x_operation_id=get_x_operation_id(get_access_token(host), host),
+            cpid=ap[0],
+            ocid=fe,
+            entity='contract',
+            entity_id=qualification_protocol[0],
+            response_id=i['id'],
+            x_token=i['X-TOKEN'],
+            role='invitedCandidate',
+            payload=confirmation_response_invited_candidate
+        )
+        num = num + 1
+        print(f'PARTICIPANT {num} --- DONE')
+
+time.sleep(1)
+
+print('------  INVITED CANDIDATES NEXT CONFIRMATION STEP -------')
+inv_cand_next_confirmation_step = next_confirmation_step(
+    host=host,
+    token=get_access_token(host),
+    x_operation_id=get_x_operation_id(get_access_token(host), host),
+    cpid=ap[0],
+    ocid=fe,
+    entity='contract',
+    entity_id=qualification_protocol[0],
+    x_token=qualification_protocol[1],
+    role='invitedCandidate',
+)
+
+time.sleep(1)
 
 # print('------  CREATE PCR  ------')
 # pcr = create_pcr(
@@ -429,7 +429,7 @@ print(f'INVITED CANDIDATES REQUESTS:  {buyer_next_confirmation_step}')
 #     ocid=fe,
 #     payload=pcr_full_no_catalogue_items_no_auction_no_criteria
 # )
-
+#
 # print('------  CREATE BID IN PCR - 1  ------')
 # bid_1 = create_bid(
 #     host=host,
@@ -703,23 +703,23 @@ print(f'INVITED CANDIDATES REQUESTS:  {buyer_next_confirmation_step}')
 #     entity_id=contracts[3]['id'],
 #     x_token=contracts[3]['X-TOKEN']
 # )
-#
-#
-# # print('------   CREATE RFQ -------')
-# # rfq = create_rfq(
-# #     host=host,
-# #     token=get_access_token(host),
-# #     x_operation_id=get_x_operation_id(get_access_token(host), host),
-# #     x_token=pn_1[2],
-# #     ap_cpid=ap[0],
-# #     cpid=pn_1[0],
-# #     ocid=pn_1[1],
-# #     pcr_ocid=pcr[0],
-# #     payload=create_rfq_data,
-# #     lot_id=pcr[1],
-# #     item_id=pcr[2]
-# # )
-#
-# print('DONE')
-#
-#
+
+
+# print('------   CREATE RFQ -------')
+# rfq = create_rfq(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     x_token=pn_1[2],
+#     ap_cpid=ap[0],
+#     cpid=pn_1[0],
+#     ocid=pn_1[1],
+#     pcr_ocid=pcr[0],
+#     payload=create_rfq_data,
+#     lot_id=pcr[1],
+#     item_id=pcr[2]
+# )
+
+print('DONE')
+
+
