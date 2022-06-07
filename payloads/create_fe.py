@@ -18,7 +18,7 @@ fe_auction = {
     ],
     "procurementMethodRationale": "PMR in FE",
     "procuringEntity": {
-      "id": "MD-IDNO-00000-001",
+      "id": "MD-IDNO-001",
       "persones": [
         {
           "title": "Mr.",
