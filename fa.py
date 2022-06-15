@@ -344,78 +344,78 @@ issuing_fc = issuing_fc(
     ap_x_token=ap[2],
     payload=issuing
 )
-print(f'BUYER:   REQUEST ID: {issuing_fc[0]},     REQUEST TOKEN:  {issuing_fc[1]}')
-time.sleep(2)
-
-print('------  BUYER CONFIRMATION RESPONSE -------')
-buyer_create_confirmation_response = create_confirmation_response(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=fe,
-    entity='contract',
-    entity_id=qualification_protocol[0],
-    response_id=issuing_fc[0],
-    x_token=issuing_fc[1],
-    role='buyer',
-    payload=confirmation_response
-)
-print(f'BUYER CONFIRMATION REQUEST ID:  {buyer_create_confirmation_response}')
-
-time.sleep(1)
-
-print('------  BUYER NEXT CONFIRMATION STEP -------')
-buyer_next_confirmation_step = next_confirmation_step(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=fe,
-    entity='contract',
-    entity_id=qualification_protocol[0],
-    x_token=qualification_protocol[1],
-    role='buyer',
-)
-buyer_next_confirmation_step = buyer_next_confirmation_step['data']['outcomes']['requests']
-print(f'INVITED CANDIDATES REQUESTS:  {buyer_next_confirmation_step}')
-
-print('------  INVITED CANDIDATES CONFIRMATION RESPONSES -------')
-num = 0
-for i in buyer_next_confirmation_step:
-    if num == 3:
-        break
-    else:
-        create_confirmation_response(
-            host=host,
-            token=get_access_token(host),
-            x_operation_id=get_x_operation_id(get_access_token(host), host),
-            cpid=ap[0],
-            ocid=fe,
-            entity='contract',
-            entity_id=qualification_protocol[0],
-            response_id=i['id'],
-            x_token=i['X-TOKEN'],
-            role='invitedCandidate',
-            payload=confirmation_response_invited_candidate
-        )
-        num = num + 1
-        print(f'PARTICIPANT {num} --- DONE')
-
-time.sleep(1)
-
-print('------  INVITED CANDIDATES NEXT CONFIRMATION STEP -------')
-inv_cand_next_confirmation_step = next_confirmation_step(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=fe,
-    entity='contract',
-    entity_id=qualification_protocol[0],
-    x_token=qualification_protocol[1],
-    role='invitedCandidate',
-)
+# print(f'BUYER:   REQUEST ID: {issuing_fc[0]},     REQUEST TOKEN:  {issuing_fc[1]}')
+# time.sleep(2)
+#
+# print('------  BUYER CONFIRMATION RESPONSE -------')
+# buyer_create_confirmation_response = create_confirmation_response(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=fe,
+#     entity='contract',
+#     entity_id=qualification_protocol[0],
+#     response_id=issuing_fc[0],
+#     x_token=issuing_fc[1],
+#     role='buyer',
+#     payload=confirmation_response
+# )
+# print(f'BUYER CONFIRMATION REQUEST ID:  {buyer_create_confirmation_response}')
+#
+# time.sleep(1)
+#
+# print('------  BUYER NEXT CONFIRMATION STEP -------')
+# buyer_next_confirmation_step = next_confirmation_step(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=fe,
+#     entity='contract',
+#     entity_id=qualification_protocol[0],
+#     x_token=qualification_protocol[1],
+#     role='buyer',
+# )
+# buyer_next_confirmation_step = buyer_next_confirmation_step['data']['outcomes']['requests']
+# print(f'INVITED CANDIDATES REQUESTS:  {buyer_next_confirmation_step}')
+#
+# print('------  INVITED CANDIDATES CONFIRMATION RESPONSES -------')
+# num = 0
+# for i in buyer_next_confirmation_step:
+#     if num == 3:
+#         break
+#     else:
+#         create_confirmation_response(
+#             host=host,
+#             token=get_access_token(host),
+#             x_operation_id=get_x_operation_id(get_access_token(host), host),
+#             cpid=ap[0],
+#             ocid=fe,
+#             entity='contract',
+#             entity_id=qualification_protocol[0],
+#             response_id=i['id'],
+#             x_token=i['X-TOKEN'],
+#             role='invitedCandidate',
+#             payload=confirmation_response_invited_candidate
+#         )
+#         num = num + 1
+#         print(f'PARTICIPANT {num} --- DONE')
+#
+# time.sleep(1)
+#
+# print('------  INVITED CANDIDATES NEXT CONFIRMATION STEP -------')
+# inv_cand_next_confirmation_step = next_confirmation_step(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=fe,
+#     entity='contract',
+#     entity_id=qualification_protocol[0],
+#     x_token=qualification_protocol[1],
+#     role='invitedCandidate',
+# )
 
 time.sleep(1)
 
