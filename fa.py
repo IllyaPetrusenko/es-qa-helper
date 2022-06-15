@@ -32,7 +32,7 @@ fs_ocid_1 = create_fs(
         host=host,
         x_operation_id=get_x_operation_id(get_access_token(host), host),
         payload=ei,
-        idno='001'
+        idno='0011'
     ),
     payload=fs)
 
@@ -48,7 +48,7 @@ fs_ocid_2 = create_fs(
         host=host,
         x_operation_id=get_x_operation_id(get_access_token(host), host),
         payload=ei,
-        idno='002'
+        idno='0012'
     ),
     payload=fs)
 
@@ -64,7 +64,7 @@ fs_ocid_3 = create_fs(
         host=host,
         x_operation_id=get_x_operation_id(get_access_token(host), host),
         payload=ei,
-        idno='003'
+        idno='0013'
     ),
     payload=fs)
 
