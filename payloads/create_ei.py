@@ -4,6 +4,7 @@ ei = {
         "description": "tender.description",
         "classification": {
             "id": "45200000-9"
+            "scheme":  "CPV"
         }
     },
     "planning": {
@@ -28,10 +29,14 @@ ei = {
             "postalCode": "5600",
             "addressDetails": {
                 "country": {
-                    "id": "MD"
+                    "scheme": "iso-alpha2",
+                    "id": "MD",
+                    "description": "locality/description"
                 },
                 "region": {
-                    "id": "7100000"
+                    "scheme": "CUATM",
+                    "id": "0101000",
+                    "description": "locality/description"
                 },
                 "locality": {
                     "scheme": "CUATM",
