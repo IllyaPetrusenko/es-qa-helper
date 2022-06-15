@@ -3,8 +3,8 @@ ei = {
         "title": "tender.title",
         "description": "tender.description",
         "classification": {
-            "id": "45200000-9"
-            "scheme":  "CPV"
+            "id": "45200000-9",
+            "scheme": "CPV"
         }
     },
     "planning": {
@@ -31,12 +31,12 @@ ei = {
                 "country": {
                     "scheme": "iso-alpha2",
                     "id": "MD",
-                    "description": "locality/description"
+                    "description": "or.Rîşcani"
                 },
                 "region": {
                     "scheme": "CUATM",
-                    "id": "0101000",
-                    "description": "locality/description"
+                    "id": "7101000",
+                    "description": "or.Rîşcani"
                 },
                 "locality": {
                     "scheme": "CUATM",
