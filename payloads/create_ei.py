@@ -35,12 +35,12 @@ ei = {
                 },
                 "region": {
                     "scheme": "CUATM",
-                    "id": "7101000",
+                    "id": "0101000",
                     "description": "or.Rîşcani"
                 },
                 "locality": {
                     "scheme": "CUATM",
-                    "id": "7101000",
+                    "id": "0101000",
                     "description": "or.Rîşcani"
                 }
             }
