@@ -18,7 +18,6 @@ from payloads.update_award_in_pcr import update_award
 from sys import argv
 
 script, env, pn_pmd_1, pn_pmd_2, pn_pmd_3, ap_pmd, auc = argv
-I
 host = get_host(env)[0]
 
 print(f'------  Start of {script} -------')
