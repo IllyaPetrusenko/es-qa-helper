@@ -66,7 +66,7 @@ def create_ei(host, token, x_operation_id, payload, idno):
 
 # Create FS
 def create_fs(host, token, x_operation_id, ocid, payload):
-    requests.post(url=f'{host}/do/fs/{ei_ocid}', headers={
+    requests.post(url=f'{host}/do/fs/{ocid}', headers={
         'Authorization': f'Bearer {token}',
         'X-OPERATION-ID': x_operation_id,
         'Content-Type': 'application/json'
