@@ -1,107 +1,114 @@
 ei = {
-	"tender":
-	{
-        "title": "Title of Expenditure Item",
-    	 "description": "Expenditure Item description",
-    	   "classification":
-	    {
-      		"id": "37400000-2"
-    	  },
-           "items": [{
-              "id": "1",
-              "description": "first item in EI",
-              "classification": {
-                  "id": "37400000-2"
-               },
-              "additionalClassifications": [{
-                  "id": "BA43-8"
-              }
-            ],
-              "deliveryAddress":{
-                "streetAddress":"Street EI",
-                "postalCode":"EI postal code",
-                "addressDetails":{
-                    "country":{
-                        "id":"MD"
-                        },
-                    "region":{
-                        "id":"3100000"
-                    },
-                    "locality":{
-                        "id":"3110000",
-                        "description":"description of locality",
-                        "scheme":"CUATM",
-                        "uri":"locality.uri in EI"
-                    }
-                }
-              },
-              "quantity": 100,
-              "unit": {
-                  "id": "166"
-               }
-
+  "planning": {
+    "budget": {
+      "period": {
+        "startDate": "2022-06-01T06:00:00Z",
+        "endDate": "2022-12-16T06:00:01Z"
+      },
+      "!amount": {
+        "amount": 100000,
+        "currency": "MDL"
+      }
+    },
+    "rationale": "rationale in EI"
+  },
+  "tender": {
+    "title": "title in EI",
+    "description": "desc in EI",
+    "classification": {
+      "id": "39200000-4",
+      "scheme": "CPV"
+    },
+    "items": [
+      {
+        "id": "1",
+        "description": "desc of first item",
+        "classification": {
+          "id": "39236000-5",
+          "scheme": "CPV"
+        },
+        "additionalClassifications": [
+          {
+            "id": "LA22-6",
+            "scheme": "CPVS"
+          }
+        ],
+        "quantity": 1000,
+        "unit": {
+          "id": "20"
+        },
+        "deliveryAddress": {
+          "streetAddress": "street in EI",
+          "postalCode": "postal code in EI",
+          "addressDetails": {
+            "country": {
+              "id": "MD",
+              "description": "string",
+              "scheme": "iso-alpha2"
+            },
+            "region": {
+              "id": "7100000",
+              "description": "string",
+              "scheme": "CUATM"
+            },
+            "locality": {
+              "id": "7135000",
+              "description": "string",
+              "scheme": "CUATM"
+            }
+          }
+        }
       }
     ]
-	},
-  	"planning":
-	{
-    	   "budget":
-		{
-			"period":
-			{
-        		  "startDate": "2022-05-01T00:00:00Z",
-        		  "endDate": "2022-10-30T11:00:00Z"
-      		}
-    	},
-    	 "rationale": "Rationale for EI"
-	},
-        "buyer":
-	{
-      	  "name": "BUYER",
-      	  "identifier":
-		{
-        	"id": "BYR",
-        	"scheme": "MD-IDNO",
-        	"legalName": "Bu Yer",
-        	"uri": "buyer.uri in EI"
-      	},
-          "address": {
-            "streetAddress": "Buyer street",
-            "postalCode": "Buyer postal code",
-            "addressDetails": {
-                "country": {
-                  "id": "MD"
-                },
-                "region": {
-                  "id": "5700000"
-                },
-                "locality": {
-                  "scheme": "other",
-                  "id": "DNPRPTRVSK",
-                  "description": "description of buyer locality"
-                }
-            }
+  },
+  "buyer": {
+    "name": "BUYEN in EI",
+    "identifier": {
+      "id": "1",
+      "legalName": "legal name of buyer",
+      "scheme": "MD-IDNO",
+      "uri": "buyer.com"
+    },
+    "additionalIdentifiers": [
+      {
+        "id": "B1",
+        "legalName": "string",
+        "scheme": "MD",
+        "uri": "b1.com"
+      }
+    ],
+    "address": {
+      "streetAddress": "street of buyer",
+      "postalCode": "postal come of buyer",
+      "addressDetails": {
+        "country": {
+          "id": "MD",
+          "description": "string",
+          "scheme": "iso-alpha2"
         },
-      	"additionalIdentifiers":
-		[{
-          	"id": "BY",
-          	"scheme": "MD",
-          	"legalName": "Yer Bu",
-          	"uri": "yerbu.uri"
-        }],
-      	    "contactPoint":
-		{
-        	"name": "Anastasiia",
-        	"email": "anastasiia@gmail.com",
-        	"telephone": "0675667890",
-        	"faxNumber": "0987667899",
-        	"url": "contactPoint.buyer.url"
-      	},
-      	  "details":
-		{
-        	"typeOfBuyer": "BODY_PUBLIC",
-        	"mainGeneralActivity": "PUBLIC_ORDER_AND_SAFETY",
-        	"mainSectoralActivity": "WATER"
-      	}
-	}
+        "region": {
+          "id": "9600000",
+          "description": "string",
+          "scheme": "CUATM"
+        },
+        "locality": {
+          "id": "9627002",
+          "description": "string",
+          "scheme": "CUATM"
+        }
+      }
+    },
+    "contactPoint": {
+      "name": "name of CP",
+      "email": "CP@gmail.com",
+      "telephone": "0635330195",
+      "faxNumber": "0956748373",
+      "url": "CP.com"
+    },
+    "details": {
+      "typeOfBuyer": "BODY_PUBLIC",
+      "mainGeneralActivity": "DEFENCE",
+      "mainSectoralActivity": "AIRPORT_RELATED_ACTIVITIES"
+    }
+  }
 }
