@@ -6,7 +6,7 @@ ei = {
         "endDate": "2022-12-16T06:00:01Z"
       },
       "!amount": {
-        "amount": 100000,
+        "amount": 10000,
         "currency": "MDL"
       }
     },
