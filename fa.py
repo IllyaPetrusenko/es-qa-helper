@@ -343,382 +343,382 @@ issuing_fc = issuing_fc(
     ap_x_token=ap[2],
     payload=issuing
 )
-print(f'BUYER:   REQUEST ID: {issuing_fc[0]},     REQUEST TOKEN:  {issuing_fc[1]}')
-time.sleep(2)
-
-print('------  BUYER CONFIRMATION RESPONSE -------')
-buyer_create_confirmation_response = create_confirmation_response(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=fe,
-    entity='contract',
-    entity_id=qualification_protocol[0],
-    response_id=issuing_fc[0],
-    x_token=issuing_fc[1],
-    role='buyer',
-    payload=confirmation_response
-)
-print(f'BUYER CONFIRMATION REQUEST ID:  {buyer_create_confirmation_response}')
-
-time.sleep(1)
-
-print('------  BUYER NEXT CONFIRMATION STEP -------')
-buyer_next_confirmation_step = next_confirmation_step(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=fe,
-    entity='contract',
-    entity_id=qualification_protocol[0],
-    x_token=qualification_protocol[1],
-    role='buyer',
-)
-buyer_next_confirmation_step = buyer_next_confirmation_step['data']['outcomes']['requests']
-print(f'INVITED CANDIDATES REQUESTS:  {buyer_next_confirmation_step}')
-
-print('------  INVITED CANDIDATES CONFIRMATION RESPONSES -------')
-num = 0
-for i in buyer_next_confirmation_step:
-    if num == 3:
-        break
-    else:
-        create_confirmation_response(
-            host=host,
-            token=get_access_token(host),
-            x_operation_id=get_x_operation_id(get_access_token(host), host),
-            cpid=ap[0],
-            ocid=fe,
-            entity='contract',
-            entity_id=qualification_protocol[0],
-            response_id=i['id'],
-            x_token=i['X-TOKEN'],
-            role='invitedCandidate',
-            payload=confirmation_response_invited_candidate
-        )
-        num = num + 1
-        print(f'PARTICIPANT {num} --- DONE')
-
-time.sleep(1)
-
-print('------  INVITED CANDIDATES NEXT CONFIRMATION STEP -------')
-inv_cand_next_confirmation_step = next_confirmation_step(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=fe,
-    entity='contract',
-    entity_id=qualification_protocol[0],
-    x_token=qualification_protocol[1],
-    role='invitedCandidate',
-)
-
-time.sleep(1)
-
-print('------  CREATE PCR  ------')
-pcr = create_pcr(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    x_token=ap[2],
-    cpid=ap[0],
-    ocid=fe,
-    payload=pcr_full_no_catalogue_items_no_auction_no_criteria
-)
-
-print('------  CREATE BID IN PCR - 1  ------')
-bid_1 = create_bid(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    lot_id=pcr[1],
-    item_id=pcr[2],
-    payload=bid_1
-)
-
-print('------  CREATE BID IN PCR - 2  ------')
-bid_2 = create_bid(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    lot_id=pcr[1],
-    item_id=pcr[2],
-    payload=bid_2
-)
-
-print('------  CREATE BID IN PCR - 3  ------')
-bid_3 = create_bid(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    lot_id=pcr[1],
-    item_id=pcr[2],
-    payload=bid_3
-)
-
-print('------  CREATE BID IN PCR - 4  ------')
-bid_4 = create_bid(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    lot_id=pcr[1],
-    item_id=pcr[2],
-    payload=bid_4
-)
-
-
-print('------  AWARDS -------')
-time.sleep(25)
-awards = get_awards_for_pcr(pcr[0])
-print('AWARD 1 :', awards[0])
-print('AWARD 2 :', awards[1])
-print('AWARD 3 :', awards[2])
-print('AWARD 4 :', awards[3])
-
-
-print('------  AWARD CONSIDERATION  ------')
-awards_consideration(
-    host=host,
-    token=get_access_token(host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    awards=awards
-)
-
-print('-------  UPDATE AWARD  ------')
-update_award_pcr(
-    host=host,
-    token=get_access_token(host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    awards=awards,
-    payload=update_award
-)
-
-
-print('-------  EVALUATE AWARD  ------')
-evaluate_award_pcr(
-    host=host,
-    token=get_access_token(host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    awards=awards,
-    payload=evaluate_award
-)
-
-print('------   PCR PROTOCOL   ------')
-contracts = pcr_protocol_do(
-    host=host,
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    token=get_access_token(host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    lot_id=pcr[1],
-    x_token=pcr[3]
-)
-
-print('------ CONTRACTS ------')
-print(contracts[0])
-print(contracts[1])
-print(contracts[2])
-print(contracts[3])
-
-print('------   GET REQUESTS   ------')
-requests = get_contract_response_id_x_token(
-    ocid=pcr[0]
-)
-print(requests)
-
-print('------   CREATE CONFIRMATION RESPONSE USER 1 ------')
-create_confirmation_response(
-            host=host,
-            token=get_access_token(host),
-            x_operation_id=get_x_operation_id(get_access_token(host), host),
-            cpid=ap[0],
-            ocid=pcr[0],
-            entity='contract',
-            entity_id=contracts[0]['id'],
-            response_id=requests[0]['data']['outcomes']['requests'][0]['id'],
-            x_token=requests[0]['data']['outcomes']['requests'][0]['X-TOKEN'],
-            role='supplier',
-            payload=confirmation_response_invited_candidate
-        )
-
-print('------   CREATE CONFIRMATION RESPONSE USER 2 ------')
-create_confirmation_response(
-            host=host,
-            token=get_access_token(host),
-            x_operation_id=get_x_operation_id(get_access_token(host), host),
-            cpid=ap[0],
-            ocid=pcr[0],
-            entity='contract',
-            entity_id=contracts[1]['id'],
-            response_id=requests[1]['data']['outcomes']['requests'][0]['id'],
-            x_token=requests[1]['data']['outcomes']['requests'][0]['X-TOKEN'],
-            role='supplier',
-            payload=confirmation_response_invited_candidate
-        )
-
-print('------   CREATE CONFIRMATION RESPONSE USER 3 ------')
-create_confirmation_response(
-            host=host,
-            token=get_access_token(host),
-            x_operation_id=get_x_operation_id(get_access_token(host), host),
-            cpid=ap[0],
-            ocid=pcr[0],
-            entity='contract',
-            entity_id=contracts[2]['id'],
-            response_id=requests[2]['data']['outcomes']['requests'][0]['id'],
-            x_token=requests[2]['data']['outcomes']['requests'][0]['X-TOKEN'],
-            role='supplier',
-            payload=confirmation_response_invited_candidate
-        )
-
-print('------   CREATE CONFIRMATION RESPONSE USER 4 ------')
-create_confirmation_response(
-            host=host,
-            token=get_access_token(host),
-            x_operation_id=get_x_operation_id(get_access_token(host), host),
-            cpid=ap[0],
-            ocid=pcr[0],
-            entity='contract',
-            entity_id=contracts[3]['id'],
-            response_id=requests[3]['data']['outcomes']['requests'][0]['id'],
-            x_token=requests[3]['data']['outcomes']['requests'][0]['X-TOKEN'],
-            role='supplier',
-            payload=confirmation_response_invited_candidate
-        )
-
-
-print('------   NEXT CONFIRMATION STEP -1  -------')
-next_confirmation_step(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    entity='contract',
-    entity_id=contracts[0]['id'],
-    x_token=contracts[0]['X-TOKEN'],
-    role='supplier',
-)
-
-
-print('------   NEXT CONFIRMATION STEP -2  -------')
-next_confirmation_step(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    entity='contract',
-    entity_id=contracts[1]['id'],
-    x_token=contracts[1]['X-TOKEN'],
-    role='supplier',
-)
-
-print('------   NEXT CONFIRMATION STEP -3  -------')
-next_confirmation_step(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    entity='contract',
-    entity_id=contracts[2]['id'],
-    x_token=contracts[2]['X-TOKEN'],
-    role='supplier',
-)
-
-print('------   NEXT CONFIRMATION STEP -4  -------')
-next_confirmation_step(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    entity='contract',
-    entity_id=contracts[3]['id'],
-    x_token=contracts[3]['X-TOKEN'],
-    role='supplier',
-)
-
-
-print('------   APPLY CONFIRMATION - 1 -------')
-apply_confirmation(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    entity='contract',
-    entity_id=contracts[0]['id'],
-    x_token=contracts[0]['X-TOKEN']
-)
-
-print('------   APPLY CONFIRMATION - 2 -------')
-apply_confirmation(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    entity='contract',
-    entity_id=contracts[1]['id'],
-    x_token=contracts[1]['X-TOKEN']
-)
-
-print('------   APPLY CONFIRMATION - 3 -------')
-apply_confirmation(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    entity='contract',
-    entity_id=contracts[2]['id'],
-    x_token=contracts[2]['X-TOKEN']
-)
-
-print('------   APPLY CONFIRMATION - 4 -------')
-apply_confirmation(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    cpid=ap[0],
-    ocid=pcr[0],
-    entity='contract',
-    entity_id=contracts[3]['id'],
-    x_token=contracts[3]['X-TOKEN']
-)
-
-
-print('------   CREATE RFQ -------')
-rfq = create_rfq(
-    host=host,
-    token=get_access_token(host),
-    x_operation_id=get_x_operation_id(get_access_token(host), host),
-    x_token=pn_1[2],
-    ap_cpid=ap[0],
-    cpid=pn_1[0],
-    ocid=pn_1[1],
-    pcr_ocid=pcr[0],
-    payload=create_rfq_data,
-    lot_id=pcr[1],
-    item_id=pcr[2]
- )
-
-print('DONE')
-
-
+# print(f'BUYER:   REQUEST ID: {issuing_fc[0]},     REQUEST TOKEN:  {issuing_fc[1]}')
+# time.sleep(2)
+#
+# print('------  BUYER CONFIRMATION RESPONSE -------')
+# buyer_create_confirmation_response = create_confirmation_response(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=fe,
+#     entity='contract',
+#     entity_id=qualification_protocol[0],
+#     response_id=issuing_fc[0],
+#     x_token=issuing_fc[1],
+#     role='buyer',
+#     payload=confirmation_response
+# )
+# print(f'BUYER CONFIRMATION REQUEST ID:  {buyer_create_confirmation_response}')
+#
+# time.sleep(1)
+#
+# print('------  BUYER NEXT CONFIRMATION STEP -------')
+# buyer_next_confirmation_step = next_confirmation_step(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=fe,
+#     entity='contract',
+#     entity_id=qualification_protocol[0],
+#     x_token=qualification_protocol[1],
+#     role='buyer',
+# )
+# buyer_next_confirmation_step = buyer_next_confirmation_step['data']['outcomes']['requests']
+# print(f'INVITED CANDIDATES REQUESTS:  {buyer_next_confirmation_step}')
+#
+# print('------  INVITED CANDIDATES CONFIRMATION RESPONSES -------')
+# num = 0
+# for i in buyer_next_confirmation_step:
+#     if num == 3:
+#         break
+#     else:
+#         create_confirmation_response(
+#             host=host,
+#             token=get_access_token(host),
+#             x_operation_id=get_x_operation_id(get_access_token(host), host),
+#             cpid=ap[0],
+#             ocid=fe,
+#             entity='contract',
+#             entity_id=qualification_protocol[0],
+#             response_id=i['id'],
+#             x_token=i['X-TOKEN'],
+#             role='invitedCandidate',
+#             payload=confirmation_response_invited_candidate
+#         )
+#         num = num + 1
+#         print(f'PARTICIPANT {num} --- DONE')
+#
+# time.sleep(1)
+#
+# print('------  INVITED CANDIDATES NEXT CONFIRMATION STEP -------')
+# inv_cand_next_confirmation_step = next_confirmation_step(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=fe,
+#     entity='contract',
+#     entity_id=qualification_protocol[0],
+#     x_token=qualification_protocol[1],
+#     role='invitedCandidate',
+# )
+#
+# time.sleep(1)
+#
+# print('------  CREATE PCR  ------')
+# pcr = create_pcr(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     x_token=ap[2],
+#     cpid=ap[0],
+#     ocid=fe,
+#     payload=pcr_full_no_catalogue_items_no_auction_no_criteria
+# )
+#
+# print('------  CREATE BID IN PCR - 1  ------')
+# bid_1 = create_bid(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     lot_id=pcr[1],
+#     item_id=pcr[2],
+#     payload=bid_1
+# )
+#
+# print('------  CREATE BID IN PCR - 2  ------')
+# bid_2 = create_bid(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     lot_id=pcr[1],
+#     item_id=pcr[2],
+#     payload=bid_2
+# )
+#
+# print('------  CREATE BID IN PCR - 3  ------')
+# bid_3 = create_bid(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     lot_id=pcr[1],
+#     item_id=pcr[2],
+#     payload=bid_3
+# )
+#
+# print('------  CREATE BID IN PCR - 4  ------')
+# bid_4 = create_bid(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     lot_id=pcr[1],
+#     item_id=pcr[2],
+#     payload=bid_4
+# )
+#
+#
+# print('------  AWARDS -------')
+# time.sleep(25)
+# awards = get_awards_for_pcr(pcr[0])
+# print('AWARD 1 :', awards[0])
+# print('AWARD 2 :', awards[1])
+# print('AWARD 3 :', awards[2])
+# print('AWARD 4 :', awards[3])
+#
+#
+# print('------  AWARD CONSIDERATION  ------')
+# awards_consideration(
+#     host=host,
+#     token=get_access_token(host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     awards=awards
+# )
+#
+# print('-------  UPDATE AWARD  ------')
+# update_award_pcr(
+#     host=host,
+#     token=get_access_token(host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     awards=awards,
+#     payload=update_award
+# )
+#
+#
+# print('-------  EVALUATE AWARD  ------')
+# evaluate_award_pcr(
+#     host=host,
+#     token=get_access_token(host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     awards=awards,
+#     payload=evaluate_award
+# )
+#
+# print('------   PCR PROTOCOL   ------')
+# contracts = pcr_protocol_do(
+#     host=host,
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     token=get_access_token(host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     lot_id=pcr[1],
+#     x_token=pcr[3]
+# )
+#
+# print('------ CONTRACTS ------')
+# print(contracts[0])
+# print(contracts[1])
+# print(contracts[2])
+# print(contracts[3])
+#
+# print('------   GET REQUESTS   ------')
+# requests = get_contract_response_id_x_token(
+#     ocid=pcr[0]
+# )
+# print(requests)
+#
+# print('------   CREATE CONFIRMATION RESPONSE USER 1 ------')
+# create_confirmation_response(
+#             host=host,
+#             token=get_access_token(host),
+#             x_operation_id=get_x_operation_id(get_access_token(host), host),
+#             cpid=ap[0],
+#             ocid=pcr[0],
+#             entity='contract',
+#             entity_id=contracts[0]['id'],
+#             response_id=requests[0]['data']['outcomes']['requests'][0]['id'],
+#             x_token=requests[0]['data']['outcomes']['requests'][0]['X-TOKEN'],
+#             role='supplier',
+#             payload=confirmation_response_invited_candidate
+#         )
+#
+# print('------   CREATE CONFIRMATION RESPONSE USER 2 ------')
+# create_confirmation_response(
+#             host=host,
+#             token=get_access_token(host),
+#             x_operation_id=get_x_operation_id(get_access_token(host), host),
+#             cpid=ap[0],
+#             ocid=pcr[0],
+#             entity='contract',
+#             entity_id=contracts[1]['id'],
+#             response_id=requests[1]['data']['outcomes']['requests'][0]['id'],
+#             x_token=requests[1]['data']['outcomes']['requests'][0]['X-TOKEN'],
+#             role='supplier',
+#             payload=confirmation_response_invited_candidate
+#         )
+#
+# print('------   CREATE CONFIRMATION RESPONSE USER 3 ------')
+# create_confirmation_response(
+#             host=host,
+#             token=get_access_token(host),
+#             x_operation_id=get_x_operation_id(get_access_token(host), host),
+#             cpid=ap[0],
+#             ocid=pcr[0],
+#             entity='contract',
+#             entity_id=contracts[2]['id'],
+#             response_id=requests[2]['data']['outcomes']['requests'][0]['id'],
+#             x_token=requests[2]['data']['outcomes']['requests'][0]['X-TOKEN'],
+#             role='supplier',
+#             payload=confirmation_response_invited_candidate
+#         )
+#
+# print('------   CREATE CONFIRMATION RESPONSE USER 4 ------')
+# create_confirmation_response(
+#             host=host,
+#             token=get_access_token(host),
+#             x_operation_id=get_x_operation_id(get_access_token(host), host),
+#             cpid=ap[0],
+#             ocid=pcr[0],
+#             entity='contract',
+#             entity_id=contracts[3]['id'],
+#             response_id=requests[3]['data']['outcomes']['requests'][0]['id'],
+#             x_token=requests[3]['data']['outcomes']['requests'][0]['X-TOKEN'],
+#             role='supplier',
+#             payload=confirmation_response_invited_candidate
+#         )
+#
+#
+# print('------   NEXT CONFIRMATION STEP -1  -------')
+# next_confirmation_step(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     entity='contract',
+#     entity_id=contracts[0]['id'],
+#     x_token=contracts[0]['X-TOKEN'],
+#     role='supplier',
+# )
+#
+#
+# print('------   NEXT CONFIRMATION STEP -2  -------')
+# next_confirmation_step(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     entity='contract',
+#     entity_id=contracts[1]['id'],
+#     x_token=contracts[1]['X-TOKEN'],
+#     role='supplier',
+# )
+#
+# print('------   NEXT CONFIRMATION STEP -3  -------')
+# next_confirmation_step(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     entity='contract',
+#     entity_id=contracts[2]['id'],
+#     x_token=contracts[2]['X-TOKEN'],
+#     role='supplier',
+# )
+#
+# print('------   NEXT CONFIRMATION STEP -4  -------')
+# next_confirmation_step(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     entity='contract',
+#     entity_id=contracts[3]['id'],
+#     x_token=contracts[3]['X-TOKEN'],
+#     role='supplier',
+# )
+#
+#
+# print('------   APPLY CONFIRMATION - 1 -------')
+# apply_confirmation(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     entity='contract',
+#     entity_id=contracts[0]['id'],
+#     x_token=contracts[0]['X-TOKEN']
+# )
+#
+# print('------   APPLY CONFIRMATION - 2 -------')
+# apply_confirmation(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     entity='contract',
+#     entity_id=contracts[1]['id'],
+#     x_token=contracts[1]['X-TOKEN']
+# )
+#
+# print('------   APPLY CONFIRMATION - 3 -------')
+# apply_confirmation(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     entity='contract',
+#     entity_id=contracts[2]['id'],
+#     x_token=contracts[2]['X-TOKEN']
+# )
+#
+# print('------   APPLY CONFIRMATION - 4 -------')
+# apply_confirmation(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     cpid=ap[0],
+#     ocid=pcr[0],
+#     entity='contract',
+#     entity_id=contracts[3]['id'],
+#     x_token=contracts[3]['X-TOKEN']
+# )
+#
+#
+# print('------   CREATE RFQ -------')
+# rfq = create_rfq(
+#     host=host,
+#     token=get_access_token(host),
+#     x_operation_id=get_x_operation_id(get_access_token(host), host),
+#     x_token=pn_1[2],
+#     ap_cpid=ap[0],
+#     cpid=pn_1[0],
+#     ocid=pn_1[1],
+#     pcr_ocid=pcr[0],
+#     payload=create_rfq_data,
+#     lot_id=pcr[1],
+#     item_id=pcr[2]
+#  )
+#
+# print('DONE')
+#
+#
