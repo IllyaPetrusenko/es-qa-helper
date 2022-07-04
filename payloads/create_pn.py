@@ -79,7 +79,7 @@ pn_fa = {
 }
 pn_open = {
     "planning": {
-        "rationale": "rationale is an optional field",
+        "rationale": "rationale is an optional field qqq",
         "budget": {
             "description": "description",
             "budgetBreakdown": [
