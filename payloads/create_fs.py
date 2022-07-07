@@ -4,7 +4,7 @@ fs = {
             "id": "MD26TRPDAB311120A13489AC",
             "description": "planning.budget.description",
             "period": {
-                "startDate": "2020-06-25T16:12:45Z",
+                "startDate": "2020-07-25T16:12:45Z",
                 "endDate": "2022-12-26T16:12:45Z"
             },
             "amount": {
