@@ -2,7 +2,7 @@ from config import get_host
 from functions import *
 from payloads.confirmation_response_invited_candidate import confirmation_response_invited_candidate
 from payloads.confirmation_response import confirmation_response
-from payloads.create_ei import ei, ei_1
+from payloads.create_ei import ei, ei_1, ei_2
 from payloads.create_fs import fs
 from payloads.create_pn import pn_fa
 from payloads.create_ap import ap
@@ -31,7 +31,7 @@ fs_ocid_1 = create_fs(
         token=get_access_token(host),
         host=host,
         x_operation_id=get_x_operation_id(get_access_token(host), host),
-        payload=ei_m,
+        payload=ei_2,
         idno='001'
     ),
     payload=fs)
@@ -47,7 +47,7 @@ fs_ocid_2 = create_fs(
         token=get_access_token(host),
         host=host,
         x_operation_id=get_x_operation_id(get_access_token(host), host),
-        payload=ei_m,
+        payload=ei_2,
         idno='001'
     ),
     payload=fs)
@@ -63,7 +63,7 @@ fs_ocid_3 = create_fs(
         token=get_access_token(host),
         host=host,
         x_operation_id=get_x_operation_id(get_access_token(host), host),
-        payload=ei_m,
+        payload=ei_2,
         idno='001'
     ),
     payload=fs)
