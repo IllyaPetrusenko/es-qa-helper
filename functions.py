@@ -240,7 +240,7 @@ def get_bpe_message_from_kafka(ocid, initiator):
             kafka_message = requests.get(
                 url=f'{kafka_host}/ocid/{ocid}/bpe'
             ).json()
-            print("BPE:   " + kafka_message)
+            print(kafka_message)
         del kafka_message[0]['_id']
         return kafka_message
     elif initiator == 'platform':

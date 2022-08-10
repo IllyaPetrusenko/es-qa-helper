@@ -3,8 +3,10 @@ import datetime
 import json
 import requests
 
-from payloads.create_ei import ei
+from payloads.create_ei import ei_md, ei_lt, ei_ua
+from payloads.create_pin import pin_ua, pin_lt
 from payloads.create_fs import fs
+from payloads.create_pn import pn_md, pn_lt
 
 
 class CreateEntity:
@@ -126,44 +128,77 @@ class CreateEntity:
         tender_period_end = tender_period_end + datetime.timedelta(seconds=15)
         tender_period_end = tender_period_end.strftime("%Y-%m-%dT%H:%M:%SZ")
         enq_period_end = datetime.datetime.now() - datetime.timedelta(hours=3)
-        enq_period_end = enq_period_end + datetime.timedelta(seconds=5)
+        enq_period_end = enq_period_end + datetime.timedelta(seconds=3)
         enq_period_end = enq_period_end.strftime("%Y-%m-%dT%H:%M:%SZ")
 
         return str(tender_period_end), str(enq_period_end)
 
     def create_ei(self):
+        if self.country == 'MD':
+            payload = ei_md
+        elif self.country == 'LT':
+            payload = ei_lt
+        elif self.country == 'UA':
+            payload = ei_ua
         operation_id = self.get_x_operation_id()
         access_token = self.get_tokens()[0]
         requests.post(url=f'{self.host}/do/ei?country={self.country}&lang={self.lang}&testMode=true', headers={
             'Authorization': f'Bearer {access_token}',
             'X-OPERATION-ID': operation_id,
             'Content-Type': 'application/json'
-        }, data=json.dumps(ei))
+        }, data=json.dumps(payload))
         kafka_message = self.get_message_from_kafka(operation_id)
+        print(kafka_message)
         ei_ocid = kafka_message['data']['ocid']
         ei_x_token = kafka_message['data']['outcomes']['ei'][0]['X-TOKEN']
 
         return ei_ocid, ei_x_token
 
-    def create_fs(self, ocid):
+    def confirm_ei(self, cpid, x_token):
         operation_id = self.get_x_operation_id()
         access_token = self.get_tokens()[0]
-        requests.post(url=f'{self.host}/do/fs/{ocid}', headers={
+        requests.post(url=f'{self.host}/do/confirmation/ei/{cpid}', headers={
             'Authorization': f'Bearer {access_token}',
             'X-OPERATION-ID': operation_id,
+            'X-TOKEN': x_token,
             'Content-Type': 'application/json'
-        }, data=json.dumps(fs))
+        })
         kafka_message = self.get_message_from_kafka(operation_id)
-        fs_cpid = kafka_message['data']['ocid']
-        fs_ocid = kafka_message['data']['outcomes']['fs'][0]['id']
-        fs_x_token = kafka_message['data']['outcomes']['fs'][0]['X-TOKEN']
+        print(kafka_message)
 
-        return fs_cpid, fs_ocid, fs_x_token
+    def create_fs(self, ocid, country):
+        if country == 'MD':
+            operation_id = self.get_x_operation_id()
+            access_token = self.get_tokens()[0]
+            requests.post(url=f'{self.host}/do/fs/{ocid}', headers={
+                'Authorization': f'Bearer {access_token}',
+                'X-OPERATION-ID': operation_id,
+                'Content-Type': 'application/json'
+            }, data=json.dumps(fs))
+            kafka_message = self.get_message_from_kafka(operation_id)
+            print(kafka_message)
+            fs_cpid = kafka_message['data']['ocid']
+            fs_ocid = kafka_message['data']['outcomes']['fs'][0]['id']
+            fs_x_token = kafka_message['data']['outcomes']['fs'][0]['X-TOKEN']
 
-    def create_pn(self, pmd, payload, fs_ocid):
+            return fs_cpid, fs_ocid, fs_x_token
+
+        if country == 'LT':
+            return '---'
+
+    def create_pn(self, pmd, payload, ocid):
+        if self.country == 'MD':
+            payload = pn_md
+            payload['planning']['budget']['budgetBreakdown'][0]['id'] = ocid
+        elif self.country == 'LT':
+            payload = pn_lt
+            payload['planning']['budget']['budgetBreakdown'][0]['id'] = ocid
+            payload['planning']['budget']['budgetBreakdown'][0]['classifications']['ei'] = ocid
+        elif self.country == 'UA':
+            payload = pn_ua
         operation_id = self.get_x_operation_id()
         access_token = self.get_tokens()[0]
-        payload['planning']['budget']['budgetBreakdown'][0]['id'] = fs_ocid
+
         requests.post(url=f'{self.host}/do/pn?country={self.country}&lang={self.lang}&pmd={pmd}&testMode=true',
                       headers={
                           'Authorization': f'Bearer {access_token}',
@@ -175,6 +210,34 @@ class CreateEntity:
         pn_cpid = kafka_message['data']['ocid']
         pn_ocid = kafka_message['data']['outcomes']['pn'][0]['id']
         pn_x_token = kafka_message['data']['outcomes']['pn'][0]['X-TOKEN']
+
+        return pn_cpid, pn_ocid, pn_x_token
+
+    def create_pin(self, pmd, ei_ocid_1, ei_ocid_2):
+        if self.country == 'MD':
+            payload = pin_md
+        elif self.country == 'LT':
+            payload = pin_lt
+        elif self.country == 'UA':
+            payload = pin_ua
+        operation_id = self.get_x_operation_id()
+        access_token = self.get_tokens()[0]
+        payload['planning']['budget']['budgetBreakdown'][0]['id'] = ei_ocid_1
+        payload['planning']['budget']['budgetBreakdown'][1]['id'] = ei_ocid_2
+        payload['planning']['budget']['budgetBreakdown'][0]['classifications']['ei'] = ei_ocid_1
+        payload['planning']['budget']['budgetBreakdown'][1]['classifications']['ei'] = ei_ocid_2
+        requests.post(url=f'{self.host}/do/pin?country={self.country}&lang={self.lang}&pmd={pmd}&testMode=true',
+                      headers={
+                          'Authorization': f'Bearer {access_token}',
+                          'X-OPERATION-ID': operation_id,
+                          'Content-Type': 'application/json'
+                      }, data=json.dumps(payload))
+        print(payload)
+        kafka_message = self.get_message_from_kafka(operation_id)
+        print(kafka_message)
+        pn_cpid = kafka_message['data']['ocid']
+        pn_ocid = kafka_message['data']['outcomes']['pin'][0]['id']
+        pn_x_token = kafka_message['data']['outcomes']['pin'][0]['X-TOKEN']
 
         return pn_cpid, pn_ocid, pn_x_token
 
@@ -231,6 +294,7 @@ class CreateEntity:
 
     def get_awards(self, cpid, ocid):
         kafka_message = self.get_bpe_message_from_kafka(ocid, 'bpe')
+        print(str(kafka_message))
         for i in kafka_message:
             outcomes = i['data']['outcomes']
             if 'awards' in outcomes:
